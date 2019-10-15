@@ -1,0 +1,115 @@
+$navLinkBg: #1a1c21;
+$navBorderColor: #33353c;
+$flexBasis:24%;
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+  list-style: none;
+
+  nav {
+    width: 100%;
+    height: 90px;
+    background-color: #272930;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 15px;
+
+    .navbar-brand-wrapper {
+      flex-basis: $flexBasis;
+      border-right: 1px solid $navBorderColor;
+      display: flex;
+      justify-content: right;
+      min-height: 85px;
+      align-items: center;
+      .navbar-brand {
+        margin-right: 80px;
+      }
+    }
+
+    .nav-link-wrapper {
+      flex: 1;
+
+      ul {
+        display: flex;
+
+        li {
+          float: left;
+          margin-left: 20px;
+          .nav-link {
+            font-weight: 800;
+            color: #fff;
+            padding: 8px;
+            font-size: 16px;
+            &:hover {
+              background-color: $navLinkBg;
+            }
+          }
+
+          .active {
+            background-color: $navLinkBg;
+          }
+          &:last-child {
+            margin-top: -5px;
+            flex-basis: 40%;
+            margin-left: auto;
+            margin-right: 10px;
+          }
+          .input-wrapper {
+            background-color: #202228;
+            height: 30px;
+            line-height: 29px;
+            color: #fff;
+            padding: 0px 8px;
+            .search-input {
+              background-color: inherit;
+              border: none;
+              color: rgba(255, 255, 255, 0.5);
+              padding: 8px;
+              width: calc(100% - 20px);
+            }
+          }
+        }
+      }
+    }
+
+    .nav-btn-wrapper {
+      flex-basis: 18%;
+      border-left: 1px solid $navBorderColor;
+      border-right: 1px solid $navBorderColor;
+      min-height: 85px;
+      display: flex;
+      align-items: center;
+      padding:0 25px;
+
+      .sign-btn{
+          padding: 6px 22px;
+          color:#fff;
+          border: none;
+          border-radius: 2px;
+          font-size: 15px;
+          font-weight: bold;
+          cursor: pointer;
+
+          &:hover{
+              background-color: #f05555;
+          }
+      }
+
+      .sign-in{
+          background-color: #2D6FF7;
+          margin-right: 15px;
+      }
+
+      .sign-up{
+          background-color: #7C7F85;
+      }
+    }
+
+    .offset{
+        flex-basis: 10%;
+    }
+  }
+}
