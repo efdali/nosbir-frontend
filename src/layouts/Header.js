@@ -1,7 +1,16 @@
 import React, { Component } from "react";
-import { Link,NavLink } from "react-router-dom";
-
+import { Link, NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import {
+  showModal,
+  REGISTER_MODAL,
+  LOGIN_MODAL
+} from "../store/actions/modalAction";
 class Header extends Component {
+  handleModal = (e,modelType) => {
+    this.props.openModal(modelType);
+    e.preventDefault();
+  };
   render() {
     return (
       <header className="header">
@@ -20,16 +29,24 @@ class Header extends Component {
               <nav className="nav f_left">
                 <ul>
                   <li>
-                    <NavLink exact to="/" className="nav-link">Home</NavLink>
+                    <NavLink exact to="/" className="nav-link">
+                      Home
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/about" className="nav-link">About</NavLink>
+                    <NavLink to="/about" className="nav-link">
+                      About
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/blog" className="nav-link">Blog</NavLink>
+                    <NavLink to="/blog" className="nav-link">
+                      Blog
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/contact" className="nav-link">Contact Us</NavLink>
+                    <NavLink to="/contact" className="nav-link">
+                      Contact Us
+                    </NavLink>
                   </li>
                 </ul>
               </nav>
@@ -47,12 +64,28 @@ class Header extends Component {
             </div>
           </div>
           <div className="right-container sign-container">
-            <button className="sign-btn sign-in">Sign in</button>
-            <button className="sign-btn sign-up">Sign up</button>
+            <button
+              className="sign-btn sign-in"
+              onClick={e=>this.handleModal(e,LOGIN_MODAL)}
+            >
+              Oturum
+            </button>
+            <button
+              className="sign-btn sign-up"
+              onClick={e=>this.handleModal(e,REGISTER_MODAL)}
+            >
+              Kaydol
+            </button>
           </div>
         </div>
       </header>
     );
   }
 }
-export default Header;
+const mapDispatchToProps = dispatch => ({
+  openModal: modalType => dispatch(showModal(modalType))
+});
+export default connect(
+  null,
+  mapDispatchToProps
+)(Header);

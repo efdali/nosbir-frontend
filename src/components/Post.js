@@ -68,7 +68,7 @@ export default function Post() {
         </p>
         <footer className="post-footer">
             <Link to="/" className="post-comment">
-            <i class="fas fa-comment-alt"></i>
+            <i className="fas fa-comment-alt"></i>
             <span> 4</span> Answers
             </Link>
             <Link to="/" className="post-answer-btn">
