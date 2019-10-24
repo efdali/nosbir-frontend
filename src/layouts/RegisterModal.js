@@ -7,9 +7,9 @@ import FormInput from "../components/FormInput";
 
 const formElemans = [
     {name:"Kullanıcı Adı",icon:"user"},
-    {name:"Mail",icon:"envelope"},
-    {name:"Şifre",icon:"unlock"},
-    {name:"Şifre Tekrar",icon:"lock"},
+    {name:"Mail",icon:"envelope",type:"email"},
+    {name:"Şifre",icon:"unlock",type:"password"},
+    {name:"Şifre Tekrar",icon:"lock",type:"password"},
 ];
 
 export default function RegisterModal() {
@@ -24,8 +24,8 @@ export default function RegisterModal() {
       <div className="form-container">
         <form>
           {
-              formElemans.map(({name,icon})=>(
-                  <FormInput name={name} icon={icon}/>
+              formElemans.map(f=>(
+                  <FormInput {...f}/>
               ))
           }
           <div className="form-footer">

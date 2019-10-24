@@ -7,7 +7,7 @@ import FormInput from "../components/FormInput";
 
 const formElemans=[
   {name:"Kullanıcı Adı",icon:"user"},
-  {name:"Şifre",icon:"unlock"}
+  {name:"Şifre",icon:"unlock",type:"password"}
 ]
 
 export default function LoginModal() {
@@ -22,14 +22,14 @@ export default function LoginModal() {
       <div className="form-container">
         <form>
           {
-            formElemans.map(({name,icon})=>(
-              <FormInput name={name} icon={icon}/>
+            formElemans.map(f=>(
+              <FormInput {...f}/>
             ))
           }
           <div className="form-footer">
             <div>
               <label>
-                <input type="checkbox" />
+                <input type="checkbox" checked/>
                 <span className="remember-me">Beni Hatırla!</span>
               </label>
             </div>

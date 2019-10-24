@@ -491,6 +491,12 @@ form .input-wrapper .default-input {
   padding: 11px;
   width: calc(100% - 22px);
 }
+.default-input:focus{
+  outline: none;
+}
+.default-input:invalid {
+  color:   #f00 !important;
+}
 form .form-footer {
   display: flex;
   font-size: 13px;

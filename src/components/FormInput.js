@@ -8,7 +8,7 @@ export default function FormInput(props) {
         <span className="required">*</span>
         <div className="input-wrapper">
           <i className={`fas fa-${props.icon}`}></i>
-          <input className="default-input" />
+          <input className="default-input" type={props.type} required/>
         </div>
       </label>
     </div>
@@ -17,4 +17,7 @@ export default function FormInput(props) {
 FormInput.prototype={
     name:PropTypes.string.isRequired,
     icon:PropTypes.string.isRequired
+}
+FormInput.defaultProps={
+  type:"text"
 }
