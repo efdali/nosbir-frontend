@@ -1,21 +1,21 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
-import Navbar from "./layouts/Navbar";
+import Header from "./layouts/Header";
+import Aside from "./layouts/Aside";
 
 class App extends React.Component {
   render() {
     return (
       <Router>
+        <Header />
+        <div className="container">
+          <Switch>
+            <Route exact path="/" component={Home} />
+          </Switch>
 
-        <Navbar/>
-        
-        <Switch>
-          <Route exact path="/">
-            <Home/>
-          </Route>
-        </Switch>
-
+          <Aside />
+        </div>
       </Router>
     );
   }
