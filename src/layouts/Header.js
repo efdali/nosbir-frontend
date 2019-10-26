@@ -15,7 +15,7 @@ class Header extends Component {
     return (
       <div>
         <header className="header">
-          <div className="container">
+          <div className="container header-container">
             <div className="left-container">
               <Link to="/" className="header-logo" title="Nosbir">
                 <img
@@ -64,7 +64,10 @@ class Header extends Component {
                 </div>
               </div>
             </div>
-            <div className="right-container sign-container">
+            <div
+              className="right-container sign-container"
+              style={{ display: "none" }}
+            >
               <button
                 className="sign-btn sign-in"
                 onClick={e => this.handleModal(e, LOGIN_MODAL)}
@@ -83,6 +86,31 @@ class Header extends Component {
               >
                 <i className="fas fa-lock" />
               </button>
+            </div>
+            <div className="right-container header-signed-container">
+              <div className="signed-user-info">
+                <Link to="/">
+                  <img
+                    src="https://2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-2-42x42.jpg"
+                    className="img-rounded"
+                    width="30"
+                    height="30"
+                    alt="userimage"
+                  />
+                </Link>
+                <div className="signed-user">
+                  <span>Hoşgeldin</span>
+                  <h3>
+                    <Link to="/">efdali</Link>
+                  </h3>
+                </div>
+                <div className="header-user-dropdown">
+                  <i className="fas fa-caret-square-down dropdown-icon"></i>
+                </div>
+              </div>
+              <div className="header-notification">
+                <i className="fas fa-bell notification-icon"></i>
+              </div>
             </div>
           </div>
         </header>

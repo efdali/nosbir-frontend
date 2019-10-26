@@ -28,7 +28,9 @@ header.header {
   line-height: 85px;
   background-color: #272930;
 }
-
+header .header-container {
+  height: 85px;
+}
 .container {
   width: 1170px;
   margin: auto;
@@ -144,6 +146,48 @@ nav.nav {
 }
 .right-container {
   width: 269px;
+}
+.right-container.header-signed-container {
+  height: 85px;
+  display: flex;
+  align-items: center;
+  line-height: 22px;
+  padding: 0 15px;
+}
+.signed-user-info {
+  height: 85px;
+  flex-basis: 90%;
+  display: flex;
+  align-items: center;
+}
+.signed-user-info a {
+  padding-top: 7px;
+}
+.signed-user {
+  margin-left: 6px;
+}
+.signed-user span {
+  font-size: 11px;
+  font-weight: 600;
+}
+.signed-user h3 a {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+.header-user-dropdown {
+  flex: 1;
+  text-align: right;
+  margin-right: 15px;
+}
+.header-user-dropdown > .dropdown-icon:hover,
+.header-notification > .notification-icon:hover{
+  cursor: pointer;
+  color:#FFF;
+}
+.header-notification {
+  border-left: 1px solid #33353c;
+  padding-left: 15px;
 }
 .right-container.sign-container {
   border-right: 1px solid #33353c;
@@ -466,31 +510,31 @@ li a i {
   border-top: 1px solid #e4e6e6;
 }
 .comment-form > p {
-  padding:5px 0;
+  padding: 5px 0;
   font-size: 14px;
   font-weight: 700;
   color: black;
 }
-.comment-form form div.textarea{
+.comment-form form div.textarea {
   border: 1px solid #e1e3e3;
   margin-bottom: 15px;
 }
 
-div.textarea p{
+div.textarea p {
   padding: 5px 10px;
   color: #272930;
-  font-size:13px;
+  font-size: 13px;
   font-weight: 600;
   background-color: #e1e3e3;
 }
-div.textarea p span{
+div.textarea p span {
   font-weight: 500;
-  font-size:12px;
+  font-size: 12px;
 }
 .comment-form textarea.comment-text {
   width: 100%;
   height: 135px;
-  border:none;
+  border: none;
   resize: vertical;
   font-family: Consolas, Monaco, monospace;
   font-size: 13px;
@@ -502,21 +546,21 @@ div.textarea p span{
 .default-btn.comment-submit-btn:hover {
   background-color: #7c7f85;
 }
-.comment-user-detail{
-  color:#272930;
+.comment-user-detail {
+  color: #272930;
   font-weight: 400;
   font-size: 13px;
 }
-.comment-user-detail i{
+.comment-user-detail i {
   padding: 2px 8px 0 2px;
 }
-.comment-user-detail span{
-  color:#707885;
-  padding :2px 12px;
+.comment-user-detail span {
+  color: #707885;
+  padding: 2px 12px;
 }
-.comment-user-detail h6{
+.comment-user-detail h6 {
   display: inline-block;
-  font-size:13px
+  font-size: 13px;
 }
 /* Aside */
 

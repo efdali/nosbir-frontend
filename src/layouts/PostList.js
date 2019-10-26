@@ -45,13 +45,13 @@ export default function PostList() {
           </li>
           <li className="sort-list-item">
             <NavLink to="/segseg" className="sort-list-item-link">
-              Kültür
+              Spor
             </NavLink>
             {/* <div className="sort-list-scroll"></div> */}
           </li>
           <li className="sort-list-item">
             <NavLink to="/segseg" className="sort-list-item-link">
-              Spor
+              Genel
             </NavLink>
             {/* <div className="sort-list-scroll"></div> */}
           </li>
@@ -69,8 +69,8 @@ export default function PostList() {
               <option>Nofab</option>
               <option>Teknoloji</option>
               <option>Programlama</option>
-              <option>Kültür</option>
               <option>Spor</option>
+              <option>Genel</option>
             </select>
           </li>
         </ul>
