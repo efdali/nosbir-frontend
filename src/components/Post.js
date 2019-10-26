@@ -53,16 +53,8 @@ export default function Post() {
           In my local language (Bahasa Indonesia) there are no verb-2 or past
           tense form as time tracker. So, I often forget to use the past form of
           verb when speaking english. I saw him last night (correct) I see him
-          last night In my local language (Bahasa Indonesia) there are no verb-2
-          or past tense form as time tracker. So, I often forget to use the past
-          form of verb when speaking english. I saw him last night (correct) I
-          see him last night In my local language (Bahasa Indonesia) there are
-          no verb-2 or past tense form as time tracker. So, I often forget to
-          use the past form of verb when speaking english. I saw him last night
-          (correct) I see him last night In my local language (Bahasa Indonesia)
-          there are no verb-2 or past tense form as time tracker. So, I often
-          forget to use the past form of verb when speaking english. I saw him
-          last night (correct) I see him last night
+          last night (incorrect) But i think both has the same meaning and are
+          understandable, Isn’t it?
         </p>
         <footer className="post-footer">
           <Link to="/" className="post-comment">
