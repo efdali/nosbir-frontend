@@ -86,7 +86,7 @@ export default function PostList() {
             <span className="loader"></span>
           </span>
           <button className="default-btn load-more-btn">
-            Load More Questions
+            Daha Fazla Nos
           </button>
         </div>
       </div>
