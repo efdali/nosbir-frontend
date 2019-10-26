@@ -4,38 +4,74 @@ import Post from "../components/Post";
 
 export default function PostList() {
   return (
-    <div className="left-container mt fd-column bg-white">
+    <div>
       <div className="sort-list-container">
         <ul className="sort-list">
           <li className="sort-list-item">
             <NavLink to="/" className="sort-list-item-link">
-              Recent Question
+              <i className="fas fa-home homepage-icon"></i>
             </NavLink>
-            <div className="sort-list-scroll"></div>
+            {/* <div className="sort-list-scroll"></div> */}
           </li>
           <li className="sort-list-item">
             <NavLink to="/seg" className="sort-list-item-link">
-              Most Answered
+              Dünya Halleri
             </NavLink>
-            <div className="sort-list-scroll"></div>
+            {/* <div className="sort-list-scroll"></div> */}
           </li>
           <li className="sort-list-item">
             <NavLink to="/segg" className="sort-list-item-link">
-              Question Bump
+              Sıcak Gündem
             </NavLink>
-            <div className="sort-list-scroll"></div>
+            {/* <div className="sort-list-scroll"></div> */}
           </li>
           <li className="sort-list-item">
             <NavLink to="/segseg" className="sort-list-item-link">
-              Answers
+              Nofab
             </NavLink>
-            <div className="sort-list-scroll"></div>
+            {/* <div className="sort-list-scroll"></div> */}
           </li>
           <li className="sort-list-item">
             <NavLink to="/segseg" className="sort-list-item-link">
-              Most Visited
+              Teknoloji
             </NavLink>
-            <div className="sort-list-scroll"></div>
+            {/* <div className="sort-list-scroll"></div> */}
+          </li>
+          <li className="sort-list-item">
+            <NavLink to="/segseg" className="sort-list-item-link">
+              Programlama
+            </NavLink>
+            {/* <div className="sort-list-scroll"></div> */}
+          </li>
+          <li className="sort-list-item">
+            <NavLink to="/segseg" className="sort-list-item-link">
+              Kültür
+            </NavLink>
+            {/* <div className="sort-list-scroll"></div> */}
+          </li>
+          <li className="sort-list-item">
+            <NavLink to="/segseg" className="sort-list-item-link">
+              Spor
+            </NavLink>
+            {/* <div className="sort-list-scroll"></div> */}
+          </li>
+        </ul>
+        <ul className="mobile-sort-list">
+          <li><NavLink to="/" className="sort-list-item-link">
+            <i className="fas fa-home homepage-icon"></i>
+          </NavLink>
+          </li>
+          <li>
+            <select className="mobile-group-select">
+              <option>Gruplar</option>
+              <option>Dünya Halleri</option>
+              <option>Sıcak Gündem</option>
+              <option>Nofab</option>
+              <option>Teknoloji</option>
+              <option>Programlama</option>
+              <option>Kültür</option>
+              <option>Spor</option>
+            </select>
           </li>
         </ul>
       </div>
@@ -49,7 +85,9 @@ export default function PostList() {
           <span className="load-span">
             <span className="loader"></span>
           </span>
-          <button className="default-btn load-more-btn">Load More Questions</button>
+          <button className="default-btn load-more-btn">
+            Load More Questions
+          </button>
         </div>
       </div>
     </div>

@@ -24,7 +24,7 @@ export default function Aside() {
               </Link>
               <div className="content-meta">
                 <h3>
-                  <Link to="/">
+                  <Link to="/baslik/denek">
                     How to approach applying for a job at a company
                   </Link>
                 </h3>
@@ -50,7 +50,7 @@ export default function Aside() {
               </Link>
               <div className="content-meta">
                 <h3>
-                  <Link to="/">
+                  <Link to="/baslik/dene">
                     How to approach applying for a job at a company
                   </Link>
                 </h3>
@@ -76,7 +76,7 @@ export default function Aside() {
               </Link>
               <div className="content-meta">
                 <h3>
-                  <Link to="/">
+                  <Link to="/baslik/deneme">
                     How to approach applying for a job at a company
                   </Link>
                 </h3>

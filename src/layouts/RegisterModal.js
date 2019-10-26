@@ -24,8 +24,8 @@ export default function RegisterModal() {
       <div className="form-container">
         <form>
           {
-              formElemans.map(f=>(
-                  <FormInput {...f}/>
+              formElemans.map((f,index)=>(
+                  <FormInput {...f} key={index}/>
               ))
           }
           <div className="form-footer">

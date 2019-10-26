@@ -6,23 +6,26 @@ import Aside from "./layouts/Aside";
 import Footer from "./layouts/Footer";
 import RegisterModal from "./layouts/RegisterModal";
 import LoginModal from "./layouts/LoginModal";
+import PostDetail from "./pages/PostDetail";
 
 class App extends React.Component {
   render() {
     return (
       <Router>
         <Header />
-        <div className="container">
-          <Switch>
-            <Route exact path="/" component={Home} />
-          </Switch>
-
+        <div className="container container2">
+          <div className="left-container mt fd-column bg-white">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/baslik/:link" component={PostDetail} />
+            </Switch>
+          </div>
           <Aside />
         </div>
-        <Footer/>
+        <Footer />
 
-        <RegisterModal/>
-        <LoginModal/>
+        <RegisterModal />
+        <LoginModal />
       </Router>
     );
   }
