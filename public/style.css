@@ -153,12 +153,25 @@ nav.nav {
   align-items: center;
   line-height: 22px;
   padding: 0 15px;
+  position: relative;
+}
+.right-container.header-signed-container .dropdown{
+  position: absolute;
+  width:100%;
+  background-color: #FFF;
+  top:100%;
+  left:0;
+  padding:5px 10px;
+  z-index: 999;
+  border-bottom: 1px solid #e1e3e3;
+  box-shadow: 0 1px 5px 0 #d0d2d3;
 }
 .signed-user-info {
   height: 85px;
   flex-basis: 90%;
   display: flex;
   align-items: center;
+  position: relative;
 }
 .signed-user-info a {
   padding-top: 7px;
@@ -179,15 +192,73 @@ nav.nav {
   flex: 1;
   text-align: right;
   margin-right: 15px;
+  color:#000;
+}
+.dropdown-icon{
+  color:#707885 !important;
 }
 .header-user-dropdown > .dropdown-icon:hover,
-.header-notification > .notification-icon:hover{
+.header-notification > .notification-icon:hover {
   cursor: pointer;
-  color:#FFF;
+  color: #fff !important;
+}
+.user-menu-dropdown ul{
+  padding: 10px 15px;
+}
+.user-menu-dropdown ul li{
+  padding: 5px 0;
+}
+.user-menu-dropdown a, .user-menu-dropdown a i{
+  font-size: 13px;
+  font-weight: 600;
+  color:#26333b !important;
+  margin-right: 15px;
+}
+.user-menu-dropdown a:hover{
+  color: #2d6ff7 !important;
 }
 .header-notification {
   border-left: 1px solid #33353c;
   padding-left: 15px;
+}
+.notification-dropdown {
+  font-size: 12px;
+  line-height: 18px;
+}
+.notification-dropdown.hidden,
+.user-menu-dropdown.hidden{
+  display:none;
+}
+.notification-dropdown ul {
+  padding: 5px 5px;
+}
+.notification-dropdown ul li {
+  padding: 8px 0;
+  border-bottom: 1px solid #e1e3e3;
+}
+.notification-dropdown ul li:last-child{
+  border-bottom:none;
+}
+.notification-dropdown ul li a i {
+  color: #000 !important;
+  padding: 8px;
+}
+.notification-dropdown ul li a p {
+  color: #656c77;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.notification-dropdown ul li a .notification-date{
+  font-size:10px;
+}
+.notification-dropdown .notification-show-all {
+  border-top: 1px solid #e4e6e6;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  padding: 10px;
 }
 .right-container.sign-container {
   border-right: 1px solid #33353c;

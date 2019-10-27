@@ -1,16 +1,7 @@
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { connect } from "react-redux";
-import {
-  showModal,
-  REGISTER_MODAL,
-  LOGIN_MODAL
-} from "../store/actions/modalAction";
+import HeaderUser from "../components/HeaderUser";
 class Header extends Component {
-  handleModal = (e, modelType) => {
-    this.props.openModal(modelType);
-    e.preventDefault();
-  };
   render() {
     return (
       <div>
@@ -64,54 +55,7 @@ class Header extends Component {
                 </div>
               </div>
             </div>
-            <div
-              className="right-container sign-container"
-              style={{ display: "none" }}
-            >
-              <button
-                className="sign-btn sign-in"
-                onClick={e => this.handleModal(e, LOGIN_MODAL)}
-              >
-                Giriş Yap
-              </button>
-              <button
-                className="sign-btn sign-up"
-                onClick={e => this.handleModal(e, REGISTER_MODAL)}
-              >
-                Kayıt Ol
-              </button>
-              <button
-                className="mobile-sign-btn"
-                onClick={e => this.handleModal(e, LOGIN_MODAL)}
-              >
-                <i className="fas fa-lock" />
-              </button>
-            </div>
-            <div className="right-container header-signed-container">
-              <div className="signed-user-info">
-                <Link to="/">
-                  <img
-                    src="https://2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-2-42x42.jpg"
-                    className="img-rounded"
-                    width="30"
-                    height="30"
-                    alt="userimage"
-                  />
-                </Link>
-                <div className="signed-user">
-                  <span>Hoşgeldin</span>
-                  <h3>
-                    <Link to="/">efdali</Link>
-                  </h3>
-                </div>
-                <div className="header-user-dropdown">
-                  <i className="fas fa-caret-square-down dropdown-icon"></i>
-                </div>
-              </div>
-              <div className="header-notification">
-                <i className="fas fa-bell notification-icon"></i>
-              </div>
-            </div>
+            <HeaderUser />
           </div>
         </header>
         <div className="container container2">
@@ -132,10 +76,4 @@ class Header extends Component {
     );
   }
 }
-const mapDispatchToProps = dispatch => ({
-  openModal: modalType => dispatch(showModal(modalType))
-});
-export default connect(
-  null,
-  mapDispatchToProps
-)(Header);
+export default Header;
