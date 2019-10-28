@@ -24,7 +24,7 @@ export default function Modal(props) {
   return (
     <ReactModal {...props} style={customStyles} onRequestClose={closeModal}>
       <div className="close-modal">
-        <i class="fas fa-times" onClick={closeModal}></i>
+        <i className="fas fa-times" onClick={closeModal}></i>
       </div>
       {props.children}
     </ReactModal>

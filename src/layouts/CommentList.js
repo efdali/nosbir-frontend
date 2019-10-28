@@ -1,6 +1,6 @@
 import React from "react";
 import Comment from "../components/Comment";
-import { Link } from "react-router-dom";
+import LoggedAs from "../components/LoggedAs";
 export default function CommentList() {
   return (
     <div className="comment-list-container">
@@ -17,17 +17,8 @@ export default function CommentList() {
       </div>
       <div className="comment-form">
         <p>Cevap Yaz</p>
-        <p className="comment-user-detail">
-          <Link to="/">
-            <i className="fas fa-user"></i>
-            <h6>efdali</h6>
-          </Link>{" "}
-          <span>olarak oturum açıldı.</span>
-          <Link to="/">
-            <i class="fas fa-sign-out-alt"></i>Çıkış yap
-          </Link>
-        </p>
-        <form>
+        <LoggedAs/>
+         <form>
           <div className="textarea">
               <p>Cevabınız <span>(Uygunsuz içerik sahipleri süresiz olarak banlanacaktır.)</span></p>
             <textarea className="comment-text"></textarea>

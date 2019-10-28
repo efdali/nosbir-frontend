@@ -10,11 +10,21 @@ export default function PostDetails() {
       <div className="post-container post-detail-p">
         <Post />
         <div className="post-actions">
-          <div className="post-report">
-            <i className="fas fa-exclamation-triangle"></i>
-            <span className="report">
-              <Link to="/">Report</Link>
-            </span>
+          <div className="left-side">
+            <div className="user-post-action">
+              <Link to="/">
+                <i className="fas fa-edit"></i>
+                 Düzenle
+              </Link>
+              <Link to="/">
+                <i className="fas fa-trash"></i>
+                 Sil
+              </Link>
+            </div>
+            <Link to="/" className="post-report">
+              <i className="fas fa-exclamation-triangle"></i>
+                Report
+            </Link>
           </div>
           <div className="post-share">
             <ul>

@@ -31,7 +31,7 @@ export default function RegisterModal() {
           <div className="form-footer">
             <div>
               <label>
-                <input type="checkbox" />
+                <input type="checkbox" defaultChecked/>
                 <span className="remember-me">
                   Kayıt yaparak, <Link to="/">Hizmet Şartlarını</Link> ve{" "}
                   <Link to="/">Gizlilik Politikasını</Link> kabul etmiş

@@ -4,7 +4,7 @@ export default function Aside() {
   return (
     <div className="right-container mt fd-column bg-white" style={{height:"465px"}}>
       <div className="ask-btn-container">
-        <button className="default-btn ask-btn">Ask A Question</button>
+        <Link to="/yeni-nos" className="default-btn ask-btn">Ask A Question</Link>
       </div>
       <div className="aside-tabs">
         <div className="tabs">

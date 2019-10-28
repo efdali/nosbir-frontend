@@ -29,7 +29,7 @@ export default function LoginModal() {
           <div className="form-footer">
             <div>
               <label>
-                <input type="checkbox" checked/>
+                <input type="checkbox" defaultChecked/>
                 <span className="remember-me">Beni Hatırla!</span>
               </label>
             </div>

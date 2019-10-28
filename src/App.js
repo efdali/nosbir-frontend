@@ -7,6 +7,9 @@ import Footer from "./layouts/Footer";
 import RegisterModal from "./layouts/RegisterModal";
 import LoginModal from "./layouts/LoginModal";
 import PostDetail from "./pages/PostDetail";
+import Profile from "./pages/Profile";
+import EditProfile from "./pages/EditProfile";
+import NewPost from "./pages/NewPost";
 
 class App extends React.Component {
   render() {
@@ -18,6 +21,9 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/baslik/:link" component={PostDetail} />
+              <Route path="/profil/:username" component={Profile}/>
+              <Route path="/profil-duzenle" component={EditProfile}/>
+              <Route path="/yeni-nos" component={NewPost}/>
             </Switch>
           </div>
           <Aside />

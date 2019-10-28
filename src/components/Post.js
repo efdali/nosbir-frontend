@@ -31,7 +31,7 @@ export default function Post() {
       </div>
       <div className="post-meta">
         <header className="post-header">
-          <Link to="/" className="post-user-link">
+          <Link to="/profil/martin" className="post-user-link">
             Martin Hope
           </Link>
           <span className="meta-title">

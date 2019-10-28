@@ -24,10 +24,7 @@ export default function HeaderUser() {
   };
   return (
     <Fragment>
-      <div
-        className="right-container sign-container"
-        style={{ display: "none" }}
-      >
+      <div className="right-container sign-container">
         <button
           className="sign-btn sign-in"
           onClick={e => handleModal(e, LOGIN_MODAL)}
@@ -47,7 +44,10 @@ export default function HeaderUser() {
           <i className="fas fa-lock" />
         </button>
       </div>
-      <div className="right-container header-signed-container">
+      <div
+        className="right-container header-signed-container"
+        style={{ display: "none" }}
+      >
         <div className="signed-user-info">
           <Link to="/" onClick={toggleUserDropdown}>
             <img
@@ -61,7 +61,7 @@ export default function HeaderUser() {
           <div className="signed-user">
             <span>Hoşgeldin</span>
             <h3>
-              <Link to="/">efdali</Link>
+              <Link to="/profil/efdali">efdali</Link>
             </h3>
           </div>
           <div className="header-user-dropdown">
@@ -77,7 +77,7 @@ export default function HeaderUser() {
           >
             <ul>
               <li>
-                <Link to="/">
+                <Link to="/profil/efdali">
                   <i className="fas fa-user"></i>Profil
                 </Link>
               </li>
@@ -113,21 +113,23 @@ export default function HeaderUser() {
           <ul>
             <li>
               <Link to="/">
-                <i class="fas fa-bell f_left"></i>
+                <i className="fas fa-bell f_left"></i>
+                <p>
+                  Gift of the site - 20 Points.Gift of the site - 20 Points.
+                </p>
+                <p className="notification-date">October 16, 2019 at 1:47 pm</p>
+              </Link>
+            </li>
+            <li>
+              <Link to="/">
+                <i className="fas fa-bell f_left"></i>
                 <p>Gift of the site - 20 Points.</p>
                 <p className="notification-date">October 16, 2019 at 1:47 pm</p>
               </Link>
             </li>
             <li>
               <Link to="/">
-                <i class="fas fa-bell f_left"></i>
-                <p>Gift of the site - 20 Points.</p>
-                <p className="notification-date">October 16, 2019 at 1:47 pm</p>
-              </Link>
-            </li>
-            <li>
-              <Link to="/">
-                <i class="fas fa-bell f_left"></i>
+                <i className="fas fa-bell f_left"></i>
                 <p>Gift of the site - 20 Points.</p>
                 <p className="notification-date">October 16, 2019 at 1:47 pm</p>
               </Link>

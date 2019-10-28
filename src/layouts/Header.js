@@ -66,7 +66,7 @@ class Header extends Component {
                 <i className="fas fa-search" />
               </button>
             </div>
-            <Link to="/">
+            <Link to="/yeni-nos">
               <i className="fas fa-question-circle"></i>
               Ask a question
             </Link>
