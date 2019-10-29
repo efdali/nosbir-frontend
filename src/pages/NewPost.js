@@ -3,7 +3,15 @@ import FormInput from "../components/FormInput";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import LoggedAs from '../components/LoggedAs';
+import {useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 export default function NewPost() {
+  const isAuthenticated=useSelector(state=>state.userReducer.isAuthenticated);
+  const history=useHistory();
+  if(!isAuthenticated){
+    history.goBack();
+    return false;
+  }
   return (
     <div className="form-container form-container2">
       <h1><i className="fas fa-fire-alt"></i> Yeni Nos</h1>

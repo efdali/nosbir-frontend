@@ -1,7 +1,14 @@
 import React from "react";
 import FormInput from "../components/FormInput";
-
+import {useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 export default function EditProfile() {
+  const history=useHistory();
+  const isAuthenticated=useSelector(state=>state.userReducer.isAuthenticated);
+  if(!isAuthenticated){
+    history.goBack();
+    return false;
+  }
   return (
     <div className="form-container form-container2">
       <div>

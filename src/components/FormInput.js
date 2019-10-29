@@ -10,7 +10,7 @@ export default function FormInput(props) {
           <i className={`fas fa-${props.icon}`}></i>
           {
             props.children ? props.children :
-          <input className='default-input' type={props.type} required/>
+          <input className='default-input' type={props.type} value={props.value} onChange={props.onChange} required/>
           }
         </div>
       </label>
@@ -20,9 +20,12 @@ export default function FormInput(props) {
 FormInput.prototype={
     name:PropTypes.string.isRequired,
     icon:PropTypes.string,
-    type:PropTypes.string
+    type:PropTypes.string,
+    value:PropTypes.string,
+    onChange:PropTypes.func
 }
 FormInput.defaultProps={
   type:"text",
-  icon:"lock"
+  icon:"lock",
+  value:""
 }

@@ -4,7 +4,7 @@ import HeaderUser from "../components/HeaderUser";
 class Header extends Component {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <header className="header">
           <div className="container header-container">
             <div className="left-container">
@@ -72,7 +72,7 @@ class Header extends Component {
             </Link>
           </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

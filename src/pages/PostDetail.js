@@ -1,12 +1,15 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import Post from "../components/Post";
 import { Link } from "react-router-dom";
 import CommentList from "../layouts/CommentList";
+import LoggedAs from "../components/LoggedAs";
+import { useSelector } from "react-redux";
 export default function PostDetails() {
-  const { link } = useParams();
+  const isAuthenticated = useSelector(
+    state => state.userReducer.isAuthenticated
+  );
   return (
-    <div>
+    <React.Fragment>
       <div className="post-container post-detail-p">
         <Post />
         <div className="post-actions">
@@ -14,16 +17,16 @@ export default function PostDetails() {
             <div className="user-post-action">
               <Link to="/">
                 <i className="fas fa-edit"></i>
-                 Düzenle
+                Düzenle
               </Link>
               <Link to="/">
                 <i className="fas fa-trash"></i>
-                 Sil
+                Sil
               </Link>
             </div>
             <Link to="/" className="post-report">
               <i className="fas fa-exclamation-triangle"></i>
-                Report
+              Report
             </Link>
           </div>
           <div className="post-share">
@@ -57,6 +60,31 @@ export default function PostDetails() {
         </div>
       </div>
       <CommentList />
-    </div>
+      <div className="comment-form">
+        <p>Cevap Yaz</p>
+        <LoggedAs />
+        <form>
+          <div className="textarea">
+            <p>
+              Cevabınız{" "}
+              <span>
+                (Uygunsuz içerik sahipleri süresiz olarak banlanacaktır.)
+              </span>
+            </p>
+            <textarea
+              className="comment-text"
+              disabled={!isAuthenticated}
+            ></textarea>
+          </div>
+          {!isAuthenticated ? (
+            <button className="default-btn comment-submit-btn" disabled>
+              Yorum yazmak için giriş yapmalısın.
+            </button>
+          ) : (
+            <button className="default-btn comment-submit-btn">Gönder</button>
+          )}
+        </form>
+      </div>
+    </React.Fragment>
   );
 }
