@@ -1284,12 +1284,27 @@ ul.errors > li{
 }
 /* Utilies */
 
+div.alert{
+  width: 80%;
+  font-weight: 700;
+  color:#000;
+  margin: auto;
+  text-align: center;
+}
+.alert.alert-warning{
+  background-color: #FFF3CD;
+  padding: 25px;
+}
+
 .f_left {
   float: left;
 }
 
 .f_right {
   float: right;
+}
+.m-15rem{
+  margin:1.5rem;
 }
 .mt {
   margin-top: 1rem;

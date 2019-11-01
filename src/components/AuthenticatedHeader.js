@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { logout } from "../store/actions/userAction";
+import Image from "./Image";
 export default function AuthenticatedHeader(props) {
   const [isNotifShow, setIsNotifShow] = useState(false);
   const [isUserShow, setIsUserShow] = useState(false);
@@ -12,18 +15,24 @@ export default function AuthenticatedHeader(props) {
     setIsNotifShow(false);
     setIsUserShow(!isUserShow);
   };
-  const {user} =props;
+  const { user } = props;
+  const dispatch = useDispatch();
+  const logoutHandler = e => {
+    e.preventDefault();
+    dispatch(logout());
+  };
   return (
     <div className="right-container header-signed-container">
       <div className="signed-user-info">
-          <img
-          onClick={toggleUserDropdown}
-            src={user.resim}
-            className="img-rounded"
-            width="30"
-            height="30"
-            alt={user.kadi}
-          />
+        <Link
+          to="/"
+          onClick={e => {
+            e.preventDefault();
+            toggleUserDropdown();
+          }}
+        >
+          <Image src={user.resim} width="30" height="30" alt={user.kadi} />
+        </Link>
         <div className="signed-user">
           <span>Hoşgeldin</span>
           <h3>
@@ -58,9 +67,9 @@ export default function AuthenticatedHeader(props) {
               </Link>
             </li>
             <li>
-              <Link to="/cikis">
+              <a href="/" onClick={logoutHandler}>
                 <i className="fas fa-sign-out-alt"></i>Çıkış
-              </Link>
+              </a>
             </li>
           </ul>
         </div>
@@ -100,13 +109,15 @@ export default function AuthenticatedHeader(props) {
           </li>
         </ul>
         <div className="notification-show-all">
-          <Link to={`/profil/${user.kadi}/bildirimler`}>Bütün Bildirimleri Gör</Link>
+          <Link to={`/profil/${user.kadi}/bildirimler`}>
+            Bütün Bildirimleri Gör
+          </Link>
         </div>
       </div>
     </div>
   );
 }
 
-AuthenticatedHeader.propTypes={
-    user:PropTypes.object.isRequired
-}
+AuthenticatedHeader.propTypes = {
+  user: PropTypes.object.isRequired
+};

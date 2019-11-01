@@ -1,15 +1,29 @@
 import React from "react";
 import Post from "../components/Post";
-import LoadMoreButton from "../components/LoadMoreButton";
+import PropTypes from "prop-types";
 export default function PostList(props) {
-  return (
+  const { posts } = props;
+  if (posts.length <= 0) {
+    return (
       <div className="post-container">
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <LoadMoreButton text="Daha Fazla NOS"/>
+        <div className="alert alert-warning">
+          Henüz paylaşılmış nos yok.İlk noslayan sen ol.
+        </div>
       </div>
+    );
+  }
+  return (
+    <div className="post-container">
+      {posts.map((p, i) => (
+        <Post post={p} key={i} />
+      ))}
+    </div>
   );
 }
+
+PostList.propTypes = {
+  posts: PropTypes.array.isRequired
+};
+PostList.defaultProps = {
+  posts: []
+};

@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 import HeaderUser from "../components/HeaderUser";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 class Header extends Component {
   render() {
     return (
       <React.Fragment>
+        <ToastContainer autoClose={5000} position={toast.POSITION.TOP_RIGHT} />
+
         <header className="header">
           <div className="container header-container">
             <div className="left-container">
@@ -44,13 +48,16 @@ class Header extends Component {
                 </nav>
                 <div className="header-search">
                   <div className="search-wrapper">
-                    <input
-                      className="search-input"
-                      placeholder="type search words..."
-                    />
-                    <button className="search-btn">
-                      <i className="fas fa-search"></i>
-                    </button>
+                    <form method="GET" action="/arama">
+                      <input
+                        className="search-input"
+                        placeholder="type search words..."
+                        name="q"
+                      />
+                      <button className="search-btn">
+                        <i className="fas fa-search"></i>
+                      </button>
+                    </form>
                   </div>
                 </div>
               </div>

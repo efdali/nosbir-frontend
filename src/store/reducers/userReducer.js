@@ -1,8 +1,7 @@
 import * as actions from "../actions/userAction";
-import jwt_decode from 'jwt-decode';
 const initialState = {
-  isAuthenticated: !!localStorage.getItem("token"),
-  user: localStorage.getItem("token") ? jwt_decode(localStorage.getItem("token")).data:{},
+  isAuthenticated: false,
+  user: {},
   loginError: "",
   registerErrors: []
 };

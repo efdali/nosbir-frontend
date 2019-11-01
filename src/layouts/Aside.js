@@ -1,98 +1,98 @@
 import React from "react";
 import { Link } from "react-router-dom";
-export default function Aside() {
-  return (
-    <div className="right-container mt fd-column bg-white" style={{height:"465px"}}>
-      <div className="ask-btn-container">
-        <Link to="/yeni-nos" className="default-btn ask-btn">Ask A Question</Link>
-      </div>
-      <div className="aside-tabs">
-        <div className="tabs">
-          <Link to="/">Popular</Link>
+import { connect } from "react-redux";
+import { fetchPopularPosts } from "../store/actions/popularAction";
+import Loading from '../components/Loading';
+import Image from "../components/Image";
+class Aside extends React.Component {
+  componentDidMount() {
+    this.props.fetchPopularPosts();
+  }
+
+  SuccessComponent = () => {
+    const { popular } = this.props;
+    if (popular.length <= 0) {
+      return (
+        <ul className="content-list">Şuan Popular post bulunmamaktadır.</ul>
+      );
+    }
+    return (
+      <ul className="content-list">
+        {popular.map((p, i) => (
+          <li key={i}>
+            <Link to={`/profil/${p.nick}`} className="content-user-img">
+              <Image
+                src={p.picture}
+                alt={p.nick}
+                width="20"
+                height="20"
+              />
+            </Link>
+            <div className="content-meta">
+              <h3>
+                <Link to={`/baslik/${p.seo}`}>{p.title}</Link>
+              </h3>
+              <div>
+                <Link to={`/baslik/${p.seo}`}>
+                  <span>
+                    <i className="fas fa-comment-alt"></i>{" "}
+                    <span className="answer-span"> {p.ys} Answers</span>
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
+  BaseComponent = () => {
+    const { loading, failMessage } = this.props;
+    if (loading) {
+      return <Loading/>;
+    } else if (failMessage) {
+      return (
+        <ul className="errors">
+          <li>{failMessage}</li>
+        </ul>
+      );
+    } else {
+      return <this.SuccessComponent />;
+    }
+  };
+  render() {
+    return (
+      <div
+        className="right-container mt fd-column bg-white"
+        style={{ height: "550px" }}
+      >
+        <div className="ask-btn-container">
+          <Link to="/yeni-nos" className="default-btn ask-btn">
+            Ask A Question
+          </Link>
         </div>
-        <div className="tab-content">
-          <ul className="content-list">
-            <li>
-              <Link to="/" className="content-user-img">
-                <img
-                  src="https://2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-4-20x20.jpg"
-                  alt="user-resim"
-                  width="20"
-                  height="20"
-                  className=" img-rounded"
-                />
-              </Link>
-              <div className="content-meta">
-                <h3>
-                  <Link to="/baslik/denek">
-                    How to approach applying for a job at a company
-                  </Link>
-                </h3>
-                <div>
-                  <Link to="/">
-                    <span>
-                      <i className="fas fa-comment-alt"></i>{" "}
-                      <span className="answer-span"> 7 Answers</span>
-                    </span>
-                  </Link>
-                </div>
-              </div>
-            </li>
-            <li>
-              <Link to="/" className="content-user-img">
-                <img
-                  src="https://2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-4-20x20.jpg"
-                  alt="user-resim"
-                  width="20"
-                  height="20"
-                  className=" img-rounded"
-                />
-              </Link>
-              <div className="content-meta">
-                <h3>
-                  <Link to="/baslik/dene">
-                    How to approach applying for a job at a company
-                  </Link>
-                </h3>
-                <div>
-                  <Link to="/">
-                    <span>
-                      <i className="fas fa-comment-alt"></i>{" "}
-                      <span className="answer-span"> 7 Answers</span>
-                    </span>
-                  </Link>
-                </div>
-              </div>
-            </li>
-            <li>
-              <Link to="/" className="content-user-img">
-                <img
-                  src="https://2code.info/demo/themes/Discy/Main/wp-content/uploads/2018/04/team-4-20x20.jpg"
-                  alt="user-resim"
-                  width="20"
-                  height="20"
-                  className=" img-rounded"
-                />
-              </Link>
-              <div className="content-meta">
-                <h3>
-                  <Link to="/baslik/deneme">
-                    How to approach applying for a job at a company
-                  </Link>
-                </h3>
-                <div>
-                  <Link to="/">
-                    <span>
-                      <i className="fas fa-comment-alt"></i>{" "}
-                      <span className="answer-span"> 7 Answers</span>
-                    </span>
-                  </Link>
-                </div>
-              </div>
-            </li>
-          </ul>
+        <div className="aside-tabs">
+          <div className="tabs">
+            <Link to="/">Popular</Link>
+          </div>
+          <div className="tab-content">
+            <this.BaseComponent />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+Aside.defaultProps = {
+  posts: []
+};
+const mapStateToProps = state => ({
+  popular: state.popularReducer.popular,
+  loading: state.popularReducer.loading,
+  failMessage: state.popularReducer.failMessage
+});
+export default connect(
+  mapStateToProps,
+  { fetchPopularPosts }
+)(Aside);
