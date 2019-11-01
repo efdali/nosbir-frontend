@@ -10,31 +10,34 @@ export default function Footer() {
             alt="nosbir"
           />
           <span>
-            Discy is a social questions & Answers Engine which will help you
-            establis your community and connect with other people.
+            Nosbir gruplara katılıp kaliteli içerikler üretebileceğiniz veya
+            araştırdığınız konu hakkında kaliteli içeriğe rahatlıkla
+            ulaşabileceğiniz sosyal paylaşım dünyasıdır.
           </span>
         </div>
-        <div className="footer-policy">
-          <h6 className="footer-header">Legal Stuff</h6>
-          <ul>
-            <li>
-              <Link to="/">Terms of Use</Link>
-            </li>
-            <li>
-              <Link to="/">Privacy Policy</Link>
-            </li>
-            <li>
-              <Link to="/">Cookie Policy</Link>
-            </li>
-          </ul>
-        </div>
-        <div className="footer-help">
-          <h6 className="footer-header">Help</h6>
-          <ul>
-            <li>
-              <Link to="/">Support</Link>
-            </li>
-          </ul>
+        <div className="terms">
+          <div className="footer-policy f_left">
+            <h6 className="footer-header">Yasal İşler</h6>
+            <ul>
+              <li>
+                <Link to="/">Kullanım Şartları</Link>
+              </li>
+              <li>
+                <Link to="/">Gizlilik Politikası</Link>
+              </li>
+              <li>
+                <Link to="/">Çerez Politikası</Link>
+              </li>
+            </ul>
+          </div>
+          <div className="footer-help f_right">
+            <h6 className="footer-header">Yardım</h6>
+            <ul>
+              <li>
+                <Link to="/">Destek</Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </footer>

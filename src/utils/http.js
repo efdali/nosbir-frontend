@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const http = axios.create({
-  baseURL: "http://localhost/nosbir-backend/api/"
+  baseURL: "http://api.nosbir.com/v0/"
 });
 export default http;
 

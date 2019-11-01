@@ -122,19 +122,20 @@ nav.nav {
   background-color: #1a1c21;
 }
 .header-search {
-  width: 230px;
+  width: 350px;
   height: 85px;
   position: relative;
   text-align: right;
 }
 .search-input {
-  background-color: #202228;
+  background-color: #414246;
   border: none;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.8);
   padding: 8px;
   width: calc(100% - 20px);
-  height: 30px;
-  line-height: 29px;
+  height: 40px;
+  line-height: 39px;
+  border-radius: 2px;
 }
 .search-btn {
   position: absolute;
@@ -986,6 +987,9 @@ footer.footer div.footer-container {
   margin-bottom: 15px;
 }
 
+.terms{
+  flex-basis: 35%;
+}
 /* Modals */
 .close-modal {
   position: absolute;
@@ -1273,6 +1277,14 @@ ul.errors > li{
     text-align: end;
     margin-top: 10px;
   }
+  .footer-container{
+    flex-direction: column;
+  }
+  .footer-container .footer-about{
+    width: 100%;
+    margin-bottom:25px;
+  }
+
 }
 @media screen and (max-width: 405px) {
   .close-modal {

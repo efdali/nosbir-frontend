@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import HeaderUser from "../components/HeaderUser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,7 +23,7 @@ class Header extends Component {
               </Link>
               <div className="mid-container">
                 <nav className="nav">
-                  <ul>
+                  {/* <ul>
                     <li>
                       <NavLink exact to="/" className="nav-link">
                         Home
@@ -44,14 +44,14 @@ class Header extends Component {
                         Contact Us
                       </NavLink>
                     </li>
-                  </ul>
+                  </ul>*/}
                 </nav>
                 <div className="header-search">
                   <div className="search-wrapper">
                     <form method="GET" action="/arama">
                       <input
                         className="search-input"
-                        placeholder="type search words..."
+                        placeholder="nos,grup,üye ara"
                         name="q"
                       />
                       <button className="search-btn">
@@ -68,14 +68,15 @@ class Header extends Component {
         <div className="container container2">
           <div className="left-container bg-white mobile-header">
             <div className="mobile-search-wrapper">
-              <input type="text" placeholder="seach..." />
+              <form >
+              <input type="text" placeholder="nos,grup,üye ara..." name="q"/>
               <button>
                 <i className="fas fa-search" />
               </button>
+              </form>
             </div>
             <Link to="/yeni-nos">
-              <i className="fas fa-question-circle"></i>
-              Ask a question
+              <i className="fas fa-question-circle"></i> Hadi Nos'la
             </Link>
           </div>
         </div>

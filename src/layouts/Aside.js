@@ -69,12 +69,12 @@ class Aside extends React.Component {
       >
         <div className="ask-btn-container">
           <Link to="/yeni-nos" className="default-btn ask-btn">
-            Ask A Question
+            Hadi Nos'la
           </Link>
         </div>
         <div className="aside-tabs">
           <div className="tabs">
-            <Link to="/">Popular</Link>
+            <Link to="/">Popülerler</Link>
           </div>
           <div className="tab-content">
             <this.BaseComponent />

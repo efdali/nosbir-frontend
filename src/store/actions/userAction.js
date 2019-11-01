@@ -35,6 +35,7 @@ export const login = userData => {
         }
       })
       .catch(error => {
+        console.log(error);
         dispatch(setLoginError("Teknik bir hata oluştu!"));
       });
   };

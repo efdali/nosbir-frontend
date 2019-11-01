@@ -147,7 +147,7 @@ class Profile extends React.Component {
             component={Notifications}
           />
           <Route>
-            <PostList posts={post} />
+            <PostList posts={post} noPostError="Henüz paylaşılmış nos yok."/>
           </Route>
         </Switch>
       </React.Fragment>

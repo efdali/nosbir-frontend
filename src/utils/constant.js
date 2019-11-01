@@ -1,1 +1,1 @@
-export const BASE_IMAGE_URL="http://localhost/nosbir-backend/resimler/";
+export const BASE_IMAGE_URL="http://api.nosbir.com/resimler/";
