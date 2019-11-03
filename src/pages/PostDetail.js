@@ -41,6 +41,7 @@ class PostDetails extends React.Component {
     const { post_id } = this.props.post;
     const { user } = this.props;
     this.props.shareComment(post_id, comment, user);
+    this.setState({comment:''});
   };
   render() {
     const { isAuthenticated } = this.props;

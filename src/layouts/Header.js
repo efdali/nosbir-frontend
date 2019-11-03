@@ -7,14 +7,17 @@ class Header extends Component {
   render() {
     return (
       <React.Fragment>
-        <ToastContainer autoClose={5000} position={toast.POSITION.TOP_RIGHT} />
+        <ToastContainer
+          autoClose={4000}
+          position={toast.POSITION.BOTTOM_CENTER}
+        />
 
         <header className="header">
           <div className="container header-container">
             <div className="left-container">
               <Link to="/" className="header-logo" title="Nosbir">
                 <img
-                  src="https://2code.info/demo/themes/Discy/Main/wp-content/themes/discy/images/logo.png"
+                  src={process.env.PUBLIC_URL + '/logo.png'}
                   className="header-brand"
                   alt="Nosbir"
                   height="45"
@@ -68,15 +71,15 @@ class Header extends Component {
         <div className="container container2">
           <div className="left-container bg-white mobile-header">
             <div className="mobile-search-wrapper">
-              <form >
-              <input type="text" placeholder="nos,grup,üye ara..." name="q"/>
-              <button>
-                <i className="fas fa-search" />
-              </button>
+              <form method="GET" action="/arama">
+                <input type="text" placeholder="nos,grup,üye ara..." name="q" />
+                <button type="submit">
+                  <i className="fas fa-search" />
+                </button>
               </form>
             </div>
             <Link to="/yeni-nos">
-              <i className="fas fa-question-circle"></i> Hadi Nos'la
+              <i className="fas fa-fire-alt"></i> Hadi Nos'la
             </Link>
           </div>
         </div>

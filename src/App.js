@@ -12,7 +12,6 @@ import EditProfile from "./pages/EditProfile";
 import NewPost from "./pages/NewPost";
 import Search from "./pages/Search";
 import requireAuth from "./utils/requireAuth";
-
 class App extends React.Component {
   render() {
     return (

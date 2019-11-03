@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { setAuthToken } from "./utils/http";
 import jwt_decode from "jwt-decode";
 import { loginUser, logout } from "./store/actions/userAction";
+
 if (localStorage.token) {
   const decoded = jwt_decode(localStorage.token);
   const exp=decoded.exp;

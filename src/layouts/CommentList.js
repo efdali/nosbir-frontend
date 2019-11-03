@@ -42,5 +42,6 @@ CommentList.propTypes = {
   total: PropTypes.number
 };
 CommentList.defaultProps = {
+  comments:[],
   total: 1
 };

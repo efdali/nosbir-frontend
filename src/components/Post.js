@@ -5,14 +5,23 @@ import stripHtml from "string-strip-html";
 import Image from "./Image";
 import http from "../utils/http";
 import { toast } from "react-toastify";
+import {useSelector} from 'react-redux';
+
 export default function Post(props) {
   const { post, showHtml } = props;
+  const isAuthenticated=useSelector(state=>state.userReducer.isAuthenticated);
+  const [upActive,setUpActive]=useState(false);
+  const [downActive,setDownActive]=useState(false);
   let result = post.content;
   if (!showHtml) {
     result = stripHtml(post.content);
   }
   const voteHandler = (e, type) => {
     e.preventDefault();
+    if(!isAuthenticated){
+      toast.warn("Oy vermek için giriş yapmalısın.");
+      return false;
+    }
     const {
       post: { post_id }
     } = props;
@@ -26,13 +35,20 @@ export default function Post(props) {
         if (res.durum) {
           toast.success(res.mesaj);
           setLike(like+Number(type));
+          if(type===1){
+            setUpActive(true);
+            setDownActive(false);
+          }else{
+            setDownActive(true);
+            setUpActive(false);
+          }
         } else {
           toast.warn(res.mesaj);
         }
       })
       .catch(err => toast.error(err));
   };
-  const [like,setLike]=useState(Number(post.begeni));
+  const [like,setLike]=useState(Number(post.begeni) ? Number(post.begeni) : 0);
   return (
     <div className="post">
       <div className="post-left-side post-user-image">
@@ -43,7 +59,7 @@ export default function Post(props) {
           <ul className="post-vote">
             <li className="vote-up">
               <Link to="/" onClick={e => voteHandler(e, 1)}>
-                <i className="fa fa-sort-up"></i>
+                <i className={`fa fa-sort-up ${upActive ? 'active' : ''}`}></i>
               </Link>
             </li>
             <li className="vote-count">
@@ -51,7 +67,7 @@ export default function Post(props) {
             </li>
             <li className="vote-down">
               <Link to="/" onClick={e => voteHandler(e, -1)}>
-                <i className="fa fa-sort-down"></i>
+                <i className={`fa fa-sort-down ${downActive ? 'active' : ''}`}></i>
               </Link>
             </li>
           </ul>

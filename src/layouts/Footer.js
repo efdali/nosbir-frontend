@@ -6,8 +6,10 @@ export default function Footer() {
       <div className="footer-container">
         <div className="footer-about">
           <img
-            src="https://2code.info/demo/themes/Discy/Main/wp-content/themes/discy/images/logo-footer.png"
+            src={process.env.PUBLIC_URL + '/footer.png'}
             alt="nosbir"
+            width="100"
+            height="90"
           />
           <span>
             Nosbir gruplara katılıp kaliteli içerikler üretebileceğiniz veya

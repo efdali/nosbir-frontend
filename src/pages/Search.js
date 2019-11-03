@@ -13,7 +13,10 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      q: "",
+      group: 1
+    };
   }
 
   render() {
@@ -21,26 +24,35 @@ class Search extends React.Component {
     return (
       <React.Fragment>
         <div className="search-input-panel post-container">
-          <div className="inputs">
-            <input
-              type="text"
-              placeholder="aranacak kelimeler..."
-              className="default-input"
-            />
-            <select className="post-group-select">
-              <option>Kullanıcılar</option>
-              <option>Gruplar</option>
-              <option>Noslar</option>
-              <option>Cevaplar</option>
-            </select>
-          </div>
-          <button className="default-btn mt-2 default-btn2">Search</button>
+          <form method="GET" action="/arama">
+            <div className="inputs">
+              <input
+                type="text"
+                placeholder="aranacak kelimeler..."
+                className="default-input"
+                name="q"
+                value={this.state.q}
+                onChange={e => this.setState({ q: e.target.value })}
+              />
+              <select
+                className="post-group-select"
+                value={this.state.group}
+                onChange={e => this.setState({ group: e.target.value })}
+              >
+                <option>Kullanıcılar</option>
+                <option>Gruplar</option>
+                <option>Noslar</option>
+                <option>Cevaplar</option>
+              </select>
+            </div>
+            <button className="default-btn mt-2 default-btn2">Ara</button>
+          </form>
         </div>
 
         <Switch>
-          <Route path={`/arama/gruplar?q=${query}`} component={GroupList} />
-          <Route path={`/arama/noslar?q=${query}`} component={PostList} />
-          <Route path={`/arama/cevaplar?q=${query}`} component={CommentList} />
+          <Route path="/arama/gruplar" component={GroupList} />
+          <Route path="/arama/noslar" component={PostList} />
+          <Route path="/arama/cevaplar" component={CommentList} />
           <Route component={UserList} />
         </Switch>
       </React.Fragment>

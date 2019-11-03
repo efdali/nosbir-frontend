@@ -24,8 +24,8 @@ class Aside extends React.Component {
               <Image
                 src={p.picture}
                 alt={p.nick}
-                width="20"
-                height="20"
+                width="30"
+                height="30"
               />
             </Link>
             <div className="content-meta">
