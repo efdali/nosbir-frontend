@@ -1,4 +1,4 @@
-import http, { setAuthToken } from "../../utils/http";
+import { setAuthToken } from "../../utils/http";
 import jwt_decode from "jwt-decode";
 import { toast } from "react-toastify";
 import { hideModal, LOGIN_MODAL, showModal } from "./modalAction";
@@ -17,31 +17,29 @@ export const setRegisterErrors = error => {
 export const loginUser = user => {
   return { type: LOGIN, user };
 };
-export const login = userData => {
-  return dispatch => {
-    http
-      .post("giris.php", userData)
-      .then(res => res.data)
-      .then(res => {
-        if (res.durum) {
-          localStorage.setItem("token", res.token);
-          setAuthToken(res.token);
-          let user = jwt_decode(res.token).data;
-          dispatch(loginUser(user));
-          toast.success("Oturum Açıldı");
-          dispatch(hideModal(LOGIN_MODAL));
-        } else {
-          dispatch(setLoginError(res.mesaj));
-        }
-      })
-      .catch(error => {
-        console.log(error);
-        dispatch(setLoginError("Teknik bir hata oluştu!"));
-      });
-  };
+export const login = userData => (dispatch, getState, http) => {
+  http
+    .post("giris.php", userData)
+    .then(res => res.data)
+    .then(res => {
+      if (res.durum) {
+        localStorage.setItem("token", res.token);
+        setAuthToken(res.token);
+        let user = jwt_decode(res.token).data;
+        dispatch(loginUser(user));
+        toast.success("Oturum Açıldı");
+        dispatch(hideModal(LOGIN_MODAL));
+      } else {
+        dispatch(setLoginError(res.mesaj));
+      }
+    })
+    .catch(error => {
+      console.log(error);
+      dispatch(setLoginError("Teknik bir hata oluştu!"));
+    });
 };
 
-export const logout = message => dispatch => {
+export const logout = message => (dispatch, getState, http) => {
   localStorage.removeItem("token");
   setAuthToken(false);
   toast.warn(message ? message : "Çıkış Yapıldı");
@@ -50,7 +48,7 @@ export const logout = message => dispatch => {
 export const clearUser = () => {
   return { type: LOGOUT };
 };
-export const register = userData => dispatch => {
+export const register = userData => (dispatch,getState,http) => {
   http
     .post("kayit.php", userData)
     .then(res => res.data)
@@ -65,7 +63,11 @@ export const register = userData => dispatch => {
     .catch(error => {});
 };
 
-export const saveUserProfileInfo = (nick, picture) => dispatch => {
+export const saveUserProfileInfo = (nick, picture) => (
+  dispatch,
+  getState,
+  http
+) => {
   const data = new FormData();
   data.append("kadi", nick);
   data.append("resim", picture);
@@ -87,7 +89,11 @@ export const saveUserProfileInfo = (nick, picture) => dispatch => {
     .catch(err => console.log(err));
 };
 
-export const changeUserPassword = (oldPasswd, newPasswd) => dispatch => {
+export const changeUserPassword = (oldPasswd, newPasswd) => (
+  dispatch,
+  getState,
+  http
+) => {
   http
     .post("profil_dsifre.php", {
       eskiSifre: oldPasswd,
@@ -96,7 +102,11 @@ export const changeUserPassword = (oldPasswd, newPasswd) => dispatch => {
     .then(res => res.data)
     .then(res => {
       if (res.durum) {
-        dispatch(logout("Güvenliğiniz için tekrardan giriş yapmalısınız.Oturumunuz sonlandırıldı"));
+        dispatch(
+          logout(
+            "Güvenliğiniz için tekrardan giriş yapmalısınız.Oturumunuz sonlandırıldı"
+          )
+        );
       } else {
         console.log(res);
       }

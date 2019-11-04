@@ -1,13 +1,14 @@
 import React from "react";
 import FormInput from "../components/FormInput";
-import CKEditor from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import LoggedAs from "../components/LoggedAs";
 import { connect } from "react-redux";
 import { fetchGroups } from "../store/actions/postAction";
 import Errors from "../components/Errors";
 import http from '../utils/http';
 import { toast } from "react-toastify";
+import PostEditor from "../components/PostEditor";
+import {EditorState} from 'draft-js';
+import {stateToHTML} from 'draft-js-export-html';
 class NewPost extends React.Component {
   componentDidMount() {
     this.props.fetchGroups();
@@ -18,15 +19,18 @@ class NewPost extends React.Component {
 
     this.state = {
       title: "",
-      post: "",
+      editorState: EditorState.createEmpty(),
       group: 0,
       errors: []
     };
+
+    this.onChange=(editorState)=>this.setState({editorState});
   }
 
   addPostHandler = e => {
     e.preventDefault();
-    const { post, title, group } = this.state;
+    const { title, group } = this.state;
+    const post=stateToHTML(this.state.editorState.getCurrentContent());
     const errors = [];
     if (!post || !title || group === 0) {
       errors.push("Bütün alanları doldurmanız gerekiyor.");
@@ -97,14 +101,7 @@ class NewPost extends React.Component {
               İçerik
               <span className="required">*</span>
             </label>
-            <CKEditor
-              editor={ClassicEditor}
-              data={this.state.post}
-              onChange={(event, editor) => {
-                const data = editor.getData();
-                this.setState({ post: data });
-              }}
-            />
+            <PostEditor editorState={this.state.editorState} onChange={this.onChange}/>
           </div>
           <LoggedAs />
           <button

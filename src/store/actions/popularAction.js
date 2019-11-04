@@ -1,4 +1,3 @@
-import http from "../../utils/http";
 export const FETCHED_POPULAR_POST = "FETCHED_POPULAR_POST";
 export const START_FETCH_POPULAR_POST = "START_FETCH_POPULAR_POST";
 export const REJECT_FETCH_POPULAR_POST = "REJECT_FETCH_POPULAR_POST";
@@ -11,7 +10,7 @@ export const startFetchPopularPost = () => {
 export const rejectFetchPopularPost = failMessage => {
   return { type: REJECT_FETCH_POPULAR_POST, failMessage };
 };
-export const fetchPopularPosts = () => dispatch => {
+export const fetchPopularPosts = () => (dispatch,getState,http) => {
   dispatch(startFetchPopularPost());
   http
     .get("populerler.php")

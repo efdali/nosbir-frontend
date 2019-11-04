@@ -1,4 +1,3 @@
-import http from "../../utils/http";
 // import { toast } from "react-toastify";
 export const SUCCESS_FETCH_POSTS = "SUCCESS_FETCH_POSTS";
 export const SUCCESS_FETCH_GROUPS = "SUCCESS_FETCH_GROUPS";
@@ -17,7 +16,7 @@ export const successShareComment = (comment, user) => {
   return { type: SUCCESS_SHARE_COMMENT, newComment };
 };
 
-export const shareComment = (postId, comment, user) => dispatch => {
+export const shareComment = (postId, comment, user) => (dispatch,getState,http) => {
   http
     .post("yorum_ekle.php", {
       icerik: comment,
@@ -36,7 +35,7 @@ export const successFetchMoreComments = comments => {
   return { type: SUCCESS_FETCH_MORE_COMMENTS, comments };
 };
 
-export const fetchMoreComments = (id, s) => dispatch => {
+export const fetchMoreComments = (id, s) => (dispatch,getState,http) => {
   http
     .get("yorum_listele.php", {
       params: {
@@ -55,7 +54,7 @@ export const fetchMoreComments = (id, s) => dispatch => {
     .catch(error => {});
 };
 
-export const fetchPostById = title => dispatch => {
+export const fetchPostById = title => (dispatch,getState,http) => {
   http
     .get("post_detay.php", {
       params: {
@@ -82,7 +81,7 @@ export const successFetchById = (post, yorum) => {
     totalComments: yorum.sayi
   };
 };
-export const fetchPosts = (groupName, page) => dispatch => {
+export const fetchPosts = (groupName, page) => (dispatch,getState,http) => {
   http
     .get("postlar.php", {
       params: {
@@ -107,7 +106,7 @@ export const successPostsFetch = (posts, total) => {
   return { type: SUCCESS_FETCH_POSTS, posts, total };
 };
 
-export const fetchGroups = () => dispatch => {
+export const fetchGroups = () => (dispatch,getState,http) => {
   http
     .get("gruplar.php")
     .then(res => res.data)
