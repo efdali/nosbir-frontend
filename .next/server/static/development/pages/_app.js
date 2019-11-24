@@ -196,21 +196,115 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_2__);
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-const Nav = () => __jsx("nav", null, __jsx("ul", {
-  className: "nav-container"
-}, __jsx("li", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-  href: "/"
-}, __jsx("a", null, "Home"))), __jsx("li", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-  href: "/post"
-}, __jsx("a", null, "Home"))), __jsx("li", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-  href: "/post"
-}, __jsx("a", null, "Home")))));
+
+const Nav = () => {
+  const {
+    isAuthenticated,
+    user
+  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(state => state.auth);
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("nav", null, __jsx("div", {
+    className: "navbar-brand"
+  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/"
+  }, __jsx("a", null, __jsx("img", {
+    src: "/header-logo.png",
+    className: "navbar-logo",
+    alt: "Nosbir"
+  }))), __jsx("h1", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/"
+  }, __jsx("a", null, "nosbir")))), isAuthenticated ? __jsx("ul", {
+    className: "navbar-profile"
+  }, __jsx("li", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "#"
+  }, __jsx("a", null, __jsx("img", {
+    src: "/message-icon.png",
+    className: "nav-icon",
+    alt: "messages"
+  })))), __jsx("li", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "#"
+  }, __jsx("a", null, __jsx("img", {
+    src: "/notification-icon.png",
+    className: "nav-icon",
+    alt: "notifications"
+  })))), __jsx("li", {
+    className: "profile-item"
+  }, __jsx("img", {
+    src: user.img,
+    alt: user.nick,
+    className: "navbar-user-img"
+  }), __jsx("h3", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: `@${user.nick}`
+  }, __jsx("a", null, user.nick))))) : __jsx("ul", {
+    className: "header-btns"
+  }, __jsx("li", null, __jsx("button", {
+    className: "btn-login"
+  }, "Giri\u015F Yap")), __jsx("li", null, __jsx("button", {
+    className: "btn-register"
+  }, "Kay\u0131t Ol")))), __jsx("div", {
+    className: "header-search"
+  }, __jsx("img", {
+    src: "/search-icon.png",
+    className: "search-icon",
+    alt: "nosbir-search",
+    width: "44",
+    height: "44"
+  }), __jsx("form", {
+    method: "GET",
+    action: "/arama"
+  }, __jsx("input", {
+    type: "text",
+    name: "q",
+    className: "search-input",
+    placeholder: "ne ar\u0131yorsun?"
+  }))));
+};
 
 /* harmony default export */ __webpack_exports__["default"] = (Nav);
+
+/***/ }),
+
+/***/ "./constants.js":
+/*!**********************!*\
+  !*** ./constants.js ***!
+  \**********************/
+/*! exports provided: API_URL */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "API_URL", function() { return API_URL; });
+const API_URL = 'http://localhost/nosbir-backend/v0/';
+
+/***/ }),
+
+/***/ "./http.js":
+/*!*****************!*\
+  !*** ./http.js ***!
+  \*****************/
+/*! exports provided: default, setAuthToken */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setAuthToken", function() { return setAuthToken; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./constants.js");
+
+
+const http = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
+  baseURL: _constants__WEBPACK_IMPORTED_MODULE_1__["API_URL"]
+});
+/* harmony default export */ __webpack_exports__["default"] = (http);
+const setAuthToken = token => {
+  if (token) http.defaults.headers.common['Authorization'] = `Bearer ${token}`;else delete http.defaults.headers.common['Authorization'];
+};
 
 /***/ }),
 
@@ -2178,6 +2272,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(redux_thunk__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../style.css */ "./style.css");
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../http */ "./http.js");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -2190,8 +2285,9 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
+
 const makeStore = initialState => {
-  return Object(redux__WEBPACK_IMPORTED_MODULE_1__["createStore"])(_store_reducers__WEBPACK_IMPORTED_MODULE_6__["default"], initialState, Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__["composeWithDevTools"])(Object(redux__WEBPACK_IMPORTED_MODULE_1__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_8___default.a)));
+  return Object(redux__WEBPACK_IMPORTED_MODULE_1__["createStore"])(_store_reducers__WEBPACK_IMPORTED_MODULE_6__["default"], initialState, Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__["composeWithDevTools"])(Object(redux__WEBPACK_IMPORTED_MODULE_1__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_8___default.a.withExtraArgument(_http__WEBPACK_IMPORTED_MODULE_10__["default"]))));
 };
 
 class MyApp extends next_app__WEBPACK_IMPORTED_MODULE_4___default.a {
@@ -2222,6 +2318,99 @@ class MyApp extends next_app__WEBPACK_IMPORTED_MODULE_4___default.a {
 
 /***/ }),
 
+/***/ "./store/actions/groupActions.js":
+/*!***************************************!*\
+  !*** ./store/actions/groupActions.js ***!
+  \***************************************/
+/*! exports provided: FETCHED_GROUPS, REJECTED_GROUPS, FETCHING_GROUPS, fetchedGroups, rejectedGroups, fetchingGroups, fetchGroups */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCHED_GROUPS", function() { return FETCHED_GROUPS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REJECTED_GROUPS", function() { return REJECTED_GROUPS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCHING_GROUPS", function() { return FETCHING_GROUPS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchedGroups", function() { return fetchedGroups; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rejectedGroups", function() { return rejectedGroups; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchingGroups", function() { return fetchingGroups; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchGroups", function() { return fetchGroups; });
+const FETCHED_GROUPS = 'FETCHED_GROUPS';
+const REJECTED_GROUPS = 'REJECTED_GROUPS';
+const FETCHING_GROUPS = 'FETCHING_GROUPS';
+const fetchedGroups = groups => ({
+  type: FETCHED_GROUPS,
+  groups
+});
+const rejectedGroups = msg => ({
+  type: REJECTED_GROUPS,
+  msg
+});
+const fetchingGroups = () => ({
+  type: FETCHING_GROUPS
+});
+const fetchGroups = () => (dispatch, getState, http) => {
+  dispatch(fetchingGroups());
+  http.get('/gruplar.php').then(res => res.data).then(res => {
+    if (res.durum) {
+      dispatch(fetchedGroups(res.gruplar));
+    } else {
+      dispatch(rejectedGroups(res.mesaj));
+    }
+  }).catch(err => dispatch(rejectedGroups(err)));
+};
+
+/***/ }),
+
+/***/ "./store/actions/postsActions.js":
+/*!***************************************!*\
+  !*** ./store/actions/postsActions.js ***!
+  \***************************************/
+/*! exports provided: FETCHED_POSTS, REJECTED_POSTS, FETCHING_POSTS, fetchedPosts, rejectedPosts, fetchingPosts, fetchPosts */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCHED_POSTS", function() { return FETCHED_POSTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REJECTED_POSTS", function() { return REJECTED_POSTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCHING_POSTS", function() { return FETCHING_POSTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchedPosts", function() { return fetchedPosts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rejectedPosts", function() { return rejectedPosts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchingPosts", function() { return fetchingPosts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPosts", function() { return fetchPosts; });
+const FETCHED_POSTS = 'FETCHED_POSTS';
+const REJECTED_POSTS = 'REJECTED_POSTS';
+const FETCHING_POSTS = 'FETCHING_POSTS';
+const fetchedPosts = (posts, total) => ({
+  type: FETCHED_POSTS,
+  posts,
+  total
+});
+const rejectedPosts = msg => ({
+  type: REJECTED_POSTS,
+  msg
+});
+const fetchingPosts = () => ({
+  type: FETCHING_POSTS
+});
+const fetchPosts = (group = '') => (dispatch, getState, http) => {
+  dispatch(fetchingPosts());
+  let params = {};
+  if (group) params = {
+    topluluk: group
+  };
+  http.get('postlar.php', {
+    params
+  }).then(res => res.data).then(res => {
+    if (res.durum) {
+      dispatch(fetchedPosts(res.postlar, res.toplam));
+    } else {
+      dispatch(rejectedPosts(res.mesaj));
+    }
+  }).catch(err => dispatch(rejectedPosts(err)));
+};
+
+/***/ }),
+
 /***/ "./store/reducers/authReducer.js":
 /*!***************************************!*\
   !*** ./store/reducers/authReducer.js ***!
@@ -2233,13 +2422,66 @@ class MyApp extends next_app__WEBPACK_IMPORTED_MODULE_4___default.a {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AuthReducer; });
 const initialState = {
-  isAuthenticated: false,
-  user: {}
+  isAuthenticated: true,
+  user: {
+    nick: 'serifbey-dc',
+    img: 'https://www.chardhamtour.in/wp-content/uploads/2019/03/user-default.png'
+  }
 };
 function AuthReducer(state = initialState, action) {
   switch (action) {
     default:
       return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./store/reducers/groupReducer.js":
+/*!****************************************!*\
+  !*** ./store/reducers/groupReducer.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return GroupReducer; });
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/assign */ "./node_modules/@babel/runtime-corejs2/core-js/object/assign.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _actions_groupActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/groupActions */ "./store/actions/groupActions.js");
+
+
+const initialState = {
+  isLoading: false,
+  isRejected: false,
+  msg: '',
+  groups: []
+};
+function GroupReducer(state = initialState, action) {
+  switch (action.type) {
+    case _actions_groupActions__WEBPACK_IMPORTED_MODULE_1__["FETCHING_GROUPS"]:
+      return _babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default()({}, state, {
+        isLoading: true
+      });
+
+    case _actions_groupActions__WEBPACK_IMPORTED_MODULE_1__["FETCHED_GROUPS"]:
+      return _babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default()({}, state, {
+        isLoading: false,
+        isRejected: false,
+        groups: action.groups
+      });
+
+    case _actions_groupActions__WEBPACK_IMPORTED_MODULE_1__["REJECTED_GROUPS"]:
+      return _babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default()({}, state, {
+        isRejected: true,
+        isLoading: false,
+        groups: [],
+        msg: action.msg
+      });
+
+    default:
+      return initialState;
   }
 }
 
@@ -2257,11 +2499,69 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "redux");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _authReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./authReducer */ "./store/reducers/authReducer.js");
+/* harmony import */ var _groupReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./groupReducer */ "./store/reducers/groupReducer.js");
+/* harmony import */ var _postsReducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./postsReducer */ "./store/reducers/postsReducer.js");
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  auth: _authReducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  auth: _authReducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  groups: _groupReducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  posts: _postsReducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 }));
+
+/***/ }),
+
+/***/ "./store/reducers/postsReducer.js":
+/*!****************************************!*\
+  !*** ./store/reducers/postsReducer.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PostsReducer; });
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/assign */ "./node_modules/@babel/runtime-corejs2/core-js/object/assign.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _actions_postsActions_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/postsActions.js */ "./store/actions/postsActions.js");
+
+
+const initialState = {
+  isLoading: false,
+  isRejected: false,
+  msg: '',
+  posts: [],
+  total: 0
+};
+function PostsReducer(state = initialState, action) {
+  switch (action.type) {
+    case _actions_postsActions_js__WEBPACK_IMPORTED_MODULE_1__["FETCHING_POSTS"]:
+      return _babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default()({}, state, {
+        isLoading: true,
+        isRejected: false
+      });
+
+    case _actions_postsActions_js__WEBPACK_IMPORTED_MODULE_1__["REJECTED_POSTS"]:
+      return _babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default()({}, state, {
+        isLoading: false,
+        isRejected: true,
+        msg: action.msg
+      });
+
+    case _actions_postsActions_js__WEBPACK_IMPORTED_MODULE_1__["FETCHED_POSTS"]:
+      return _babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default()({}, state, {
+        isLoading: false,
+        isRejected: false,
+        posts: action.posts,
+        total: action.total
+      });
+
+    default:
+      return initialState;
+  }
+}
 
 /***/ }),
 
@@ -2285,6 +2585,17 @@ __webpack_require__.r(__webpack_exports__);
 
 module.exports = __webpack_require__(/*! private-next-pages/_app.js */"./pages/_app.js");
 
+
+/***/ }),
+
+/***/ "axios":
+/*!************************!*\
+  !*** external "axios" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("axios");
 
 /***/ }),
 

@@ -1,23 +1,32 @@
-import React from "react";
-import Head from "next/head";
+import React from 'react';
+import Head from 'next/head';
+import Sidebar from '../components/sidebar';
+import NewPostForm from '../components/newPostForm';
+import { fetchPosts } from '../store/actions/postsActions';
+import PostList from '../components/postList';
 class Home extends React.Component {
   render() {
+    const { group } = this.props;
     return (
       <>
         <Head>
-          <title>İndex Page</title>
+          <title>Nosbir | Sosyal Paylaşım Diyarı</title>
         </Head>
-        index - {this.props.id} okey
+        <Sidebar />
+        <div className="page-content">
+          <NewPostForm />
+          <PostList group={group} />
+        </div>
       </>
     );
   }
 }
 
-Home.getInitialProps = async ctx => {
-  const id = ctx.query.slug ? ctx.query.slug : 0;
+Home.getInitialProps = async ({ store, query }) => {
+  const group = query.slug ? query.slug : '';
   // const auth=ctx.store.getState().auth.isAuthenticated;
   return {
-    id
+    group,
   };
 };
 export default Home;
