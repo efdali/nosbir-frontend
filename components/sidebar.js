@@ -1,19 +1,23 @@
-import React, { useEffect } from 'react';
-import Link from 'next/link';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchGroups } from '../store/actions/groupActions';
-import Loading from './loading';
-import Error from './error';
-const Sidebar = props => {
-  const { groups, isLoading, isRejected, msg } = useSelector(
-    state => state.groups,
-  );
+import React from "react";
+import Link from "next/link";
+import { connect } from "react-redux";
+import { fetchGroups } from "../store/actions/groupActions";
+import Loading from "./loading";
+import Error from "./error";
+class Sidebar extends React.Component {
+  componentDidMount() {
+    this.props.fetchGroups();
+  }
 
-  const renderComponent = () => {
+  renderComponent = () => {
+    const { groups, isLoading, isRejected, msg } = this.props;
+
     if (isLoading) {
       return <Loading />;
     } else if (isRejected) {
       return <Error msg={msg} />;
+    } else if (!groups.length) {
+      return <Error msg="Grup Bulunamadı" />;
     } else {
       return (
         <ul>
@@ -29,17 +33,20 @@ const Sidebar = props => {
     }
   };
 
-  const dispatch = useDispatch();
+  render() {
+    return (
+      <aside className="left-sidebar">
+        <h5>Kanallar</h5>
+        {this.renderComponent()}
+      </aside>
+    );
+  }
+}
 
-  useEffect(() => {
-    dispatch(fetchGroups());
-  }, []);
-
-  return (
-    <aside className="left-sidebar">
-      <h5>Kanallar</h5>
-      {renderComponent()}
-    </aside>
-  );
-};
-export default Sidebar;
+const mapStateToProps = ({ groups }) => ({
+  isLoading: groups.group_loading,
+  isRejected: groups.group_rejected,
+  msg: groups.group_msg,
+  groups: groups.group_groups
+});
+export default connect(mapStateToProps, { fetchGroups })(Sidebar);

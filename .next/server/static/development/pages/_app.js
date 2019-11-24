@@ -2350,7 +2350,7 @@ const fetchingGroups = () => ({
 });
 const fetchGroups = () => (dispatch, getState, http) => {
   dispatch(fetchingGroups());
-  http.get('/gruplar.php').then(res => res.data).then(res => {
+  http.get('gruplar.php').then(res => res.data).then(res => {
     if (res.durum) {
       dispatch(fetchedGroups(res.gruplar));
     } else {
@@ -2377,9 +2377,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rejectedPosts", function() { return rejectedPosts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchingPosts", function() { return fetchingPosts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPosts", function() { return fetchPosts; });
-const FETCHED_POSTS = 'FETCHED_POSTS';
-const REJECTED_POSTS = 'REJECTED_POSTS';
-const FETCHING_POSTS = 'FETCHING_POSTS';
+const FETCHED_POSTS = "FETCHED_POSTS";
+const REJECTED_POSTS = "REJECTED_POSTS";
+const FETCHING_POSTS = "FETCHING_POSTS";
 const fetchedPosts = (posts, total) => ({
   type: FETCHED_POSTS,
   posts,
@@ -2392,13 +2392,13 @@ const rejectedPosts = msg => ({
 const fetchingPosts = () => ({
   type: FETCHING_POSTS
 });
-const fetchPosts = (group = '') => (dispatch, getState, http) => {
+const fetchPosts = (group = "") => (dispatch, getState, http) => {
   dispatch(fetchingPosts());
   let params = {};
   if (group) params = {
     topluluk: group
   };
-  http.get('postlar.php', {
+  http.get("postlar.php", {
     params
   }).then(res => res.data).then(res => {
     if (res.durum) {
@@ -2453,31 +2453,31 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const initialState = {
-  isLoading: false,
-  isRejected: false,
-  msg: '',
-  groups: []
+  group_loading: false,
+  group_rejected: false,
+  group_msg: '',
+  group_groups: []
 };
 function GroupReducer(state = initialState, action) {
   switch (action.type) {
     case _actions_groupActions__WEBPACK_IMPORTED_MODULE_1__["FETCHING_GROUPS"]:
       return _babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default()({}, state, {
-        isLoading: true
+        group_loading: true,
+        group_rejected: false
       });
 
     case _actions_groupActions__WEBPACK_IMPORTED_MODULE_1__["FETCHED_GROUPS"]:
       return _babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default()({}, state, {
-        isLoading: false,
-        isRejected: false,
-        groups: action.groups
+        group_loading: false,
+        group_rejected: false,
+        group_groups: action.groups
       });
 
     case _actions_groupActions__WEBPACK_IMPORTED_MODULE_1__["REJECTED_GROUPS"]:
       return _babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default()({}, state, {
-        isRejected: true,
-        isLoading: false,
-        groups: [],
-        msg: action.msg
+        group_rejected: true,
+        group_loading: false,
+        group_msg: action.msg
       });
 
     default:
@@ -2529,33 +2529,33 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const initialState = {
-  isLoading: false,
-  isRejected: false,
-  msg: '',
-  posts: [],
-  total: 0
+  post_loading: false,
+  post_rejected: false,
+  post_msg: '',
+  post_posts: [],
+  post_total: 0
 };
 function PostsReducer(state = initialState, action) {
   switch (action.type) {
     case _actions_postsActions_js__WEBPACK_IMPORTED_MODULE_1__["FETCHING_POSTS"]:
       return _babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default()({}, state, {
-        isLoading: true,
-        isRejected: false
+        post_loading: true,
+        post_rejected: false
       });
 
     case _actions_postsActions_js__WEBPACK_IMPORTED_MODULE_1__["REJECTED_POSTS"]:
       return _babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default()({}, state, {
-        isLoading: false,
-        isRejected: true,
-        msg: action.msg
+        post_loading: false,
+        post_rejected: true,
+        post_msg: action.msg
       });
 
     case _actions_postsActions_js__WEBPACK_IMPORTED_MODULE_1__["FETCHED_POSTS"]:
       return _babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default()({}, state, {
-        isLoading: false,
-        isRejected: false,
-        posts: action.posts,
-        total: action.total
+        post_loading: false,
+        post_rejected: false,
+        post_posts: action.posts,
+        post_total: action.total
       });
 
     default:

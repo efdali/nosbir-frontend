@@ -1,31 +1,31 @@
-export const FETCHED_POSTS = 'FETCHED_POSTS';
-export const REJECTED_POSTS = 'REJECTED_POSTS';
-export const FETCHING_POSTS = 'FETCHING_POSTS';
+export const FETCHED_POSTS = "FETCHED_POSTS";
+export const REJECTED_POSTS = "REJECTED_POSTS";
+export const FETCHING_POSTS = "FETCHING_POSTS";
 
 export const fetchedPosts = (posts, total) => ({
   type: FETCHED_POSTS,
   posts,
-  total,
+  total
 });
 export const rejectedPosts = msg => ({
   type: REJECTED_POSTS,
-  msg,
+  msg
 });
 export const fetchingPosts = () => ({
-  type: FETCHING_POSTS,
+  type: FETCHING_POSTS
 });
 
-export const fetchPosts = (group = '') => (dispatch, getState, http) => {
+export const fetchPosts = (group = "") => (dispatch, getState, http) => {
   dispatch(fetchingPosts());
   let params = {};
   if (group)
     params = {
-      topluluk: group,
+      topluluk: group
     };
 
   http
-    .get('postlar.php', {
-      params,
+    .get("postlar.php", {
+      params
     })
     .then(res => res.data)
     .then(res => {

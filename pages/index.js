@@ -24,7 +24,6 @@ class Home extends React.Component {
 
 Home.getInitialProps = async ({ store, query }) => {
   const group = query.slug ? query.slug : '';
-  // const auth=ctx.store.getState().auth.isAuthenticated;
   return {
     group,
   };

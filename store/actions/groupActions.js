@@ -16,7 +16,7 @@ export const fetchingGroups = () => ({
 export const fetchGroups = () => (dispatch, getState, http) => {
   dispatch(fetchingGroups());
   http
-    .get('/gruplar.php')
+    .get('gruplar.php')
     .then(res => res.data)
     .then(res => {
       if (res.durum) {

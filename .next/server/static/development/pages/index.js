@@ -242,24 +242,45 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-const PostList = props => {
-  const dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["useDispatch"])();
-  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(() => {
-    dispatch(Object(_store_actions_postsActions__WEBPACK_IMPORTED_MODULE_5__["fetchPosts"])(props.group));
-  }, []);
-  const state = Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["useSelector"])(state => state.posts);
-  if (state.isLoading) return __jsx(_loading__WEBPACK_IMPORTED_MODULE_2__["default"], null);else if (state.isRejected) return __jsx(_error__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    msg: state.msg
-  });
-  return __jsx("div", {
-    className: "post-list"
-  }, state.posts.map((p, i) => __jsx(_post__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    post: p,
-    key: i
-  })), __jsx("button", null, "Daha Fazla Nos"));
-};
+class PostList extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  componentDidMount() {
+    this.props.fetchPosts(this.props.group);
+  }
 
-/* harmony default export */ __webpack_exports__["default"] = (PostList);
+  render() {
+    const {
+      posts,
+      isLoading,
+      isRejected,
+      msg
+    } = this.props;
+    if (isLoading) return __jsx(_loading__WEBPACK_IMPORTED_MODULE_2__["default"], null);else if (isRejected) return __jsx(_error__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      msg: msg
+    });else if (!posts.length) return __jsx(_error__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      msg: "Post Bulunamad\u0131."
+    });
+    return __jsx("div", {
+      className: "post-list"
+    }, posts.map((p, i) => __jsx(_post__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      post: p,
+      key: i
+    })), __jsx("button", null, "Daha Fazla Nos"));
+  }
+
+}
+
+const mapStateToProps = ({
+  posts
+}) => ({
+  posts: posts.post_posts,
+  isLoading: posts.post_loading,
+  isRejected: posts.post_rejected,
+  msg: posts.post_msg
+});
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, {
+  fetchPosts: _store_actions_postsActions__WEBPACK_IMPORTED_MODULE_5__["fetchPosts"]
+})(PostList));
 
 /***/ }),
 
@@ -272,16 +293,18 @@ const PostList = props => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "react-redux");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _store_actions_groupActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/actions/groupActions */ "./store/actions/groupActions.js");
-/* harmony import */ var _loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./loading */ "./components/loading.js");
-/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./error */ "./components/error.js");
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _store_actions_groupActions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/actions/groupActions */ "./store/actions/groupActions.js");
+/* harmony import */ var _loading__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./loading */ "./components/loading.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./error */ "./components/error.js");
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
 
@@ -289,40 +312,62 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-const Sidebar = props => {
-  const {
-    groups,
-    isLoading,
-    isRejected,
-    msg
-  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(state => state.groups);
+class Sidebar extends react__WEBPACK_IMPORTED_MODULE_1___default.a.Component {
+  constructor(...args) {
+    super(...args);
 
-  const renderComponent = () => {
-    if (isLoading) {
-      return __jsx(_loading__WEBPACK_IMPORTED_MODULE_4__["default"], null);
-    } else if (isRejected) {
-      return __jsx(_error__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        msg: msg
-      });
-    } else {
-      return __jsx("ul", null, groups.map((g, i) => __jsx("li", {
-        key: i
-      }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-        href: g.group_seo
-      }, __jsx("a", null, g.name.toLowerCase())))));
-    }
-  };
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "renderComponent", () => {
+      const {
+        groups,
+        isLoading,
+        isRejected,
+        msg
+      } = this.props;
 
-  const dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    dispatch(Object(_store_actions_groupActions__WEBPACK_IMPORTED_MODULE_3__["fetchGroups"])());
-  }, []);
-  return __jsx("aside", {
-    className: "left-sidebar"
-  }, __jsx("h5", null, "Kanallar"), renderComponent());
-};
+      if (isLoading) {
+        return __jsx(_loading__WEBPACK_IMPORTED_MODULE_5__["default"], null);
+      } else if (isRejected) {
+        return __jsx(_error__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          msg: msg
+        });
+      } else if (!groups.length) {
+        return __jsx(_error__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          msg: "Grup Bulunamad\u0131"
+        });
+      } else {
+        return __jsx("ul", null, groups.map((g, i) => __jsx("li", {
+          key: i
+        }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+          href: g.group_seo
+        }, __jsx("a", null, g.name.toLowerCase())))));
+      }
+    });
+  }
 
-/* harmony default export */ __webpack_exports__["default"] = (Sidebar);
+  componentDidMount() {
+    this.props.fetchGroups();
+  }
+
+  render() {
+    return __jsx("aside", {
+      className: "left-sidebar"
+    }, __jsx("h5", null, "Kanallar"), this.renderComponent());
+  }
+
+}
+
+const mapStateToProps = ({
+  groups
+}) => ({
+  isLoading: groups.group_loading,
+  isRejected: groups.group_rejected,
+  msg: groups.group_msg,
+  groups: groups.group_groups
+});
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps, {
+  fetchGroups: _store_actions_groupActions__WEBPACK_IMPORTED_MODULE_4__["fetchGroups"]
+})(Sidebar));
 
 /***/ }),
 
@@ -411,6 +456,36 @@ module.exports = __webpack_require__(/*! core-js/library/fn/promise */ "core-js/
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! core-js/library/fn/weak-map */ "core-js/library/fn/weak-map");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _defineProperty; });
+/* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
+/* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
 
 /***/ }),
 
@@ -2101,8 +2176,7 @@ Home.getInitialProps = async ({
   store,
   query
 }) => {
-  const group = query.slug ? query.slug : ''; // const auth=ctx.store.getState().auth.isAuthenticated;
-
+  const group = query.slug ? query.slug : '';
   return {
     group
   };
@@ -2144,7 +2218,7 @@ const fetchingGroups = () => ({
 });
 const fetchGroups = () => (dispatch, getState, http) => {
   dispatch(fetchingGroups());
-  http.get('/gruplar.php').then(res => res.data).then(res => {
+  http.get('gruplar.php').then(res => res.data).then(res => {
     if (res.durum) {
       dispatch(fetchedGroups(res.gruplar));
     } else {
@@ -2171,9 +2245,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rejectedPosts", function() { return rejectedPosts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchingPosts", function() { return fetchingPosts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPosts", function() { return fetchPosts; });
-const FETCHED_POSTS = 'FETCHED_POSTS';
-const REJECTED_POSTS = 'REJECTED_POSTS';
-const FETCHING_POSTS = 'FETCHING_POSTS';
+const FETCHED_POSTS = "FETCHED_POSTS";
+const REJECTED_POSTS = "REJECTED_POSTS";
+const FETCHING_POSTS = "FETCHING_POSTS";
 const fetchedPosts = (posts, total) => ({
   type: FETCHED_POSTS,
   posts,
@@ -2186,13 +2260,13 @@ const rejectedPosts = msg => ({
 const fetchingPosts = () => ({
   type: FETCHING_POSTS
 });
-const fetchPosts = (group = '') => (dispatch, getState, http) => {
+const fetchPosts = (group = "") => (dispatch, getState, http) => {
   dispatch(fetchingPosts());
   let params = {};
   if (group) params = {
     topluluk: group
   };
-  http.get('postlar.php', {
+  http.get("postlar.php", {
     params
   }).then(res => res.data).then(res => {
     if (res.durum) {

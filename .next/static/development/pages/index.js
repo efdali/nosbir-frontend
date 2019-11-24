@@ -137,14 +137,24 @@ var Post = function Post(props) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _post__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./post */ "./components/post.js");
-/* harmony import */ var _loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./loading */ "./components/loading.js");
-/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./error */ "./components/error.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store_actions_postsActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/actions/postsActions */ "./store/actions/postsActions.js");
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime-corejs2/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime-corejs2/helpers/esm/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/inherits */ "./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _post__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./post */ "./components/post.js");
+/* harmony import */ var _loading__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./loading */ "./components/loading.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./error */ "./components/error.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_actions_postsActions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../store/actions/postsActions */ "./store/actions/postsActions.js");
+
+
+
+
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement;
 
 
 
@@ -152,28 +162,62 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-var PostList = function PostList(props) {
-  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["useDispatch"])();
-  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(function () {
-    dispatch(Object(_store_actions_postsActions__WEBPACK_IMPORTED_MODULE_5__["fetchPosts"])(props.group));
-  }, []);
-  var state = Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["useSelector"])(function (state) {
-    return state.posts;
-  });
-  if (state.isLoading) return __jsx(_loading__WEBPACK_IMPORTED_MODULE_2__["default"], null);else if (state.isRejected) return __jsx(_error__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    msg: state.msg
-  });
-  return __jsx("div", {
-    className: "post-list"
-  }, state.posts.map(function (p, i) {
-    return __jsx(_post__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      post: p,
-      key: i
-    });
-  }), __jsx("button", null, "Daha Fazla Nos"));
+var PostList =
+/*#__PURE__*/
+function (_React$Component) {
+  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_4__["default"])(PostList, _React$Component);
+
+  function PostList() {
+    Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, PostList);
+
+    return Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__["default"])(PostList).apply(this, arguments));
+  }
+
+  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(PostList, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchPosts(this.props.group);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          posts = _this$props.posts,
+          isLoading = _this$props.isLoading,
+          isRejected = _this$props.isRejected,
+          msg = _this$props.msg;
+      if (isLoading) return __jsx(_loading__WEBPACK_IMPORTED_MODULE_7__["default"], null);else if (isRejected) return __jsx(_error__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        msg: msg
+      });else if (!posts.length) return __jsx(_error__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        msg: "Post Bulunamad\u0131."
+      });
+      return __jsx("div", {
+        className: "post-list"
+      }, posts.map(function (p, i) {
+        return __jsx(_post__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          post: p,
+          key: i
+        });
+      }), __jsx("button", null, "Daha Fazla Nos"));
+    }
+  }]);
+
+  return PostList;
+}(react__WEBPACK_IMPORTED_MODULE_5___default.a.Component);
+
+var mapStateToProps = function mapStateToProps(_ref) {
+  var posts = _ref.posts;
+  return {
+    posts: posts.post_posts,
+    isLoading: posts.post_loading,
+    isRejected: posts.post_rejected,
+    msg: posts.post_msg
+  };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (PostList);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_9__["connect"])(mapStateToProps, {
+  fetchPosts: _store_actions_postsActions__WEBPACK_IMPORTED_MODULE_10__["fetchPosts"]
+})(PostList));
 
 /***/ }),
 
@@ -186,15 +230,21 @@ var PostList = function PostList(props) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store_actions_groupActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/actions/groupActions */ "./store/actions/groupActions.js");
-/* harmony import */ var _loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./loading */ "./components/loading.js");
-/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./error */ "./components/error.js");
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime-corejs2/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime-corejs2/helpers/esm/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/assertThisInitialized */ "./node_modules/@babel/runtime-corejs2/helpers/esm/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/inherits */ "./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_actions_groupActions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../store/actions/groupActions */ "./store/actions/groupActions.js");
+/* harmony import */ var _loading__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./loading */ "./components/loading.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./error */ "./components/error.js");
 
 
 
@@ -202,43 +252,93 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-var Sidebar = function Sidebar(props) {
-  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(function (state) {
-    return state.groups;
-  }),
-      groups = _useSelector.groups,
-      isLoading = _useSelector.isLoading,
-      isRejected = _useSelector.isRejected,
-      msg = _useSelector.msg;
+var __jsx = react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement;
 
-  var renderComponent = function renderComponent() {
-    if (isLoading) {
-      return __jsx(_loading__WEBPACK_IMPORTED_MODULE_4__["default"], null);
-    } else if (isRejected) {
-      return __jsx(_error__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        msg: msg
-      });
-    } else {
-      return __jsx("ul", null, groups.map(function (g, i) {
-        return __jsx("li", {
-          key: i
-        }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-          href: g.group_seo
-        }, __jsx("a", null, g.name.toLowerCase())));
-      }));
+
+
+
+
+
+
+var Sidebar =
+/*#__PURE__*/
+function (_React$Component) {
+  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__["default"])(Sidebar, _React$Component);
+
+  function Sidebar() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Sidebar);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
-  };
 
-  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    dispatch(Object(_store_actions_groupActions__WEBPACK_IMPORTED_MODULE_3__["fetchGroups"])());
-  }, []);
-  return __jsx("aside", {
-    className: "left-sidebar"
-  }, __jsx("h5", null, "Kanallar"), renderComponent());
+    _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__["default"])(this, (_getPrototypeOf2 = Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__["default"])(Sidebar)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "renderComponent", function () {
+      var _this$props = _this.props,
+          groups = _this$props.groups,
+          isLoading = _this$props.isLoading,
+          isRejected = _this$props.isRejected,
+          msg = _this$props.msg;
+
+      if (isLoading) {
+        return __jsx(_loading__WEBPACK_IMPORTED_MODULE_11__["default"], null);
+      } else if (isRejected) {
+        return __jsx(_error__WEBPACK_IMPORTED_MODULE_12__["default"], {
+          msg: msg
+        });
+      } else if (!groups.length) {
+        return __jsx(_error__WEBPACK_IMPORTED_MODULE_12__["default"], {
+          msg: "Grup Bulunamad\u0131"
+        });
+      } else {
+        return __jsx("ul", null, groups.map(function (g, i) {
+          return __jsx("li", {
+            key: i
+          }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
+            href: g.group_seo
+          }, __jsx("a", null, g.name.toLowerCase())));
+        }));
+      }
+    });
+
+    return _this;
+  }
+
+  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Sidebar, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchGroups();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return __jsx("aside", {
+        className: "left-sidebar"
+      }, __jsx("h5", null, "Kanallar"), this.renderComponent());
+    }
+  }]);
+
+  return Sidebar;
+}(react__WEBPACK_IMPORTED_MODULE_7___default.a.Component);
+
+var mapStateToProps = function mapStateToProps(_ref) {
+  var groups = _ref.groups;
+  return {
+    isLoading: groups.group_loading,
+    isRejected: groups.group_rejected,
+    msg: groups.group_msg,
+    groups: groups.group_groups
+  };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Sidebar);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_9__["connect"])(mapStateToProps, {
+  fetchGroups: _store_actions_groupActions__WEBPACK_IMPORTED_MODULE_10__["fetchGroups"]
+})(Sidebar));
 
 /***/ }),
 
@@ -759,6 +859,36 @@ function _createClass(Constructor, protoProps, staticProps) {
   if (protoProps) _defineProperties(Constructor.prototype, protoProps);
   if (staticProps) _defineProperties(Constructor, staticProps);
   return Constructor;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _defineProperty; });
+/* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
+/* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
 }
 
 /***/ }),
@@ -14399,8 +14529,7 @@ function () {
         switch (_context.prev = _context.next) {
           case 0:
             store = _ref.store, query = _ref.query;
-            group = query.slug ? query.slug : ''; // const auth=ctx.store.getState().auth.isAuthenticated;
-
+            group = query.slug ? query.slug : '';
             return _context.abrupt("return", {
               group: group
             });
@@ -14461,7 +14590,7 @@ var fetchingGroups = function fetchingGroups() {
 var fetchGroups = function fetchGroups() {
   return function (dispatch, getState, http) {
     dispatch(fetchingGroups());
-    http.get('/gruplar.php').then(function (res) {
+    http.get('gruplar.php').then(function (res) {
       return res.data;
     }).then(function (res) {
       if (res.durum) {
@@ -14493,9 +14622,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rejectedPosts", function() { return rejectedPosts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchingPosts", function() { return fetchingPosts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPosts", function() { return fetchPosts; });
-var FETCHED_POSTS = 'FETCHED_POSTS';
-var REJECTED_POSTS = 'REJECTED_POSTS';
-var FETCHING_POSTS = 'FETCHING_POSTS';
+var FETCHED_POSTS = "FETCHED_POSTS";
+var REJECTED_POSTS = "REJECTED_POSTS";
+var FETCHING_POSTS = "FETCHING_POSTS";
 var fetchedPosts = function fetchedPosts(posts, total) {
   return {
     type: FETCHED_POSTS,
@@ -14515,14 +14644,14 @@ var fetchingPosts = function fetchingPosts() {
   };
 };
 var fetchPosts = function fetchPosts() {
-  var group = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  var group = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
   return function (dispatch, getState, http) {
     dispatch(fetchingPosts());
     var params = {};
     if (group) params = {
       topluluk: group
     };
-    http.get('postlar.php', {
+    http.get("postlar.php", {
       params: params
     }).then(function (res) {
       return res.data;
