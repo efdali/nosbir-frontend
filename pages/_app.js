@@ -9,7 +9,7 @@ import Layout from '../components/layout';
 import thunk from 'redux-thunk';
 import '../style.css';
 import http from '../http';
-const makeStore = initialState => {
+const makeStore = (initialState={}) => {
   return createStore(
     reducer,
     initialState,

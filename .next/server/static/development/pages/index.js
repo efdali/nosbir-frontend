@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -116,6 +116,106 @@ const Error = props => __jsx("div", {
 }), props.msg ? props.msg : 'Oppps..! Bir Hata Oluştu.'));
 
 /* harmony default export */ __webpack_exports__["default"] = (Error);
+
+/***/ }),
+
+/***/ "./components/groupSidebar.js":
+/*!************************************!*\
+  !*** ./components/groupSidebar.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./loading */ "./components/loading.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./error */ "./components/error.js");
+/* harmony import */ var _store_actions_groupActions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../store/actions/groupActions */ "./store/actions/groupActions.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! next/router */ "next/router");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_7__);
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
+
+
+
+
+
+
+
+class GroupSidebar extends react__WEBPACK_IMPORTED_MODULE_1___default.a.Component {
+  constructor(...args) {
+    super(...args);
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "renderComponent", () => {
+      const {
+        slug
+      } = this.props.router.query;
+      const {
+        groups,
+        isLoading,
+        isRejected,
+        msg
+      } = this.props;
+
+      if (isLoading) {
+        return __jsx(_loading__WEBPACK_IMPORTED_MODULE_4__["default"], null);
+      } else if (isRejected) {
+        return __jsx(_error__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          msg: msg
+        });
+      } else if (!groups.length) {
+        return __jsx(_error__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          msg: "Grup Bulunamad\u0131"
+        });
+      } else {
+        return __jsx("ul", null, __jsx("li", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+          href: "/"
+        }, __jsx("a", {
+          className: slug === undefined ? 'active' : ''
+        }, "anasayfa"))), groups.map(g => __jsx("li", {
+          key: g.group_id
+        }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+          href: g.group_seo
+        }, __jsx("a", {
+          className: slug === g.group_seo ? 'active' : ''
+        }, g.name.toLowerCase())))));
+      }
+    });
+  }
+
+  componentDidMount() {
+    this.props.fetchGroups();
+  }
+
+  render() {
+    return __jsx("aside", {
+      className: "left-sidebar"
+    }, this.renderComponent());
+  }
+
+}
+
+const mapStateToProps = ({
+  groups,
+  posts
+}) => ({
+  isLoading: groups.group_loading,
+  isRejected: groups.group_reject,
+  msg: groups.group_msg,
+  groups: groups.groups
+});
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps, {
+  fetchGroups: _store_actions_groupActions__WEBPACK_IMPORTED_MODULE_6__["fetchGroups"]
+})(Object(next_router__WEBPACK_IMPORTED_MODULE_7__["withRouter"])(GroupSidebar)));
 
 /***/ }),
 
@@ -190,6 +290,65 @@ const NewPostForm = () => __jsx("div", {
 
 /***/ }),
 
+/***/ "./components/popularSidebar.js":
+/*!**************************************!*\
+  !*** ./components/popularSidebar.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PopularSidebar; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./loading */ "./components/loading.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./error */ "./components/error.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _store_actions_popularActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/actions/popularActions */ "./store/actions/popularActions.js");
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+
+
+function PopularSidebar() {
+  const dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    dispatch(Object(_store_actions_popularActions__WEBPACK_IMPORTED_MODULE_5__["fetchPopulars"])());
+  }, []);
+  const {
+    posts,
+    isLoading,
+    isRejected,
+    errorMsg
+  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(state => state.populars);
+
+  const renderContent = () => {
+    if (isLoading) return __jsx(_loading__WEBPACK_IMPORTED_MODULE_2__["default"], null);else if (isRejected) return __jsx(_error__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      msg: errorMsg
+    });else if (!posts.length) return __jsx(_error__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      msg: "Pop\xFCler post bulunamad\u0131."
+    });else return __jsx("ul", null, posts.map(p => __jsx("li", {
+      key: p.post_id
+    }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_4___default.a, {
+      href: "/"
+    }, __jsx("a", null, __jsx("p", {
+      className: "max-three-line"
+    }, p.title))))));
+  };
+
+  return __jsx("aside", {
+    className: "right-sidebar"
+  }, renderContent());
+}
+
+/***/ }),
+
 /***/ "./components/post.js":
 /*!****************************!*\
   !*** ./components/post.js ***!
@@ -233,7 +392,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./error */ "./components/error.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "react-redux");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _store_actions_postsActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/actions/postsActions */ "./store/actions/postsActions.js");
+/* harmony import */ var _store_actions_postActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/actions/postActions */ "./store/actions/postActions.js");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -243,8 +402,15 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 class PostList extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: 0
+    };
+  }
+
   componentDidMount() {
-    this.props.fetchPosts(this.props.group);
+    this.props.fetchPosts();
   }
 
   render() {
@@ -261,9 +427,9 @@ class PostList extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     });
     return __jsx("div", {
       className: "post-list"
-    }, posts.map((p, i) => __jsx(_post__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }, posts.map(p => __jsx(_post__WEBPACK_IMPORTED_MODULE_1__["default"], {
       post: p,
-      key: i
+      key: p.post_id
     })), __jsx("button", null, "Daha Fazla Nos"));
   }
 
@@ -272,102 +438,15 @@ class PostList extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
 const mapStateToProps = ({
   posts
 }) => ({
-  posts: posts.post_posts,
+  posts: posts.posts,
   isLoading: posts.post_loading,
-  isRejected: posts.post_rejected,
-  msg: posts.post_msg
+  isRejected: posts.post_reject,
+  msg: posts.post_error_msg
 });
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, {
-  fetchPosts: _store_actions_postsActions__WEBPACK_IMPORTED_MODULE_5__["fetchPosts"]
+  fetchPosts: _store_actions_postActions__WEBPACK_IMPORTED_MODULE_5__["fetchPosts"]
 })(PostList));
-
-/***/ }),
-
-/***/ "./components/sidebar.js":
-/*!*******************************!*\
-  !*** ./components/sidebar.js ***!
-  \*******************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "react-redux");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _store_actions_groupActions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/actions/groupActions */ "./store/actions/groupActions.js");
-/* harmony import */ var _loading__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./loading */ "./components/loading.js");
-/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./error */ "./components/error.js");
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
-
-
-
-
-
-
-
-class Sidebar extends react__WEBPACK_IMPORTED_MODULE_1___default.a.Component {
-  constructor(...args) {
-    super(...args);
-
-    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "renderComponent", () => {
-      const {
-        groups,
-        isLoading,
-        isRejected,
-        msg
-      } = this.props;
-
-      if (isLoading) {
-        return __jsx(_loading__WEBPACK_IMPORTED_MODULE_5__["default"], null);
-      } else if (isRejected) {
-        return __jsx(_error__WEBPACK_IMPORTED_MODULE_6__["default"], {
-          msg: msg
-        });
-      } else if (!groups.length) {
-        return __jsx(_error__WEBPACK_IMPORTED_MODULE_6__["default"], {
-          msg: "Grup Bulunamad\u0131"
-        });
-      } else {
-        return __jsx("ul", null, groups.map((g, i) => __jsx("li", {
-          key: i
-        }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-          href: g.group_seo
-        }, __jsx("a", null, g.name.toLowerCase())))));
-      }
-    });
-  }
-
-  componentDidMount() {
-    this.props.fetchGroups();
-  }
-
-  render() {
-    return __jsx("aside", {
-      className: "left-sidebar"
-    }, __jsx("h5", null, "Kanallar"), this.renderComponent());
-  }
-
-}
-
-const mapStateToProps = ({
-  groups
-}) => ({
-  isLoading: groups.group_loading,
-  isRejected: groups.group_rejected,
-  msg: groups.group_msg,
-  groups: groups.group_groups
-});
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps, {
-  fetchGroups: _store_actions_groupActions__WEBPACK_IMPORTED_MODULE_4__["fetchGroups"]
-})(Sidebar));
 
 /***/ }),
 
@@ -2146,10 +2225,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/head */ "next/head");
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_sidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/sidebar */ "./components/sidebar.js");
+/* harmony import */ var _components_groupSidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/groupSidebar */ "./components/groupSidebar.js");
 /* harmony import */ var _components_newPostForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/newPostForm */ "./components/newPostForm.js");
-/* harmony import */ var _store_actions_postsActions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/actions/postsActions */ "./store/actions/postsActions.js");
-/* harmony import */ var _components_postList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/postList */ "./components/postList.js");
+/* harmony import */ var _components_postList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/postList */ "./components/postList.js");
+/* harmony import */ var _components_popularSidebar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/popularSidebar */ "./components/popularSidebar.js");
+/* harmony import */ var _store_actions_postActions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../store/actions/postActions */ "./store/actions/postActions.js");
+/* harmony import */ var _store_actions_popularActions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../store/actions/popularActions */ "./store/actions/popularActions.js");
+/* harmony import */ var _store_actions_groupActions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../store/actions/groupActions */ "./store/actions/groupActions.js");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -2158,29 +2240,32 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
+
+
+
 class Home extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  static async getInitialProps({
+    store,
+    query
+  }) {
+    const group = query.slug ? query.slug : "";
+    return {
+      group
+    };
+  }
+
   render() {
     const {
       group
     } = this.props;
-    return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, null, __jsx("title", null, "Nosbir | Sosyal Payla\u015F\u0131m Diyar\u0131")), __jsx(_components_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"], null), __jsx("div", {
-      className: "page-content"
-    }, __jsx(_components_newPostForm__WEBPACK_IMPORTED_MODULE_3__["default"], null), __jsx(_components_postList__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, null, __jsx("title", null, "Nosbir | Sosyal Payla\u015F\u0131m Diyar\u0131")), __jsx(_components_groupSidebar__WEBPACK_IMPORTED_MODULE_2__["default"], null), __jsx("div", {
+      className: "content"
+    }, __jsx(_components_newPostForm__WEBPACK_IMPORTED_MODULE_3__["default"], null), __jsx(_components_postList__WEBPACK_IMPORTED_MODULE_4__["default"], {
       group: group
-    })));
+    })), __jsx(_components_popularSidebar__WEBPACK_IMPORTED_MODULE_5__["default"], null));
   }
 
 }
-
-Home.getInitialProps = async ({
-  store,
-  query
-}) => {
-  const group = query.slug ? query.slug : '';
-  return {
-    group
-  };
-};
 
 /* harmony default export */ __webpack_exports__["default"] = (Home);
 
@@ -2190,96 +2275,127 @@ Home.getInitialProps = async ({
 /*!***************************************!*\
   !*** ./store/actions/groupActions.js ***!
   \***************************************/
-/*! exports provided: FETCHED_GROUPS, REJECTED_GROUPS, FETCHING_GROUPS, fetchedGroups, rejectedGroups, fetchingGroups, fetchGroups */
+/*! exports provided: FETCHING_GROUPS, fetchingGroups, GROUPS_FAIL, groupsFail, GROUPS_SUCCESS, groupsSuccess, fetchGroups */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCHED_GROUPS", function() { return FETCHED_GROUPS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REJECTED_GROUPS", function() { return REJECTED_GROUPS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCHING_GROUPS", function() { return FETCHING_GROUPS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchedGroups", function() { return fetchedGroups; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rejectedGroups", function() { return rejectedGroups; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchingGroups", function() { return fetchingGroups; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GROUPS_FAIL", function() { return GROUPS_FAIL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "groupsFail", function() { return groupsFail; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GROUPS_SUCCESS", function() { return GROUPS_SUCCESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "groupsSuccess", function() { return groupsSuccess; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchGroups", function() { return fetchGroups; });
-const FETCHED_GROUPS = 'FETCHED_GROUPS';
-const REJECTED_GROUPS = 'REJECTED_GROUPS';
-const FETCHING_GROUPS = 'FETCHING_GROUPS';
-const fetchedGroups = groups => ({
-  type: FETCHED_GROUPS,
-  groups
-});
-const rejectedGroups = msg => ({
-  type: REJECTED_GROUPS,
-  msg
-});
+const FETCHING_GROUPS = "FETCHING_GROUPS";
 const fetchingGroups = () => ({
   type: FETCHING_GROUPS
 });
+const GROUPS_FAIL = "GROUPS_FAIL";
+const groupsFail = msg => ({
+  type: GROUPS_FAIL,
+  msg
+});
+const GROUPS_SUCCESS = "GROUPS_SUCCESS";
+const groupsSuccess = groups => ({
+  type: GROUPS_SUCCESS,
+  groups
+});
 const fetchGroups = () => (dispatch, getState, http) => {
   dispatch(fetchingGroups());
-  http.get('gruplar.php').then(res => res.data).then(res => {
-    if (res.durum) {
-      dispatch(fetchedGroups(res.gruplar));
-    } else {
-      dispatch(rejectedGroups(res.mesaj));
-    }
-  }).catch(err => dispatch(rejectedGroups(err)));
+  http.get("gruplar.php").then(res => res.data).then(res => {
+    if (res.durum) dispatch(groupsSuccess(res.gruplar));else dispatch(groupsFail(res.mesaj));
+  }).catch(err => dispatch(groupsFail(err)));
 };
 
 /***/ }),
 
-/***/ "./store/actions/postsActions.js":
-/*!***************************************!*\
-  !*** ./store/actions/postsActions.js ***!
-  \***************************************/
-/*! exports provided: FETCHED_POSTS, REJECTED_POSTS, FETCHING_POSTS, fetchedPosts, rejectedPosts, fetchingPosts, fetchPosts */
+/***/ "./store/actions/popularActions.js":
+/*!*****************************************!*\
+  !*** ./store/actions/popularActions.js ***!
+  \*****************************************/
+/*! exports provided: FETCHING_POPULARS, fetchingPopulars, POPULARS_FAIL, popularsFail, POPULARS_SUCCESS, popularsSuccess, fetchPopulars */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCHED_POSTS", function() { return FETCHED_POSTS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REJECTED_POSTS", function() { return REJECTED_POSTS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCHING_POSTS", function() { return FETCHING_POSTS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchedPosts", function() { return fetchedPosts; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rejectedPosts", function() { return rejectedPosts; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchingPosts", function() { return fetchingPosts; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPosts", function() { return fetchPosts; });
-const FETCHED_POSTS = "FETCHED_POSTS";
-const REJECTED_POSTS = "REJECTED_POSTS";
-const FETCHING_POSTS = "FETCHING_POSTS";
-const fetchedPosts = (posts, total) => ({
-  type: FETCHED_POSTS,
-  posts,
-  total
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCHING_POPULARS", function() { return FETCHING_POPULARS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchingPopulars", function() { return fetchingPopulars; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "POPULARS_FAIL", function() { return POPULARS_FAIL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "popularsFail", function() { return popularsFail; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "POPULARS_SUCCESS", function() { return POPULARS_SUCCESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "popularsSuccess", function() { return popularsSuccess; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPopulars", function() { return fetchPopulars; });
+const FETCHING_POPULARS = "FETCHING_POPULARS";
+const fetchingPopulars = () => ({
+  type: FETCHING_POPULARS
 });
-const rejectedPosts = msg => ({
-  type: REJECTED_POSTS,
+const POPULARS_FAIL = "FETCHING_POPULARS";
+const popularsFail = msg => ({
+  type: POPULARS_FAIL,
   msg
 });
+const POPULARS_SUCCESS = "POPULARS_SUCCESS";
+const popularsSuccess = populars => ({
+  type: POPULARS_SUCCESS,
+  populars
+});
+const fetchPopulars = () => (dispatch, getState, http) => {
+  dispatch(fetchingPopulars());
+  http.get("populerler.php").then(res => res.data).then(res => {
+    if (res.durum) dispatch(popularsSuccess(res.post));else dispatch(popularsFail(res.mesaj));
+  }).catch(err => dispatch(popularsFail(err)));
+};
+
+/***/ }),
+
+/***/ "./store/actions/postActions.js":
+/*!**************************************!*\
+  !*** ./store/actions/postActions.js ***!
+  \**************************************/
+/*! exports provided: FETCHING_POSTS, fetchingPosts, POSTS_FAIL, postsFail, POSTS_SUCCESS, postsSuccess, fetchPosts */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCHING_POSTS", function() { return FETCHING_POSTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchingPosts", function() { return fetchingPosts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "POSTS_FAIL", function() { return POSTS_FAIL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postsFail", function() { return postsFail; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "POSTS_SUCCESS", function() { return POSTS_SUCCESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postsSuccess", function() { return postsSuccess; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPosts", function() { return fetchPosts; });
+const FETCHING_POSTS = "FETCHING_POSTS";
 const fetchingPosts = () => ({
   type: FETCHING_POSTS
 });
-const fetchPosts = (group = "") => (dispatch, getState, http) => {
+const POSTS_FAIL = "POSTS_FAIL";
+const postsFail = msg => ({
+  type: POSTS_FAIL,
+  msg
+});
+const POSTS_SUCCESS = "POSTS_SUCCESS";
+const postsSuccess = (posts, total) => ({
+  type: POSTS_SUCCESS,
+  posts,
+  total
+});
+const fetchPosts = (group = "", page = 0) => (dispatch, getState, http) => {
   dispatch(fetchingPosts());
-  let params = {};
-  if (group) params = {
-    topluluk: group
+  const params = {
+    s: page,
+    topluluk: group ? group : null
   };
   http.get("postlar.php", {
     params
   }).then(res => res.data).then(res => {
-    if (res.durum) {
-      dispatch(fetchedPosts(res.postlar, res.toplam));
-    } else {
-      dispatch(rejectedPosts(res.mesaj));
-    }
-  }).catch(err => dispatch(rejectedPosts(err)));
+    if (res.durum) dispatch(postsSuccess(res.postlar, res.toplam));else dispatch(postsFail(res.mesaj));
+  }).catch(err => dispatch(postsFail(err)));
 };
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
@@ -2387,6 +2503,17 @@ module.exports = require("core-js/library/fn/weak-map");
 /***/ (function(module, exports) {
 
 module.exports = require("next/head");
+
+/***/ }),
+
+/***/ "next/router":
+/*!******************************!*\
+  !*** external "next/router" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("next/router");
 
 /***/ }),
 

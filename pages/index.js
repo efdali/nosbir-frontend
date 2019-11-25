@@ -1,10 +1,21 @@
-import React from 'react';
-import Head from 'next/head';
-import Sidebar from '../components/sidebar';
-import NewPostForm from '../components/newPostForm';
-import { fetchPosts } from '../store/actions/postsActions';
-import PostList from '../components/postList';
+import React from "react";
+import Head from "next/head";
+import GroupSidebar from "../components/groupSidebar";
+import NewPostForm from "../components/newPostForm";
+import PostList from "../components/postList";
+import PopularSidebar from "../components/popularSidebar";
+import {fetchPosts} from '../store/actions/postActions';
+import {fetchPopulars} from '../store/actions/popularActions';
+import {fetchGroups} from '../store/actions/groupActions';
+
 class Home extends React.Component {
+  static async getInitialProps({ store, query }) {
+    const group = query.slug ? query.slug : "";
+    return {
+      group
+    };
+  }
+
   render() {
     const { group } = this.props;
     return (
@@ -12,20 +23,14 @@ class Home extends React.Component {
         <Head>
           <title>Nosbir | Sosyal Paylaşım Diyarı</title>
         </Head>
-        <Sidebar />
-        <div className="page-content">
+        <GroupSidebar />
+        <div className="content">
           <NewPostForm />
           <PostList group={group} />
         </div>
+        <PopularSidebar />
       </>
     );
   }
 }
-
-Home.getInitialProps = async ({ store, query }) => {
-  const group = query.slug ? query.slug : '';
-  return {
-    group,
-  };
-};
 export default Home;

@@ -1,30 +1,28 @@
-import * as actions from '../actions/groupActions';
-
+import * as actions from "../actions/groupActions";
 const initialState = {
-  group_loading: false,
-  group_rejected: false,
-  group_msg: '',
-  group_groups: [],
+  isLoading: true,
+  isRejected: false,
+  groups: [],
+  errorMsg: ""
 };
 
 export default function GroupReducer(state = initialState, action) {
   switch (action.type) {
     case actions.FETCHING_GROUPS:
       return Object.assign({}, state, {
-        group_loading: true,
-        group_rejected:false
+        isLoading: true
       });
-    case actions.FETCHED_GROUPS:
+    case actions.GROUPS_FAIL:
       return Object.assign({}, state, {
-        group_loading: false,
-        group_rejected: false,
-        group_groups: action.groups,
+        isLoading: false,
+        isRejected: true,
+        errorMsg: action.msg
       });
-    case actions.REJECTED_GROUPS:
+    case actions.GROUPS_SUCCESS:
       return Object.assign({}, state, {
-        group_rejected: true,
-        group_loading: false,
-        group_msg: action.msg,
+        isLoading: false,
+        isRejected: false,
+        groups: action.groups
       });
     default:
       return initialState;

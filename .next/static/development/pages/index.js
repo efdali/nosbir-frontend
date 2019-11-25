@@ -28,6 +28,138 @@ var Error = function Error(props) {
 
 /***/ }),
 
+/***/ "./components/groupSidebar.js":
+/*!************************************!*\
+  !*** ./components/groupSidebar.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime-corejs2/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime-corejs2/helpers/esm/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/assertThisInitialized */ "./node_modules/@babel/runtime-corejs2/helpers/esm/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/inherits */ "./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _loading__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./loading */ "./components/loading.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./error */ "./components/error.js");
+/* harmony import */ var _store_actions_groupActions__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../store/actions/groupActions */ "./store/actions/groupActions.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! next/router */ "./node_modules/next/dist/client/router.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_13__);
+
+
+
+
+
+
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement;
+
+
+
+
+
+
+
+
+var GroupSidebar =
+/*#__PURE__*/
+function (_React$Component) {
+  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__["default"])(GroupSidebar, _React$Component);
+
+  function GroupSidebar() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, GroupSidebar);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__["default"])(this, (_getPrototypeOf2 = Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__["default"])(GroupSidebar)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "renderComponent", function () {
+      var slug = _this.props.router.query.slug;
+      var _this$props = _this.props,
+          groups = _this$props.groups,
+          isLoading = _this$props.isLoading,
+          isRejected = _this$props.isRejected,
+          msg = _this$props.msg;
+
+      if (isLoading) {
+        return __jsx(_loading__WEBPACK_IMPORTED_MODULE_10__["default"], null);
+      } else if (isRejected) {
+        return __jsx(_error__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          msg: msg
+        });
+      } else if (!groups.length) {
+        return __jsx(_error__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          msg: "Grup Bulunamad\u0131"
+        });
+      } else {
+        return __jsx("ul", null, __jsx("li", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
+          href: "/"
+        }, __jsx("a", {
+          className: slug === undefined ? 'active' : ''
+        }, "anasayfa"))), groups.map(function (g) {
+          return __jsx("li", {
+            key: g.group_id
+          }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
+            href: g.group_seo
+          }, __jsx("a", {
+            className: slug === g.group_seo ? 'active' : ''
+          }, g.name.toLowerCase())));
+        }));
+      }
+    });
+
+    return _this;
+  }
+
+  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(GroupSidebar, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchGroups();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return __jsx("aside", {
+        className: "left-sidebar"
+      }, this.renderComponent());
+    }
+  }]);
+
+  return GroupSidebar;
+}(react__WEBPACK_IMPORTED_MODULE_7___default.a.Component);
+
+var mapStateToProps = function mapStateToProps(_ref) {
+  var groups = _ref.groups,
+      posts = _ref.posts;
+  return {
+    isLoading: groups.group_loading,
+    isRejected: groups.group_reject,
+    msg: groups.group_msg,
+    groups: groups.groups
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_9__["connect"])(mapStateToProps, {
+  fetchGroups: _store_actions_groupActions__WEBPACK_IMPORTED_MODULE_12__["fetchGroups"]
+})(Object(next_router__WEBPACK_IMPORTED_MODULE_13__["withRouter"])(GroupSidebar)));
+
+/***/ }),
+
 /***/ "./components/loading.js":
 /*!*******************************!*\
   !*** ./components/loading.js ***!
@@ -103,6 +235,68 @@ var NewPostForm = function NewPostForm() {
 
 /***/ }),
 
+/***/ "./components/popularSidebar.js":
+/*!**************************************!*\
+  !*** ./components/popularSidebar.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PopularSidebar; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./loading */ "./components/loading.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./error */ "./components/error.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _store_actions_popularActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/actions/popularActions */ "./store/actions/popularActions.js");
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+
+
+function PopularSidebar() {
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    dispatch(Object(_store_actions_popularActions__WEBPACK_IMPORTED_MODULE_5__["fetchPopulars"])());
+  }, []);
+
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
+    return state.populars;
+  }),
+      posts = _useSelector.posts,
+      isLoading = _useSelector.isLoading,
+      isRejected = _useSelector.isRejected,
+      errorMsg = _useSelector.errorMsg;
+
+  var renderContent = function renderContent() {
+    if (isLoading) return __jsx(_loading__WEBPACK_IMPORTED_MODULE_2__["default"], null);else if (isRejected) return __jsx(_error__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      msg: errorMsg
+    });else if (!posts.length) return __jsx(_error__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      msg: "Pop\xFCler post bulunamad\u0131."
+    });else return __jsx("ul", null, posts.map(function (p) {
+      return __jsx("li", {
+        key: p.post_id
+      }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_4___default.a, {
+        href: "/"
+      }, __jsx("a", null, __jsx("p", {
+        className: "max-three-line"
+      }, p.title))));
+    }));
+  };
+
+  return __jsx("aside", {
+    className: "right-sidebar"
+  }, renderContent());
+}
+
+/***/ }),
+
 /***/ "./components/post.js":
 /*!****************************!*\
   !*** ./components/post.js ***!
@@ -148,7 +342,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _loading__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./loading */ "./components/loading.js");
 /* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./error */ "./components/error.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store_actions_postsActions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../store/actions/postsActions */ "./store/actions/postsActions.js");
+/* harmony import */ var _store_actions_postActions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../store/actions/postActions */ "./store/actions/postActions.js");
 
 
 
@@ -167,16 +361,22 @@ var PostList =
 function (_React$Component) {
   Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_4__["default"])(PostList, _React$Component);
 
-  function PostList() {
+  function PostList(props) {
+    var _this;
+
     Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, PostList);
 
-    return Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__["default"])(PostList).apply(this, arguments));
+    _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__["default"])(PostList).call(this, props));
+    _this.state = {
+      page: 0
+    };
+    return _this;
   }
 
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(PostList, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchPosts(this.props.group);
+      this.props.fetchPosts();
     }
   }, {
     key: "render",
@@ -193,10 +393,10 @@ function (_React$Component) {
       });
       return __jsx("div", {
         className: "post-list"
-      }, posts.map(function (p, i) {
+      }, posts.map(function (p) {
         return __jsx(_post__WEBPACK_IMPORTED_MODULE_6__["default"], {
           post: p,
-          key: i
+          key: p.post_id
         });
       }), __jsx("button", null, "Daha Fazla Nos"));
     }
@@ -208,137 +408,16 @@ function (_React$Component) {
 var mapStateToProps = function mapStateToProps(_ref) {
   var posts = _ref.posts;
   return {
-    posts: posts.post_posts,
+    posts: posts.posts,
     isLoading: posts.post_loading,
-    isRejected: posts.post_rejected,
-    msg: posts.post_msg
+    isRejected: posts.post_reject,
+    msg: posts.post_error_msg
   };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_9__["connect"])(mapStateToProps, {
-  fetchPosts: _store_actions_postsActions__WEBPACK_IMPORTED_MODULE_10__["fetchPosts"]
+  fetchPosts: _store_actions_postActions__WEBPACK_IMPORTED_MODULE_10__["fetchPosts"]
 })(PostList));
-
-/***/ }),
-
-/***/ "./components/sidebar.js":
-/*!*******************************!*\
-  !*** ./components/sidebar.js ***!
-  \*******************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime-corejs2/helpers/esm/classCallCheck.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime-corejs2/helpers/esm/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/assertThisInitialized */ "./node_modules/@babel/runtime-corejs2/helpers/esm/assertThisInitialized.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/inherits */ "./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store_actions_groupActions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../store/actions/groupActions */ "./store/actions/groupActions.js");
-/* harmony import */ var _loading__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./loading */ "./components/loading.js");
-/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./error */ "./components/error.js");
-
-
-
-
-
-
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement;
-
-
-
-
-
-
-
-var Sidebar =
-/*#__PURE__*/
-function (_React$Component) {
-  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__["default"])(Sidebar, _React$Component);
-
-  function Sidebar() {
-    var _getPrototypeOf2;
-
-    var _this;
-
-    Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Sidebar);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__["default"])(this, (_getPrototypeOf2 = Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__["default"])(Sidebar)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "renderComponent", function () {
-      var _this$props = _this.props,
-          groups = _this$props.groups,
-          isLoading = _this$props.isLoading,
-          isRejected = _this$props.isRejected,
-          msg = _this$props.msg;
-
-      if (isLoading) {
-        return __jsx(_loading__WEBPACK_IMPORTED_MODULE_11__["default"], null);
-      } else if (isRejected) {
-        return __jsx(_error__WEBPACK_IMPORTED_MODULE_12__["default"], {
-          msg: msg
-        });
-      } else if (!groups.length) {
-        return __jsx(_error__WEBPACK_IMPORTED_MODULE_12__["default"], {
-          msg: "Grup Bulunamad\u0131"
-        });
-      } else {
-        return __jsx("ul", null, groups.map(function (g, i) {
-          return __jsx("li", {
-            key: i
-          }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
-            href: g.group_seo
-          }, __jsx("a", null, g.name.toLowerCase())));
-        }));
-      }
-    });
-
-    return _this;
-  }
-
-  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Sidebar, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchGroups();
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return __jsx("aside", {
-        className: "left-sidebar"
-      }, __jsx("h5", null, "Kanallar"), this.renderComponent());
-    }
-  }]);
-
-  return Sidebar;
-}(react__WEBPACK_IMPORTED_MODULE_7___default.a.Component);
-
-var mapStateToProps = function mapStateToProps(_ref) {
-  var groups = _ref.groups;
-  return {
-    isLoading: groups.group_loading,
-    isRejected: groups.group_rejected,
-    msg: groups.group_msg,
-    groups: groups.group_groups
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_9__["connect"])(mapStateToProps, {
-  fetchGroups: _store_actions_groupActions__WEBPACK_IMPORTED_MODULE_10__["fetchGroups"]
-})(Sidebar));
 
 /***/ }),
 
@@ -14472,10 +14551,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! next/head */ "./node_modules/next/dist/next-server/lib/head.js");
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _components_sidebar__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/sidebar */ "./components/sidebar.js");
+/* harmony import */ var _components_groupSidebar__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/groupSidebar */ "./components/groupSidebar.js");
 /* harmony import */ var _components_newPostForm__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/newPostForm */ "./components/newPostForm.js");
-/* harmony import */ var _store_actions_postsActions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../store/actions/postsActions */ "./store/actions/postsActions.js");
-/* harmony import */ var _components_postList__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/postList */ "./components/postList.js");
+/* harmony import */ var _components_postList__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/postList */ "./components/postList.js");
+/* harmony import */ var _components_popularSidebar__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/popularSidebar */ "./components/popularSidebar.js");
+/* harmony import */ var _store_actions_postActions__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../store/actions/postActions */ "./store/actions/postActions.js");
+/* harmony import */ var _store_actions_popularActions__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../store/actions/popularActions */ "./store/actions/popularActions.js");
+/* harmony import */ var _store_actions_groupActions__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../store/actions/groupActions */ "./store/actions/groupActions.js");
 
 
 
@@ -14484,6 +14566,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement;
+
+
+
 
 
 
@@ -14506,46 +14591,47 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var group = this.props.group;
-      return __jsx(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_8___default.a, null, __jsx("title", null, "Nosbir | Sosyal Payla\u015F\u0131m Diyar\u0131")), __jsx(_components_sidebar__WEBPACK_IMPORTED_MODULE_9__["default"], null), __jsx("div", {
-        className: "page-content"
-      }, __jsx(_components_newPostForm__WEBPACK_IMPORTED_MODULE_10__["default"], null), __jsx(_components_postList__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      return __jsx(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_8___default.a, null, __jsx("title", null, "Nosbir | Sosyal Payla\u015F\u0131m Diyar\u0131")), __jsx(_components_groupSidebar__WEBPACK_IMPORTED_MODULE_9__["default"], null), __jsx("div", {
+        className: "content"
+      }, __jsx(_components_newPostForm__WEBPACK_IMPORTED_MODULE_10__["default"], null), __jsx(_components_postList__WEBPACK_IMPORTED_MODULE_11__["default"], {
         group: group
-      })));
+      })), __jsx(_components_popularSidebar__WEBPACK_IMPORTED_MODULE_12__["default"], null));
     }
+  }], [{
+    key: "getInitialProps",
+    value: function () {
+      var _getInitialProps = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
+      /*#__PURE__*/
+      _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref) {
+        var store, query, group;
+        return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                store = _ref.store, query = _ref.query;
+                group = query.slug ? query.slug : "";
+                return _context.abrupt("return", {
+                  group: group
+                });
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      function getInitialProps(_x) {
+        return _getInitialProps.apply(this, arguments);
+      }
+
+      return getInitialProps;
+    }()
   }]);
 
   return Home;
 }(react__WEBPACK_IMPORTED_MODULE_7___default.a.Component);
-
-Home.getInitialProps =
-/*#__PURE__*/
-function () {
-  var _ref2 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  /*#__PURE__*/
-  _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref) {
-    var store, query, group;
-    return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            store = _ref.store, query = _ref.query;
-            group = query.slug ? query.slug : '';
-            return _context.abrupt("return", {
-              group: group
-            });
-
-          case 3:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-
-  return function (_x) {
-    return _ref2.apply(this, arguments);
-  };
-}();
 
 /* harmony default export */ __webpack_exports__["default"] = (Home);
 
@@ -14555,121 +14641,165 @@ function () {
 /*!***************************************!*\
   !*** ./store/actions/groupActions.js ***!
   \***************************************/
-/*! exports provided: FETCHED_GROUPS, REJECTED_GROUPS, FETCHING_GROUPS, fetchedGroups, rejectedGroups, fetchingGroups, fetchGroups */
+/*! exports provided: FETCHING_GROUPS, fetchingGroups, GROUPS_FAIL, groupsFail, GROUPS_SUCCESS, groupsSuccess, fetchGroups */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCHED_GROUPS", function() { return FETCHED_GROUPS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REJECTED_GROUPS", function() { return REJECTED_GROUPS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCHING_GROUPS", function() { return FETCHING_GROUPS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchedGroups", function() { return fetchedGroups; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rejectedGroups", function() { return rejectedGroups; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchingGroups", function() { return fetchingGroups; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GROUPS_FAIL", function() { return GROUPS_FAIL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "groupsFail", function() { return groupsFail; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GROUPS_SUCCESS", function() { return GROUPS_SUCCESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "groupsSuccess", function() { return groupsSuccess; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchGroups", function() { return fetchGroups; });
-var FETCHED_GROUPS = 'FETCHED_GROUPS';
-var REJECTED_GROUPS = 'REJECTED_GROUPS';
-var FETCHING_GROUPS = 'FETCHING_GROUPS';
-var fetchedGroups = function fetchedGroups(groups) {
-  return {
-    type: FETCHED_GROUPS,
-    groups: groups
-  };
-};
-var rejectedGroups = function rejectedGroups(msg) {
-  return {
-    type: REJECTED_GROUPS,
-    msg: msg
-  };
-};
+var FETCHING_GROUPS = "FETCHING_GROUPS";
 var fetchingGroups = function fetchingGroups() {
   return {
     type: FETCHING_GROUPS
   };
 };
+var GROUPS_FAIL = "GROUPS_FAIL";
+var groupsFail = function groupsFail(msg) {
+  return {
+    type: GROUPS_FAIL,
+    msg: msg
+  };
+};
+var GROUPS_SUCCESS = "GROUPS_SUCCESS";
+var groupsSuccess = function groupsSuccess(groups) {
+  return {
+    type: GROUPS_SUCCESS,
+    groups: groups
+  };
+};
 var fetchGroups = function fetchGroups() {
   return function (dispatch, getState, http) {
     dispatch(fetchingGroups());
-    http.get('gruplar.php').then(function (res) {
+    http.get("gruplar.php").then(function (res) {
       return res.data;
     }).then(function (res) {
-      if (res.durum) {
-        dispatch(fetchedGroups(res.gruplar));
-      } else {
-        dispatch(rejectedGroups(res.mesaj));
-      }
+      if (res.durum) dispatch(groupsSuccess(res.gruplar));else dispatch(groupsFail(res.mesaj));
     })["catch"](function (err) {
-      return dispatch(rejectedGroups(err));
+      return dispatch(groupsFail(err));
     });
   };
 };
 
 /***/ }),
 
-/***/ "./store/actions/postsActions.js":
-/*!***************************************!*\
-  !*** ./store/actions/postsActions.js ***!
-  \***************************************/
-/*! exports provided: FETCHED_POSTS, REJECTED_POSTS, FETCHING_POSTS, fetchedPosts, rejectedPosts, fetchingPosts, fetchPosts */
+/***/ "./store/actions/popularActions.js":
+/*!*****************************************!*\
+  !*** ./store/actions/popularActions.js ***!
+  \*****************************************/
+/*! exports provided: FETCHING_POPULARS, fetchingPopulars, POPULARS_FAIL, popularsFail, POPULARS_SUCCESS, popularsSuccess, fetchPopulars */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCHED_POSTS", function() { return FETCHED_POSTS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REJECTED_POSTS", function() { return REJECTED_POSTS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCHING_POSTS", function() { return FETCHING_POSTS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchedPosts", function() { return fetchedPosts; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rejectedPosts", function() { return rejectedPosts; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchingPosts", function() { return fetchingPosts; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPosts", function() { return fetchPosts; });
-var FETCHED_POSTS = "FETCHED_POSTS";
-var REJECTED_POSTS = "REJECTED_POSTS";
-var FETCHING_POSTS = "FETCHING_POSTS";
-var fetchedPosts = function fetchedPosts(posts, total) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCHING_POPULARS", function() { return FETCHING_POPULARS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchingPopulars", function() { return fetchingPopulars; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "POPULARS_FAIL", function() { return POPULARS_FAIL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "popularsFail", function() { return popularsFail; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "POPULARS_SUCCESS", function() { return POPULARS_SUCCESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "popularsSuccess", function() { return popularsSuccess; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPopulars", function() { return fetchPopulars; });
+var FETCHING_POPULARS = "FETCHING_POPULARS";
+var fetchingPopulars = function fetchingPopulars() {
   return {
-    type: FETCHED_POSTS,
-    posts: posts,
-    total: total
+    type: FETCHING_POPULARS
   };
 };
-var rejectedPosts = function rejectedPosts(msg) {
+var POPULARS_FAIL = "FETCHING_POPULARS";
+var popularsFail = function popularsFail(msg) {
   return {
-    type: REJECTED_POSTS,
+    type: POPULARS_FAIL,
     msg: msg
   };
 };
+var POPULARS_SUCCESS = "POPULARS_SUCCESS";
+var popularsSuccess = function popularsSuccess(populars) {
+  return {
+    type: POPULARS_SUCCESS,
+    populars: populars
+  };
+};
+var fetchPopulars = function fetchPopulars() {
+  return function (dispatch, getState, http) {
+    dispatch(fetchingPopulars());
+    http.get("populerler.php").then(function (res) {
+      return res.data;
+    }).then(function (res) {
+      if (res.durum) dispatch(popularsSuccess(res.post));else dispatch(popularsFail(res.mesaj));
+    })["catch"](function (err) {
+      return dispatch(popularsFail(err));
+    });
+  };
+};
+
+/***/ }),
+
+/***/ "./store/actions/postActions.js":
+/*!**************************************!*\
+  !*** ./store/actions/postActions.js ***!
+  \**************************************/
+/*! exports provided: FETCHING_POSTS, fetchingPosts, POSTS_FAIL, postsFail, POSTS_SUCCESS, postsSuccess, fetchPosts */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCHING_POSTS", function() { return FETCHING_POSTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchingPosts", function() { return fetchingPosts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "POSTS_FAIL", function() { return POSTS_FAIL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postsFail", function() { return postsFail; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "POSTS_SUCCESS", function() { return POSTS_SUCCESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postsSuccess", function() { return postsSuccess; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPosts", function() { return fetchPosts; });
+var FETCHING_POSTS = "FETCHING_POSTS";
 var fetchingPosts = function fetchingPosts() {
   return {
     type: FETCHING_POSTS
   };
 };
+var POSTS_FAIL = "POSTS_FAIL";
+var postsFail = function postsFail(msg) {
+  return {
+    type: POSTS_FAIL,
+    msg: msg
+  };
+};
+var POSTS_SUCCESS = "POSTS_SUCCESS";
+var postsSuccess = function postsSuccess(posts, total) {
+  return {
+    type: POSTS_SUCCESS,
+    posts: posts,
+    total: total
+  };
+};
 var fetchPosts = function fetchPosts() {
   var group = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+  var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
   return function (dispatch, getState, http) {
     dispatch(fetchingPosts());
-    var params = {};
-    if (group) params = {
-      topluluk: group
+    var params = {
+      s: page,
+      topluluk: group ? group : null
     };
     http.get("postlar.php", {
       params: params
     }).then(function (res) {
       return res.data;
     }).then(function (res) {
-      if (res.durum) {
-        dispatch(fetchedPosts(res.postlar, res.toplam));
-      } else {
-        dispatch(rejectedPosts(res.mesaj));
-      }
+      if (res.durum) dispatch(postsSuccess(res.postlar, res.toplam));else dispatch(postsFail(res.mesaj));
     })["catch"](function (err) {
-      return dispatch(rejectedPosts(err));
+      return dispatch(postsFail(err));
     });
   };
 };
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /*!*********************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2Fhome%2Fefdali%2Fprojects%2Fnosbir-frontend%2Fpages%2Findex.js ***!
   \*********************************************************************************************************************************/
@@ -14692,5 +14822,5 @@ module.exports = dll_e9ad7d891b372a4221cf;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]);
+},[[1,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map
