@@ -10,18 +10,18 @@ const NewPostForm = () => (
       <ul className="button-container">
         <li>
           <button>durum</button>
-          <img src="/status-icon.png" alt="post" width="32" height="32" />
+          <img src="/status-icon.png" alt="post" />
         </li>
         <li>
           <button>görsel</button>
-          <img src="/post-picture.png" alt="post" width="32" height="32" />
+          <img src="/post-picture.png" alt="post" />
         </li>
         <li>
           <button>link</button>
-          <img src="/post-link.png" alt="post" width="32" height="32" />
+          <img src="/post-link.png" alt="post" />
         </li>
         <li>
-          <button className="share-btn">paylaş</button>
+          <button className="default-btn share-btn">paylaş</button>
         </li>
       </ul>
     </form>

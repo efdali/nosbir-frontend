@@ -24,7 +24,12 @@ class GroupSidebar extends React.Component {
         <ul>
           <li>
             <Link href="/">
-              <a className={slug===undefined ? 'active' :''}>anasayfa</a>
+              <a className={slug===undefined ? 'active' : ''}>anasayfa</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="gundem">
+              <a className={slug==="gundem" ? 'active' : ''}>gündem</a>
             </Link>
           </li>
           {groups.map(g => (

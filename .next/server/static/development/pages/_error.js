@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -127,14 +127,14 @@ Error.getInitialProps = ({
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!*******************************!*\
   !*** multi ./pages/_error.js ***!
   \*******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/efdali/projects/nosbir-frontend/pages/_error.js */"./pages/_error.js");
+module.exports = __webpack_require__(/*! E:\projects\nosbir-frontend\pages\_error.js */"./pages/_error.js");
 
 
 /***/ }),

@@ -1,8 +1,8 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "./loading";
 import Error from "./error";
-import Link from 'next/link';
+import Link from "next/link";
 import { fetchPopulars } from "../store/actions/popularActions";
 
 export default function PopularSidebar() {
@@ -22,13 +22,20 @@ export default function PopularSidebar() {
     else
       return (
         <ul>
-          {posts.map(p => (
-            <li key={p.post_id}>
+          {posts.map((p,i) => (
+            <li key={i}>
               <Link href="/">
                 <a>
-                  <p className="max-three-line">{p.title}</p>
+                  <p>{p.title}</p>
                 </a>
               </Link>
+              <div className="go-btn-wrapper">
+                <Link href="/">
+                  <a>
+                    <img src="/go-post-icon.png" alt={p.title} />
+                  </a>
+                </Link>
+              </div>
             </li>
           ))}
         </ul>

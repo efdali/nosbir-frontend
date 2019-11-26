@@ -24,6 +24,6 @@ export default function PopularReducer(state = initialState, action) {
               posts:action.populars
           }
     default:
-      return initialState;
+      return state;
   }
 }

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const API_URL = 'http://localhost/nosbir-backend/v0/';","map":{"version":3,"sources":["E:/projects/nosbir-frontend/constants.js"],"names":["API_URL"],"mappings":"AAAA,OAAO,MAAMA,OAAO,GAAG,qCAAhB","sourcesContent":["export const API_URL = 'http://localhost/nosbir-backend/v0/';\r\n"]},"metadata":{},"sourceType":"module"}

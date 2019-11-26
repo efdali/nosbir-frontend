@@ -20,12 +20,13 @@ export default function PostReducer(state = initialState, action) {
         errorMsg: action.msg
       });
     case actions.POSTS_SUCCESS:
-      return {
-        ...initialState,
-        posts: action.posts,
-        total: action.total
-      };
+      return Object.assign({},state,{
+        isLoading:false,
+        isRejected:false,
+        posts:[...state.posts,...action.posts],
+        total:action.total
+      });
     default:
-      return initialState;
+      return state;
   }
 }

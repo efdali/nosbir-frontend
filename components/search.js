@@ -7,8 +7,6 @@ export default function Search() {
         src="/search-icon.png"
         className="search-icon"
         alt="nosbir-search"
-        width="44"
-        height="44"
       />
       <form method="GET" action="/arama">
         <input

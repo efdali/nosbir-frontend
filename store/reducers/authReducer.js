@@ -1,6 +1,6 @@
 import * as actions from '../actions/authActions';
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: true,
   user: {
    nick:'serifbey-dc',
     img:'https://www.chardhamtour.in/wp-content/uploads/2019/03/user-default.png'

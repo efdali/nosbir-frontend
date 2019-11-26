@@ -25,6 +25,6 @@ export default function GroupReducer(state = initialState, action) {
         groups: action.groups
       });
     default:
-      return initialState;
+      return state;
   }
 }

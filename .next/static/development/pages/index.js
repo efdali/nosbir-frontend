@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/index.js"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static\\development\\pages\\index.js"],{
 
 /***/ "./components/error.js":
 /*!*****************************!*\
@@ -111,7 +111,11 @@ function (_React$Component) {
           href: "/"
         }, __jsx("a", {
           className: slug === undefined ? 'active' : ''
-        }, "anasayfa"))), groups.map(function (g) {
+        }, "anasayfa"))), __jsx("li", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
+          href: "gundem"
+        }, __jsx("a", {
+          className: slug === "gundem" ? 'active' : ''
+        }, "g\xFCndem"))), groups.map(function (g) {
           return __jsx("li", {
             key: g.group_id
           }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
@@ -213,21 +217,15 @@ var NewPostForm = function NewPostForm() {
     className: "button-container"
   }, __jsx("li", null, __jsx("button", null, "durum"), __jsx("img", {
     src: "/status-icon.png",
-    alt: "post",
-    width: "32",
-    height: "32"
+    alt: "post"
   })), __jsx("li", null, __jsx("button", null, "g\xF6rsel"), __jsx("img", {
     src: "/post-picture.png",
-    alt: "post",
-    width: "32",
-    height: "32"
+    alt: "post"
   })), __jsx("li", null, __jsx("button", null, "link"), __jsx("img", {
     src: "/post-link.png",
-    alt: "post",
-    width: "32",
-    height: "32"
+    alt: "post"
   })), __jsx("li", null, __jsx("button", {
-    className: "share-btn"
+    className: "default-btn share-btn"
   }, "payla\u015F")))));
 };
 
@@ -279,14 +277,19 @@ function PopularSidebar() {
       msg: errorMsg
     });else if (!posts.length) return __jsx(_error__WEBPACK_IMPORTED_MODULE_3__["default"], {
       msg: "Pop\xFCler post bulunamad\u0131."
-    });else return __jsx("ul", null, posts.map(function (p) {
+    });else return __jsx("ul", null, posts.map(function (p, i) {
       return __jsx("li", {
-        key: p.post_id
+        key: i
       }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_4___default.a, {
         href: "/"
-      }, __jsx("a", null, __jsx("p", {
-        className: "max-three-line"
-      }, p.title))));
+      }, __jsx("a", null, __jsx("p", null, p.title))), __jsx("div", {
+        className: "go-btn-wrapper"
+      }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_4___default.a, {
+        href: "/"
+      }, __jsx("a", null, __jsx("img", {
+        src: "/go-post-icon.png",
+        alt: p.title
+      })))));
     }));
   };
 
@@ -308,14 +311,74 @@ function PopularSidebar() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 var Post = function Post(props) {
   var post = props.post;
   return __jsx("div", {
     className: "post"
-  }, __jsx("h1", null, post.title));
+  }, __jsx("ul", {
+    className: "post-header"
+  }, __jsx("li", null, __jsx("img", {
+    src: post.picture,
+    alt: post.nick
+  }), __jsx("div", null, __jsx("h3", null, post.nick), __jsx("span", null, post.created_at))), __jsx("li", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/".concat(post.group_seo)
+  }, __jsx("a", {
+    className: "default-btn group-btn"
+  }, post.name)))), __jsx("div", {
+    className: "post-content"
+  }, __jsx("h1", null, post.title), __jsx("p", null, post.content)), __jsx("div", {
+    className: "post-footer"
+  }, __jsx("ul", {
+    className: "post-actions"
+  }, __jsx("li", {
+    className: "vote"
+  }, __jsx("button", null, __jsx("img", {
+    className: "icon",
+    src: "vote-up-icon.png",
+    alt: "vote up"
+  })), __jsx("span", {
+    className: "number"
+  }, post.begeni ? post.begeni : 0), __jsx("button", null, __jsx("img", {
+    className: "icon",
+    src: "vote-down-icon.png",
+    alt: "vote down"
+  }))), __jsx("li", {
+    className: "comment-meta"
+  }, __jsx("img", {
+    className: "icon",
+    src: "comment-icon.png",
+    alt: "comments"
+  }), __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/"
+  }, __jsx("a", null, __jsx("span", {
+    className: "number"
+  }, post.toplam ? post.toplam : 0))))), __jsx("ul", {
+    className: "post-share"
+  }, __jsx("li", {
+    className: "whatsapp"
+  }, __jsx("button", null, __jsx("img", {
+    className: "icon",
+    src: "/whatsapp-share-icon.png",
+    alt: "share with whatsapp"
+  }))), __jsx("li", {
+    className: "twitter"
+  }, __jsx("button", null, __jsx("img", {
+    className: "icon",
+    src: "/twitter-share-icon.png",
+    alt: "share with twitter"
+  }))), __jsx("li", {
+    className: "facebook"
+  }, __jsx("button", null, __jsx("img", {
+    className: "icon",
+    src: "/facebook-share-icon.png",
+    alt: "share with facebook"
+  }))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Post);
@@ -335,20 +398,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js");
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js");
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime-corejs2/helpers/esm/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/inherits */ "./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _post__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./post */ "./components/post.js");
-/* harmony import */ var _loading__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./loading */ "./components/loading.js");
-/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./error */ "./components/error.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store_actions_postActions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../store/actions/postActions */ "./store/actions/postActions.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/assertThisInitialized */ "./node_modules/@babel/runtime-corejs2/helpers/esm/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/inherits */ "./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _post__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./post */ "./components/post.js");
+/* harmony import */ var _loading__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./loading */ "./components/loading.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./error */ "./components/error.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_actions_postActions__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../store/actions/postActions */ "./store/actions/postActions.js");
 
 
 
 
 
-var __jsx = react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement;
+
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement;
 
 
 
@@ -359,7 +426,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement;
 var PostList =
 /*#__PURE__*/
 function (_React$Component) {
-  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_4__["default"])(PostList, _React$Component);
+  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__["default"])(PostList, _React$Component);
 
   function PostList(props) {
     var _this;
@@ -367,6 +434,29 @@ function (_React$Component) {
     Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, PostList);
 
     _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__["default"])(PostList).call(this, props));
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "onScrollHandle", function (e) {
+      // inner görünen alan
+      // scrollTop ne kadar aşağıda olduğu
+      // offsetHeight sayfanın toplam yüksekliği
+      var _this$props = _this.props,
+          total = _this$props.total,
+          group = _this$props.group,
+          fetchPosts = _this$props.fetchPosts;
+
+      if (_this.state.page < total - 1) {
+        if (window.innerHeight + document.documentElement.scrollTop + 200 >= document.documentElement.offsetHeight) {
+          _this.setState(function (oldState) {
+            return {
+              page: oldState.page + 1
+            };
+          }, function () {
+            fetchPosts(group, _this.state.page);
+          });
+        }
+      } else window.removeEventListener("scroll", _this.onScrollHandle);
+    });
+
     _this.state = {
       page: 0
     };
@@ -376,34 +466,43 @@ function (_React$Component) {
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(PostList, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchPosts();
+      this.props.fetchPosts(this.props.group, this.state.page);
+      window.addEventListener("scroll", this.onScrollHandle);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      window.removeEventListener(scroll, this.onScrollHandle);
     }
   }, {
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          posts = _this$props.posts,
-          isLoading = _this$props.isLoading,
-          isRejected = _this$props.isRejected,
-          msg = _this$props.msg;
-      if (isLoading) return __jsx(_loading__WEBPACK_IMPORTED_MODULE_7__["default"], null);else if (isRejected) return __jsx(_error__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      var _this$props2 = this.props,
+          posts = _this$props2.posts,
+          isLoading = _this$props2.isLoading,
+          isRejected = _this$props2.isRejected,
+          msg = _this$props2.msg,
+          total = _this$props2.total;
+      if (isLoading) return __jsx(_loading__WEBPACK_IMPORTED_MODULE_9__["default"], null);else if (isRejected) return __jsx(_error__WEBPACK_IMPORTED_MODULE_10__["default"], {
         msg: msg
-      });else if (!posts.length) return __jsx(_error__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      });else if (!posts.length) return __jsx(_error__WEBPACK_IMPORTED_MODULE_10__["default"], {
         msg: "Post Bulunamad\u0131."
       });
       return __jsx("div", {
         className: "post-list"
       }, posts.map(function (p) {
-        return __jsx(_post__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        return __jsx(_post__WEBPACK_IMPORTED_MODULE_8__["default"], {
           post: p,
           key: p.post_id
         });
-      }), __jsx("button", null, "Daha Fazla Nos"));
+      }), this.state.page >= total - 1 ? __jsx(_error__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        msg: "B\xFCt\xFCn postlar bu kadard\u0131.Hepsini g\xF6rd\xFCn."
+      }) : '');
     }
   }]);
 
   return PostList;
-}(react__WEBPACK_IMPORTED_MODULE_5___default.a.Component);
+}(react__WEBPACK_IMPORTED_MODULE_7___default.a.Component);
 
 var mapStateToProps = function mapStateToProps(_ref) {
   var posts = _ref.posts;
@@ -411,12 +510,13 @@ var mapStateToProps = function mapStateToProps(_ref) {
     posts: posts.posts,
     isLoading: posts.post_loading,
     isRejected: posts.post_reject,
-    msg: posts.post_error_msg
+    msg: posts.post_error_msg,
+    total: posts.total
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_9__["connect"])(mapStateToProps, {
-  fetchPosts: _store_actions_postActions__WEBPACK_IMPORTED_MODULE_10__["fetchPosts"]
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_11__["connect"])(mapStateToProps, {
+  fetchPosts: _store_actions_postActions__WEBPACK_IMPORTED_MODULE_12__["fetchPosts"]
 })(PostList));
 
 /***/ }),
@@ -5949,10 +6049,10 @@ module.exports = invariant;
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2Fhome%2Fefdali%2Fprojects%2Fnosbir-frontend%2Fpages%2Findex.js!./":
-/*!*****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2Fhome%2Fefdali%2Fprojects%2Fnosbir-frontend%2Fpages%2Findex.js ***!
-  \*****************************************************************************************************************************************************************************/
+/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=E%3A%5Cprojects%5Cnosbir-frontend%5Cpages%5Cindex.js!./":
+/*!*****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=E%3A%5Cprojects%5Cnosbir-frontend%5Cpages%5Cindex.js ***!
+  \*****************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14556,8 +14656,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_postList__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/postList */ "./components/postList.js");
 /* harmony import */ var _components_popularSidebar__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/popularSidebar */ "./components/popularSidebar.js");
 /* harmony import */ var _store_actions_postActions__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../store/actions/postActions */ "./store/actions/postActions.js");
-/* harmony import */ var _store_actions_popularActions__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../store/actions/popularActions */ "./store/actions/popularActions.js");
-/* harmony import */ var _store_actions_groupActions__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../store/actions/groupActions */ "./store/actions/groupActions.js");
 
 
 
@@ -14566,8 +14664,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement;
-
-
 
 
 
@@ -14799,14 +14895,14 @@ var fetchPosts = function fetchPosts() {
 
 /***/ }),
 
-/***/ 1:
-/*!*********************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2Fhome%2Fefdali%2Fprojects%2Fnosbir-frontend%2Fpages%2Findex.js ***!
-  \*********************************************************************************************************************************/
+/***/ 2:
+/*!*********************************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2F&absolutePagePath=E%3A%5Cprojects%5Cnosbir-frontend%5Cpages%5Cindex.js ***!
+  \*********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absolutePagePath=%2Fhome%2Fefdali%2Fprojects%2Fnosbir-frontend%2Fpages%2Findex.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2Fhome%2Fefdali%2Fprojects%2Fnosbir-frontend%2Fpages%2Findex.js!./");
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absolutePagePath=E%3A%5Cprojects%5Cnosbir-frontend%5Cpages%5Cindex.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=E%3A%5Cprojects%5Cnosbir-frontend%5Cpages%5Cindex.js!./");
 
 
 /***/ }),
@@ -14822,5 +14918,5 @@ module.exports = dll_e9ad7d891b372a4221cf;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

@@ -5,9 +5,6 @@ import NewPostForm from "../components/newPostForm";
 import PostList from "../components/postList";
 import PopularSidebar from "../components/popularSidebar";
 import {fetchPosts} from '../store/actions/postActions';
-import {fetchPopulars} from '../store/actions/popularActions';
-import {fetchGroups} from '../store/actions/groupActions';
-
 class Home extends React.Component {
   static async getInitialProps({ store, query }) {
     const group = query.slug ? query.slug : "";
@@ -33,4 +30,5 @@ class Home extends React.Component {
     );
   }
 }
+
 export default Home;
