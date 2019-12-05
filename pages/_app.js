@@ -8,7 +8,7 @@ import reducer from '../store/reducers';
 import Layout from '../components/layout';
 import thunk from 'redux-thunk';
 import '../style.css';
-import http from '../http';
+import http from '../utils/http';
 const makeStore = (initialState={}) => {
   return createStore(
     reducer,

@@ -7,11 +7,26 @@ import { fetchGroups } from "../store/actions/groupActions";
 import { withRouter } from "next/router";
 class GroupSidebar extends React.Component {
   componentDidMount() {
-    this.props.fetchGroups();
+    if (document.documentElement.offsetWidth >= 490) {
+      this.props.fetchGroups();
+    }else{
+      window.addEventListener("resize",this.resizeHandler);
+    }
   }
+  componentWillUnmount() {
+    window.removeEventListener("resize",this.resizeHandler);
+  }
+  
+  
+  resizeHandler = () => {
+    if (document.documentElement.offsetWidth >= 490 && this.props.groups.length <=0) {
+      window.removeEventListener("resize", this.resizeHandler);
+      this.props.fetchGroups();
+    }
+  };
 
   renderComponent = () => {
-    const {slug}=this.props.router.query;
+    const { slug } = this.props.router.query;
     const { groups, isLoading, isRejected, msg } = this.props;
     if (isLoading) {
       return <Loading />;
@@ -23,19 +38,31 @@ class GroupSidebar extends React.Component {
       return (
         <ul>
           <li>
-            <Link href="/">
-              <a className={slug===undefined ? 'active' : ''}>anasayfa</a>
+            <Link href="/anasayfa">
+              <a
+                className={slug === undefined ? "active" : ""}
+                style={{ color: "var(--second-red-color)" }}
+              >
+                anasayfa
+              </a>
             </Link>
           </li>
           <li>
-            <Link href="gundem">
-              <a className={slug==="gundem" ? 'active' : ''}>gündem</a>
+            <Link href="/gundem">
+              <a
+                className={slug === "gundem" ? "active" : ""}
+                style={{ color: "var(--second-red-color)" }}
+              >
+                gündem
+              </a>
             </Link>
           </li>
           {groups.map(g => (
             <li key={g.group_id}>
-              <Link href={g.group_seo}>
-                <a  className={slug===g.group_seo ? 'active' :''}>{g.name.toLowerCase()}</a>
+              <Link href={`/${g.group_seo}`}>
+                <a className={slug === g.group_seo ? "active" : ""}>
+                  {g.name.toLowerCase()}
+                </a>
               </Link>
             </li>
           ))}
@@ -55,4 +82,6 @@ const mapStateToProps = ({ groups, posts }) => ({
   msg: groups.group_msg,
   groups: groups.groups
 });
-export default connect(mapStateToProps, { fetchGroups })(withRouter(GroupSidebar));
+export default connect(mapStateToProps, { fetchGroups })(
+  withRouter(GroupSidebar)
+);

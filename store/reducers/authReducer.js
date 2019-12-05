@@ -1,17 +1,19 @@
-import * as actions from '../actions/authActions';
+import * as actions from "../actions/authActions";
 const initialState = {
-  isAuthenticated: true,
-  user: {
-   nick:'serifbey-dc',
-    img:'https://www.chardhamtour.in/wp-content/uploads/2019/03/user-default.png'
-  },
+  isAuthenticated: false,
+  user: {}
 };
 
 export default function AuthReducer(state = initialState, action) {
   switch (action.type) {
     case actions.AUTHENTICATE:
-      return Object.assign({},state,{
-        isAuthenticated:true
+      return Object.assign({}, state, {
+        isAuthenticated: true,
+        user: action.user
+      });
+    case actions.DEAUTHENTICATE:
+      return Object.assign({}, state, {
+        ...initialState
       });
     default:
       return state;

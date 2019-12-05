@@ -9,8 +9,22 @@ export default function PopularSidebar() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchPopulars());
+    if (document.documentElement.offsetWidth > 620) {
+      dispatch(fetchPopulars());
+    } else {
+      window.addEventListener("resize", resizeHandler);
+    }
+    return ()=>{
+      window.removeEventListener("resize",resizeHandler);
+    }
   }, []);
+
+  const resizeHandler = () => {
+    if (document.documentElement.offsetWidth > 620 && posts.length <= 0) {
+      window.removeEventListener("resize",resizeHandler);
+      dispatch(fetchPopulars());
+    }
+  };
 
   const { posts, isLoading, isRejected, errorMsg } = useSelector(
     state => state.populars
@@ -21,18 +35,18 @@ export default function PopularSidebar() {
     else if (!posts.length) return <Error msg="Popüler post bulunamadı." />;
     else
       return (
-        <ul>
-          {posts.map((p,i) => (
+        <ul className="popular-list">
+          {posts.map((p, i) => (
             <li key={i}>
-              <Link href="/">
+              <Link href={`/nos/${p.seo}`}>
                 <a>
                   <p>{p.title}</p>
                 </a>
               </Link>
               <div className="go-btn-wrapper">
-                <Link href="/">
+                <Link href={`/nos/${p.seo}`}>
                   <a>
-                    <img src="/go-post-icon.png" alt={p.title} />
+                    <img src="/go-post-icon.png" alt={p.seo} />
                   </a>
                 </Link>
               </div>

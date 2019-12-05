@@ -1,6 +1,6 @@
 import * as actions from "../actions/groupActions";
 const initialState = {
-  isLoading: true,
+  isLoading: false,
   isRejected: false,
   groups: [],
   errorMsg: ""

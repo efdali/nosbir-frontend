@@ -2,7 +2,6 @@ import React from 'react';
 
 const NewPostForm = () => (
   <div className="new-post-form">
-    <form>
       <textarea
         className="post-content"
         placeholder="ne düşünüyorsun?"
@@ -24,7 +23,6 @@ const NewPostForm = () => (
           <button className="default-btn share-btn">paylaş</button>
         </li>
       </ul>
-    </form>
   </div>
 );
 

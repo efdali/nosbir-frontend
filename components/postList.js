@@ -50,8 +50,8 @@ class PostList extends React.Component {
 
     return (
       <div className="post-list">
-        {posts.map(p => (
-          <Post post={p} key={p.post_id} />
+        {posts.map((p,i) => (
+          <Post post={p} key={i} />
         ))}
         {
           this.state.page>=total-1 ? <Error msg="Bütün postlar bu kadardı.Hepsini gördün."/> :''

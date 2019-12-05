@@ -9,7 +9,6 @@ export const groupsSuccess = groups => ({ type: GROUPS_SUCCESS, groups });
 
 export const fetchGroups = () => (dispatch, getState, http) => {
   dispatch(fetchingGroups());
-
   http
     .get("gruplar.php")
     .then(res => res.data)
@@ -18,4 +17,5 @@ export const fetchGroups = () => (dispatch, getState, http) => {
       else dispatch(groupsFail(res.mesaj));
     })
     .catch(err => dispatch(groupsFail(err)));
+
 };

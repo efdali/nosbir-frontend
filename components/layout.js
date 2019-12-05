@@ -1,5 +1,9 @@
 import Head from "next/head";
 import Header from "./header";
+import LoginModal from './loginModal';
+import RegisterModal from './registerModal';
+import {ToastContainer,toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 const Layout = props => (
   <>
     <Head>
@@ -64,7 +68,9 @@ const Layout = props => (
     </Head>
     <Header />
     <div className="page-content">{props.children}</div>
+    <LoginModal/>
+    <RegisterModal/>
+    <ToastContainer autoClose={5000} position={toast.POSITION.TOP_CENTER}/>
   </>
 );
-
 export default Layout;

@@ -1,74 +1,179 @@
-import React from 'react';
-import Link from 'next/link';
-import { useSelector } from 'react-redux';
-import Search from "./search";
+import React, { useState } from "react";
+import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import {
+  setModalVisibility,
+  LOGIN_MODAL,
+  REGISTER_MODAL
+} from "../store/actions/modalActions";
+import { logout } from "../store/actions/authActions";
+import NavbarBrand from "./navbarBrand";
+import Image from "./image";
+
 const Header = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
   const { isAuthenticated, user } = useSelector(state => state.auth);
+  const [isOpen, setIsOpen] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   return (
-    <React.Fragment>
-      <nav>
-        <div className="navbar-brand">
-          <Link href="/">
-            <a>
-              <img
-                src="/header-logo.png"
-                className="navbar-logo"
-                alt="Nosbir"
-              />
-            </a>
-          </Link>
-          <h1>
-            <Link href="/">
-              <a>nosbir</a>
-            </Link>
-          </h1>
-        </div>
-        {isAuthenticated ? (
-          <ul className="navbar-profile">
-            <li>
-              <Link href="#">
-                <a>
-                  <img
-                    src="/message-icon.png"
-                    className="nav-icon"
-                    alt="messages"
-                  />
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="#">
-                <a>
-                  <img
-                    src="/notification-icon.png"
-                    className="nav-icon"
-                    alt="notifications"
-                  />
-                </a>
-              </Link>
-            </li>
-            <li className="profile-item">
-              <img src={user.img} alt={user.nick} className="navbar-user-img" />
-              <h3>
-                <Link href={`@${user.nick}`}>
-                  <a>{user.nick}</a>
+    <nav>
+      <div className="navbar-top">
+        <NavbarBrand />
+        <ul className="navbar-right">
+          <li>
+            {!showSearch ? (
+              <a
+                href="#"
+                onClick={e => {
+                  e.preventDefault();
+                  setShowSearch(true);
+                }}
+              >
+                <img src="/search-icon2.png" alt="search on nosbir.com" />
+              </a>
+            ) : (
+              <>
+                <form method="GET" action="/arama" className="search-form">
+                  <input type="text" placeholder="ne arıyorsun?" name="q" />
+                </form>
+                <button
+                  className="default-btn"
+                  onClick={() => setShowSearch(false)}
+                >
+                  &times;
+                </button>
+              </>
+            )}
+          </li>
+          {isAuthenticated ? (
+            <>
+              <li>
+                <Link href="#">
+                  <a>
+                    <img
+                      src="/message-icon.png"
+                      className="nav-icon"
+                      alt="messages"
+                    />
+                  </a>
                 </Link>
-              </h3>
-            </li>
-          </ul>
-        ) : (
-          <ul className="header-btns">
-            <li>
-              <button className="btn-login">Giriş Yap</button>
-            </li>
-            <li>
-              <button className="btn-register">Kayıt Ol</button>
-            </li>
-          </ul>
-        )}
-      </nav>
-      <Search/>
-    </React.Fragment>
+              </li>
+              <li>
+                <Link href="#">
+                  <a>
+                    <img
+                      src="/notification-icon.png"
+                      className="nav-icon"
+                      alt="notifications"
+                    />
+                  </a>
+                </Link>
+              </li>
+              <li
+                className="profile-item"
+                onMouseEnter={() => setIsOpen(true)}
+                onMouseLeave={() => setIsOpen(false)}
+              >
+                <Image
+                  src={user.resim}
+                  alt={user.kadi}
+                  className="navbar-user-img"
+                />
+                <h3>
+                  <Link href={`@${user.kadi}`}>
+                    <a>{user.kadi}</a>
+                  </Link>
+                </h3>
+                <a
+                  href="#"
+                  className="profile-caret"
+                  onClick={e => {
+                    e.preventDefault();
+                    setIsOpen(!isOpen);
+                  }}
+                >
+                  &#9660;
+                </a>
+                <ul className={`profile-actions ${!isOpen ? "hidden" : ""}`}>
+                  <li>
+                    <Link href={`/@${user.kadi}`}>
+                      <a>Profil</a>
+                    </Link>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      onClick={e => {
+                        e.preventDefault();
+                        dispatch(logout());
+                        router.reload();
+                      }}
+                    >
+                      Çıkış
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <button
+                  className="btn-login default-btn"
+                  onClick={() =>
+                    dispatch(setModalVisibility(LOGIN_MODAL, true))
+                  }
+                >
+                  Giriş Yap
+                </button>
+              </li>
+              <li>
+                <button
+                  className="btn-register default-btn"
+                  onClick={() =>
+                    dispatch(setModalVisibility(REGISTER_MODAL, true))
+                  }
+                >
+                  Kayıt Ol
+                </button>
+              </li>
+            </>
+          )}
+        </ul>
+      </div>
+      <div className="mobile-sub-header">
+        <form method="get" action="/arama">
+          <img src="/search-icon.png" alt="search" />
+          <input type="text" name="q" />
+        </form>
+        <Link href="/">
+          <a>
+            <img src="/fire-nos-icon.png" alt="nosbir.com" />
+          </a>
+        </Link>
+        <Link href="/">
+          <a>
+            <img src="/trends-icon.png"></img>
+          </a>
+        </Link>
+        <Link href="/">
+          <a>
+            <img src="/flash-icon.png"></img>
+          </a>
+        </Link>
+        <a
+          onClick={e => {
+            e.preventDefault();
+            if (isAuthenticated) router.push("/yeni-post");
+            else dispatch(setModalVisibility(LOGIN_MODAL, true));
+          }}
+        >
+          <img src="/edit-post-icon.png"></img>
+        </a>
+      </div>
+    </nav>
   );
 };
 
