@@ -1,6 +1,5 @@
 import React from 'react';
 import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import App from 'next/app';
 import withRedux from 'next-redux-wrapper';
@@ -13,7 +12,7 @@ const makeStore = (initialState={}) => {
   return createStore(
     reducer,
     initialState,
-    composeWithDevTools(applyMiddleware(thunk.withExtraArgument(http))),
+  applyMiddleware(thunk.withExtraArgument(http)),
   );
 };
 
