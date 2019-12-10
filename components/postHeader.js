@@ -9,15 +9,15 @@ export default function PostHeader(props) {
         <Image src={props.picture} alt={props.nick} />
         <div>
           <h3>
-            <Link href={`/@${props.nick}`}>
-              <a>{props.nick}</a>
+            <Link href={`/u/@${props.nick}`}>
+              <a>@{props.nick}</a>
             </Link>
           </h3>
           <span>{timeAgo(props.createdAt)}</span>
         </div>
       </li>
       <li>
-        <Link href={`/${props.seo}`}>
+        <Link href={`/n/${props.seo}`}>
           <a className="default-btn group-btn">{props.name}</a>
         </Link>
       </li>

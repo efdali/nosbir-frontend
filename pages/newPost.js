@@ -37,7 +37,7 @@ class NewPost extends Component {
       props.groupsSuccess(props.asyncGroups);
     }
     this.state = {
-      active: "picture",
+      active: "state",
       title: "",
       text: "",
       groupValue: 0,

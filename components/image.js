@@ -1,7 +1,7 @@
 import React from 'react'
-import { IMAGE_URL } from '../utils/constants'
+import { IMAGE_URL,GROUP_IMAGE_URL } from '../utils/constants'
 export default function Image(props) {
     return (
-        <img src={`${IMAGE_URL}${props.src}`} className={props.className} alt={props.alt}/>
+        <img src={!props.group ? `${IMAGE_URL}${props.src}` : `${GROUP_IMAGE_URL}${props.src}`} className={props.className} alt={props.alt}/>
     )
 }

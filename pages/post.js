@@ -19,7 +19,7 @@ const Post = props => {
       <GroupSidebar />
       <div className="content">
         <div className="post">
-        <PostDetails post={post} />
+          <PostDetails post={post} />
         </div>
         <CommentList />
 
@@ -35,6 +35,7 @@ const Post = props => {
         </div>
       </div>
       <PostUserSidebar
+        userId={post.user_id}
         nick={post.nick}
         picture={post.picture}
         likes={post.begeni}

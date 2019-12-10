@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Error from "./error";
 import { timeAgo } from "../utils/helper";
@@ -7,6 +7,13 @@ import PostSocial from "./postSocial";
 export default function PostDetails(props) {
   const router = useRouter();
   const { post } = props;
+
+  useEffect(() => {
+    if (!post)
+      setTimeout(() => {
+        router.back();
+      }, 1000);
+  }, [post]);
 
   if (!post) {
     return <Error msg="Aradığınız post bulunamadı." />;
@@ -25,10 +32,20 @@ export default function PostDetails(props) {
         <h1>{post.title}</h1>
         <span>{timeAgo(post.created_at)}</span>
       </div>
-      <PostHeader seo={post.group_seo} nick={post.nick} picture={post.picture} name={post.name} createdAt={post.created_at} class="post-detail">
-        <PostSocial/>
+      <PostHeader
+        seo={post.group_seo}
+        nick={post.nick}
+        picture={post.picture}
+        name={post.name}
+        createdAt={post.created_at}
+        class="post-detail"
+      >
+        <PostSocial seo={post.seo} />
       </PostHeader>
-      <div className="post-content-body" dangerouslySetInnerHTML={{__html: post.content}}></div>
+      <div
+        className="post-content-body"
+        dangerouslySetInnerHTML={{ __html: post.content }}
+      ></div>
     </>
   );
 }

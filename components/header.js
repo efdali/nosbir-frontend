@@ -10,6 +10,8 @@ import {
 import { logout } from "../store/actions/authActions";
 import NavbarBrand from "./navbarBrand";
 import Image from "./image";
+import NotificationPanel from "./notificationPanel";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -17,6 +19,7 @@ const Header = () => {
   const { isAuthenticated, user } = useSelector(state => state.auth);
   const [isOpen, setIsOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [notifPanelActive, setNotifPanelActive] = useState(false);
   return (
     <nav>
       <div className="navbar-top">
@@ -51,7 +54,14 @@ const Header = () => {
             <>
               <li>
                 <Link href="#">
-                  <a>
+                  <a
+                    onClick={e => {
+                      e.preventDefault();
+                      toast.info(
+                        "Mesajlaşma aktif değildir. En kısa sürede aktifleştirilecektir..."
+                      );
+                    }}
+                  >
                     <img
                       src="/message-icon.png"
                       className="nav-icon"
@@ -60,9 +70,14 @@ const Header = () => {
                   </a>
                 </Link>
               </li>
-              <li>
+              <li onMouseLeave={()=>setNotifPanelActive(false)}>
                 <Link href="#">
-                  <a>
+                  <a
+                    onClick={e => {
+                      e.preventDefault();
+                      setNotifPanelActive(!notifPanelActive);
+                    }}
+                  >
                     <img
                       src="/notification-icon.png"
                       className="nav-icon"
@@ -70,6 +85,7 @@ const Header = () => {
                     />
                   </a>
                 </Link>
+                <NotificationPanel active={notifPanelActive} nick={user.kadi} />
               </li>
               <li
                 className="profile-item"
@@ -82,7 +98,7 @@ const Header = () => {
                   className="navbar-user-img"
                 />
                 <h3>
-                  <Link href={`@${user.kadi}`}>
+                  <Link href={`/u/@${user.kadi}`}>
                     <a>{user.kadi}</a>
                   </Link>
                 </h3>
@@ -98,7 +114,7 @@ const Header = () => {
                 </a>
                 <ul className={`profile-actions ${!isOpen ? "hidden" : ""}`}>
                   <li>
-                    <Link href={`/@${user.kadi}`}>
+                    <Link href={`/u/@${user.kadi}`}>
                       <a>Profil</a>
                     </Link>
                   </li>
@@ -148,12 +164,12 @@ const Header = () => {
           <img src="/search-icon.png" alt="search" />
           <input type="text" name="q" />
         </form>
-        <Link href="/">
+        <Link href="/gruplar">
           <a>
             <img src="/fire-nos-icon.png" alt="nosbir.com" />
           </a>
         </Link>
-        <Link href="/">
+        <Link href="/gundem">
           <a>
             <img src="/trends-icon.png"></img>
           </a>
@@ -164,6 +180,7 @@ const Header = () => {
           </a>
         </Link>
         <a
+          href="#"
           onClick={e => {
             e.preventDefault();
             if (isAuthenticated) router.push("/yeni-post");

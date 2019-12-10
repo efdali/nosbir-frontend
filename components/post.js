@@ -29,7 +29,7 @@ const Post = props => {
           likes={post.begeni}
           total={post.toplam}
         />
-        <PostSocial />
+        <PostSocial seo={post.seo} />
       </div>
     </div>
   );

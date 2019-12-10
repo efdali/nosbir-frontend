@@ -12,19 +12,27 @@ export default function PostSocial(props) {
   return (
     <ul className="post-share">
       <li className="whatsapp">
-        <button className={defaultClass}>
+        <a
+          href={`https://wa.me/?text=şu nosa bir bak... http://nosbir.com/nos/${props.seo}`}
+          target="_blank"
+          className={defaultClass}
+        >
           <Icon type="whatsapp" />
-        </button>
+        </a>
       </li>
       <li className="twitter">
-        <button className={defaultClass}>
+        <a className={defaultClass} target="_blank" href={`https://twitter.com/share?url=http://nosbir.com/nos/${props.seo}`}>
           <Icon type="twitter" />
-        </button>
+        </a>
       </li>
       <li className="facebook">
-        <button className={defaultClass}>
+        <a
+          className={defaultClass}
+          target="_blank"
+          href={`https://www.facebook.com/sharer/sharer.php?u=http://nosbir.com/nos/${props.seo}`}
+        >
           <Icon type="facebook" />
-        </button>
+        </a>
       </li>
       {props.children}
     </ul>

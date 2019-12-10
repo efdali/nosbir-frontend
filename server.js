@@ -25,19 +25,57 @@ app.prepare().then(() => {
   server.get("/yeni-post", (req, res) => {
     return app.render(req, res, "/newPost");
   });
-  server.get("/gundem",(req,res)=>{
-    return app.render(req,res,"/trends");
+  server.get("/gruplar", (req, res) => {
+    return app.render(req, res, "/groups");
   });
-  server.get("/anasayfa",(req,res)=>{
-    return app.render(req,res,"/index");
+  server.get("/gundem", (req, res) => {
+    return app.render(req, res, "/trends", { slug: "gundem" });
   });
-  server.get("/:slug", (req, res) => {
+  server.get("/anasayfa", (req, res) => {
+    return app.render(req, res, "/index");
+  });
+  server.get("/profil-duzenle", (req, res) => {
+    return app.render(req, res, "/editProfile");
+  });
+  server.get("/n/:slug", (req, res) => {
+    return app.render(req, res, "/index", { slug: req.params.slug });
+  });
+  server.get("/u/:slug", (req, res) => {
+    return app.render(req, res, "/profile", {
+      slug: req.params.slug,
+      page: "postlar"
+    });
+  });
+  server.get("/u/:slug/postlar", (req, res) => {
+    return app.render(req, res, "/profile", {
+      slug: req.params.slug,
+      page: "postlar"
+    });
+  });
+  server.get("/u/:slug/yorumlar", (req, res) => {
+    return app.render(req, res, "/profile", {
+      slug: req.params.slug,
+      page: "yorumlar"
+    });
+  });
+  server.get("/bildirimler", (req, res) => {
+    return app.render(req, res, "/notifications");
+  });
+  server.get("/mesajlar", (req, res) => {
+    return app.render(req, res, "/profile", {
+      page: "postlar"
+    });
+  });
+  server.get("/", (req, res) => {
+    return app.render(req, res, "/index");
+  });
+  /*server.get("/:slug", (req, res) => {
     const slug = req.params.slug;
     if (slug.charAt(0) === "@") {
       return app.render(req, res, "/profile", { slug });
     }
     return app.render(req, res, "/index", { slug });
-  });
+  });*/
   server.all("*", (req, res) => {
     return handle(req, res);
   });

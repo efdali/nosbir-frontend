@@ -1,7 +1,9 @@
 import React from "react";
-import Link from 'next/link';
-import Image from './image';
+import Link from "next/link";
+import Image from "./image";
+import { useSelector } from "react-redux";
 export default function UserContainer(props) {
+  const authUserId = useSelector(state => state.auth.user.id);
   return (
     <div className="user-container">
       <div className="container-top"></div>
@@ -10,18 +12,20 @@ export default function UserContainer(props) {
         <ul>
           <li>
             <h2>
-              <Link href={`/@${props.nick}`}>
-                <a>{props.nick}</a>
+              <Link href={`/u/@${props.nick}`}>
+                <a>@{props.nick}</a>
               </Link>
             </h2>
           </li>
-          <li className="message-icon-container">
-            <Link href="/">
-              <a>
-                <img src="/message-icon.png" alt="mesaj at" />
-              </a>
-            </Link>
-          </li>
+          {props.userId !== authUserId && (
+            <li className="message-icon-container">
+              <Link href="/">
+                <a>
+                  <img src="/message-icon.png" alt="mesaj at" />
+                </a>
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </div>

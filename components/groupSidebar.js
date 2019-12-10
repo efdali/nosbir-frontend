@@ -38,6 +38,11 @@ class GroupSidebar extends React.Component {
       return (
         <ul>
           <li>
+            <Link href="/gruplar">
+              <a className="all-groups">Tüm Gruplar &#8594;</a>
+            </Link>
+          </li>
+          <li>
             <Link href="/anasayfa">
               <a
                 className={slug === undefined ? "active" : ""}
@@ -59,7 +64,7 @@ class GroupSidebar extends React.Component {
           </li>
           {groups.map(g => (
             <li key={g.group_id}>
-              <Link href={`/${g.group_seo}`}>
+              <Link href={`/n/${g.group_seo}`}>
                 <a className={slug === g.group_seo ? "active" : ""}>
                   {g.name.toLowerCase()}
                 </a>

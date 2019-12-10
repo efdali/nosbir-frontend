@@ -14,14 +14,14 @@ export default function PopularSidebar() {
     } else {
       window.addEventListener("resize", resizeHandler);
     }
-    return ()=>{
-      window.removeEventListener("resize",resizeHandler);
-    }
+    return () => {
+      window.removeEventListener("resize", resizeHandler);
+    };
   }, []);
 
   const resizeHandler = () => {
     if (document.documentElement.offsetWidth > 620 && posts.length <= 0) {
-      window.removeEventListener("resize",resizeHandler);
+      window.removeEventListener("resize", resizeHandler);
       dispatch(fetchPopulars());
     }
   };
@@ -52,6 +52,11 @@ export default function PopularSidebar() {
               </div>
             </li>
           ))}
+          <li className="more-trends">
+            <Link href="/gundem">
+              <a>Daha fazla &#8594;</a>
+            </Link>
+          </li>
         </ul>
       );
   };

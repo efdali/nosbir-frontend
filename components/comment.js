@@ -15,6 +15,13 @@ export default function Comment(props) {
         </button>
       </div>
       <div className="comment-left">
+        {
+          props.link && <Link href={`/nos/${props.link}`}>
+            <a className="goto-post-btn">
+              Nos'a Git &#8594;
+            </a>
+          </Link>
+        }
         <p>{comment.text}</p>
         <div className="comment-meta">
           <h3>

@@ -1,14 +1,12 @@
 import React from "react";
-import { useRouter } from "next/router";
-export default function Search() {
-  const router = useRouter();
-  const { q } = router.query;
+export default function Search(props) {
   return (
     <div className="header-search">
       <img src="/search-icon.png" className="search-icon" alt="nosbir-search" />
-      <form method="GET" action="/arama">
+      <form method="GET" action="/arama" onSubmit={props.onSubmit}>
         <input
-          value={q}
+          value={props.value}
+          onChange={props.onChange}
           type="text"
           name="q"
           className="search-input"
@@ -17,9 +15,9 @@ export default function Search() {
       </form>
       <style jsx>{`
         div.header-search {
-          width: 850px;
+          width: 40%;
+          margin:0 auto;
           position: relative;
-          left: 238px;
           margin-top: 15px;
           margin-bottom: 15px;
           border-bottom: 2px solid var(--main-gray-color);
@@ -40,7 +38,7 @@ export default function Search() {
           width: 100%;
           border: none;
           outline: none;
-          font-size: var(--small-font-size);
+          font-size: var(--normal-font-size);
           font-family: tekton-pro, sans-serif;
           font-weight: bold;
           color: #fff;

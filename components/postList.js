@@ -17,7 +17,7 @@ class PostList extends React.Component {
     // scrollTop ne kadar aşağıda olduğu
     // offsetHeight sayfanın toplam yüksekliği
     const { total, group, fetchPosts } = this.props;
-    if (this.state.page < total-1) {
+    if (this.state.page < total - 1) {
       if (
         window.innerHeight + document.documentElement.scrollTop + 200 >=
         document.documentElement.offsetHeight
@@ -42,7 +42,7 @@ class PostList extends React.Component {
   }
 
   render() {
-    const { posts, isLoading, isRejected, msg,total } = this.props;
+    const { posts, isLoading, isRejected, msg, total } = this.props;
 
     if (isLoading) return <Loading />;
     else if (isRejected) return <Error msg={msg} />;
@@ -50,12 +50,14 @@ class PostList extends React.Component {
 
     return (
       <div className="post-list">
-        {posts.map((p,i) => (
+        {posts.map((p, i) => (
           <Post post={p} key={i} />
         ))}
-        {
-          this.state.page>=total-1 ? <Error msg="Bütün postlar bu kadardı.Hepsini gördün."/> :''
-        }
+        {this.state.page !== 0 && this.state.page >= total - 1 ? (
+          <Error msg="Bütün postlar bu kadardı.Hepsini gördün." />
+        ) : (
+          ""
+        )}
       </div>
     );
   }

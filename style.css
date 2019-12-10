@@ -200,6 +200,11 @@ ul.navbar-right {
 }
 ul.navbar-right > li {
   margin-right: 15px;
+  position:relative;
+  height:var(--header-height);
+  display:flex;
+  align-items: center;
+  justify-content: center;
 }
 ul.navbar-right > li:first-child {
   padding-right: 12px;
@@ -251,6 +256,7 @@ li.profile-item ul.profile-actions {
   width: 100%;
   border: 1px solid var(--main-gray-color);
   border-top: none;
+  z-index: 999;
 }
 li.profile-item ul.profile-actions.hidden {
   display: none;
@@ -300,6 +306,7 @@ ul.navbar-right button.btn-register {
 ul.navbar-right li form.search-form {
   border-bottom: 1px solid var(--main-gray-color);
   display: inline-block;
+  float:left;
 }
 ul.navbar-right li form.search-form input {
   border: none;
@@ -341,6 +348,14 @@ aside.left-sidebar ul li a {
   width: 100%;
   padding: 5px 0;
   font-weight: bold;
+}
+aside.left-sidebar ul li a:hover {
+  color: var(--main-red-color);
+}
+aside.left-sidebar ul li a.all-groups {
+  font-size: var(--small-font-size);
+  text-align: right;
+  text-decoration: underline;
 }
 aside.left-sidebar ul li a.active {
   color: var(--main-red-color) !important;
@@ -434,7 +449,7 @@ div.picture-tab img {
   max-height: 512px;
   padding: 10px;
   display: block;
-  margin:0 auto;
+  margin: 0 auto;
 }
 div.picture-tab .picture-tab-footer {
   position: relative;
@@ -620,7 +635,8 @@ div.post-content p img {
   max-width: 100%;
   max-height: 250px;
   display: block;
-  margin:0 auto;
+  margin: 0 auto;
+  object-fit: contain;
 }
 div.post-footer {
   display: flex;
@@ -660,6 +676,7 @@ div.post-footer {
 }
 .post-footer ul.post-share li {
   display: inline-block;
+  padding: 5px;
 }
 .post-footer ul.post-share img.icon {
   width: var(--content-icon-size);
@@ -709,7 +726,7 @@ div.post-footer {
   max-width: 100%;
   max-height: 512px;
   display: block;
-  margin:0 auto;
+  margin: 0 auto;
 }
 .post-content-body pre {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
@@ -717,10 +734,23 @@ div.post-footer {
 }
 /* Comment */
 .comment {
+  position: relative;
   background: #fff;
   margin-top: 15px;
   padding: 6px 15px;
   display: flex;
+}
+.comment .goto-post-btn{
+  position: absolute;
+  display: inline-block;
+  right: 0;
+  padding: 5px;
+  font-size: 11px;
+  color: #aaa;
+  text-decoration: underline;
+}
+.comment .goto-post-btn:hover{
+  color:var(--main-dark-gray-color);
 }
 .comment div.comment-vote {
   display: flex;
@@ -852,7 +882,7 @@ aside.user-sidebar ul.post-share {
 aside.user-sidebar ul.post-share li {
   margin-left: 10px;
 }
-aside.user-sidebar ul.post-share button {
+aside.user-sidebar ul.post-share a[target="_blank"]{
   padding: 0px;
 }
 aside.user-sidebar ul.post-share img {
@@ -900,6 +930,20 @@ aside.right-sidebar > ul.popular-list li {
   background-color: #4c4848;
   margin-bottom: 5px;
   align-items: center;
+}
+aside.right-sidebar > ul.popular-list li.more-trends {
+  border: none;
+  background-color: inherit;
+}
+aside.right-sidebar > ul.popular-list li.more-trends a {
+  font-size: var(--small-font-size);
+  display: block;
+  margin-left: auto;
+  font-family: Tekton-pro, sans-serif;
+  text-decoration: underline;
+}
+aside.right-sidebar > ul.popular-list li.more-trends a:hover{
+  color: var(--main-red-color);
 }
 aside.right-sidebar div.go-btn-wrapper {
   background: #5e5a5a;
@@ -1333,9 +1377,6 @@ div.modal-content ul.login-footer li a:hover {
   div.post {
     margin-bottom: 5px;
   }
-  div.post ul.post-header li {
-    padding: 0;
-  }
   div.post,
   div.post-footer {
     border-bottom-right-radius: 8px;
@@ -1350,27 +1391,23 @@ div.modal-content ul.login-footer li a:hover {
 
   /* New Post */
 
-  div.new-post-content{
+  div.new-post-content {
     flex-direction: column;
   }
-  div.new-post-content div:first-child{
-    display:none;
+  div.new-post-content > div:first-child {
+    display: none;
   }
-  div.new-post-content form input.post-title{
+  div.new-post-content form input.post-title {
     margin-bottom: 15px;
-    margin-top:15px;
+    margin-top: 15px;
   }
-  div.new-post-content form{
-    order:2;
+  div.new-post-content form {
+    order: 2;
   }
-  .new-post-content .groups-input-container{
+  .new-post-content .groups-input-container {
     margin-left: 0;
-    order:1;
+    order: 1;
   }
-  .new-post-content .groups-input-container ul{
-    display: ;
-  }
-
 }
 @media screen and (max-width: 431px) {
   input.default-input {
