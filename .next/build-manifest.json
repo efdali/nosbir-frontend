@@ -22,7 +22,7 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/newPost": [
+    "/post": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

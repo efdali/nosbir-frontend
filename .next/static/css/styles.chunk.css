@@ -634,6 +634,10 @@ div.post-content div.text {
   max-height: 280px;
   word-break: break-word;
 }
+div.post-content div.text pre{
+  word-break: break-word;
+  white-space:pre-wrap;
+}
 div.post-content div.text img {
   max-width: 100%;
   max-height: 250px;
