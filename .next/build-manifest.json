@@ -18,11 +18,11 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/groups": [
+    "/index": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/index": [
+    "/newPost": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]
