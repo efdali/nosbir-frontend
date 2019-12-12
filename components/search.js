@@ -44,6 +44,11 @@ export default function Search(props) {
           color: #fff;
           background-color: inherit;
         }
+        @media(max-width:850px){
+          div.header-search{
+            width:90%;
+          }
+        }
       `}</style>
     </div>
   );

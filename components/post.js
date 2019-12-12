@@ -3,6 +3,7 @@ import Link from "next/link";
 import Vote from "./vote";
 import PostHeader from "./postHeader";
 import PostSocial from "./postSocial";
+import ReactHtmlParser from "react-html-parser";
 const Post = props => {
   const { post } = props;
   return (
@@ -20,7 +21,7 @@ const Post = props => {
             <a>{post.title}</a>
           </Link>
         </h1>
-        <p dangerouslySetInnerHTML={{ __html: post.content }}></p>
+        <div className="text">{ReactHtmlParser(post.content)}</div>
       </div>
       <div className="post-footer">
         <Vote

@@ -7,11 +7,13 @@ import PopularSidebar from "../components/popularSidebar";
 import { withAuth } from "../utils/auth";
 import { LOGIN_MODAL, setModalVisibility } from "../store/actions/modalActions";
 import { connect } from "react-redux";
-import {toast} from 'react-toastify';
+import { toast } from "react-toastify";
+import { fetchPosts } from "../store/actions/postActions";
 class Home extends React.Component {
   static async getInitialProps(ctx) {
     const { query } = ctx;
     const group = query.slug ? query.slug : "";
+    await ctx.store.dispatch(fetchPosts(group));
     return {
       group
     };
@@ -41,7 +43,11 @@ class Home extends React.Component {
               placeholder="ne düşünüyorsun"
               onFocus={this.sharePostHandler}
             />
-            <button href="#" className="default-btn" onClick={this.sharePostHandler}>
+            <button
+              href="#"
+              className="default-btn"
+              onClick={this.sharePostHandler}
+            >
               Paylaş
             </button>
           </div>
@@ -52,9 +58,9 @@ class Home extends React.Component {
     );
   }
 }
-const mapStateToProps=state=>({
-  isAuthenticated:state.auth.isAuthenticated
-})
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
 export default connect(mapStateToProps, { setModalVisibility })(
   withRouter(withAuth(Home))
 );

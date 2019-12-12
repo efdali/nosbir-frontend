@@ -164,7 +164,7 @@ const Header = () => {
           <img src="/search-icon.png" alt="search" />
           <input type="text" name="q" />
         </form>
-        <Link href="/gruplar">
+        <Link href="/">
           <a>
             <img src="/fire-nos-icon.png" alt="nosbir.com" />
           </a>
@@ -174,7 +174,7 @@ const Header = () => {
             <img src="/trends-icon.png"></img>
           </a>
         </Link>
-        <Link href="/">
+        <Link href="/gruplar">
           <a>
             <img src="/flash-icon.png"></img>
           </a>

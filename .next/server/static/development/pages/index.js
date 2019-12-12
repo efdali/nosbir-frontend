@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -403,7 +403,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vote__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./vote */ "./components/vote.js");
 /* harmony import */ var _postHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./postHeader */ "./components/postHeader.js");
 /* harmony import */ var _postSocial__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./postSocial */ "./components/postSocial.js");
+/* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-html-parser */ "react-html-parser");
+/* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_html_parser__WEBPACK_IMPORTED_MODULE_5__);
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 
@@ -426,11 +429,9 @@ const Post = props => {
     className: "post-content"
   }, __jsx("h1", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: `/nos/${post.seo}`
-  }, __jsx("a", null, post.title))), __jsx("p", {
-    dangerouslySetInnerHTML: {
-      __html: post.content
-    }
-  })), __jsx("div", {
+  }, __jsx("a", null, post.title))), __jsx("div", {
+    className: "text"
+  }, react_html_parser__WEBPACK_IMPORTED_MODULE_5___default()(post.content))), __jsx("div", {
     className: "post-footer"
   }, __jsx(_vote__WEBPACK_IMPORTED_MODULE_2__["default"], {
     postId: post.post_id,
@@ -542,7 +543,7 @@ class PostList extends react__WEBPACK_IMPORTED_MODULE_1___default.a.Component {
   }
 
   componentDidMount() {
-    this.props.fetchPosts(this.props.group, this.state.page);
+    if (this.props.posts.length <= 0) this.props.fetchPosts(this.props.group, this.state.page);
     window.addEventListener("scroll", this.onScrollHandle);
   }
 
@@ -2594,8 +2595,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-toastify */ "react-toastify");
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_toastify__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _store_actions_postActions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../store/actions/postActions */ "./store/actions/postActions.js");
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
 
 
 
@@ -2628,6 +2631,7 @@ class Home extends react__WEBPACK_IMPORTED_MODULE_1___default.a.Component {
       query
     } = ctx;
     const group = query.slug ? query.slug : "";
+    await ctx.store.dispatch(Object(_store_actions_postActions__WEBPACK_IMPORTED_MODULE_11__["fetchPosts"])(group));
     return {
       group
     };
@@ -2891,13 +2895,13 @@ const postsSuccess = (posts, total) => ({
   posts,
   total
 });
-const fetchPosts = (group = "", page = 0) => (dispatch, getState, http) => {
+const fetchPosts = (group = "", page = 0) => async (dispatch, getState, http) => {
   dispatch(fetchingPosts());
   const params = {
     s: page,
     topluluk: group ? group : null
   };
-  http.get("postlar.php", {
+  await http.get("postlar.php", {
     params
   }).then(res => res.data).then(res => {
     if (res.durum) dispatch(postsSuccess(res.postlar, res.toplam));else dispatch(postsFail(res.mesaj));
@@ -3009,9 +3013,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "API_URL", function() { return API_URL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IMAGE_URL", function() { return IMAGE_URL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GROUP_IMAGE_URL", function() { return GROUP_IMAGE_URL; });
-const API_URL = 'http://localhost/nosbir-backend/v0/';
-const IMAGE_URL = 'http://localhost/nosbir-backend/resimler/';
-const GROUP_IMAGE_URL = 'http://localhost/nosbir-backend/gruplar/'; //export const API_URL = 'http://localhost/nosbir-backend/v0/';
+const BASE_URL =  false ? undefined : "http://localhost/nosbir-backend";
+const API_URL = `${BASE_URL}/v0/`;
+const IMAGE_URL = `${BASE_URL}/resimler/`;
+const GROUP_IMAGE_URL = `${BASE_URL}/gruplar/`; //export const API_URL = 'http://localhost/nosbir-backend/v0/';
 
 /***/ }),
 
@@ -3103,7 +3108,7 @@ http.interceptors.request.use(config => {
 
 /***/ }),
 
-/***/ 5:
+/***/ 3:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
@@ -3354,6 +3359,17 @@ module.exports = require("prop-types-exact");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "react-html-parser":
+/*!************************************!*\
+  !*** external "react-html-parser" ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-html-parser");
 
 /***/ }),
 

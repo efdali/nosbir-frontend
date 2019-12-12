@@ -27,33 +27,21 @@ const Groups = ({ groups }) => {
             .filter(g => g.name.toLowerCase().includes(value))
             .map(g => (
               <div className="group-card" key={g.group_id}>
-                <div className="left-img-container">
-                  <Link href={g.group_seo}>
-                    <a>
-                      <Image
-                        src={g.logo}
-                        alt={g.name}
-                        className="group-icon"
-                        group={true}
-                      />
-                    </a>
+                <Link href={`/n/${g.group_seo}`}>
+                  <a>
+                    <Image
+                      src={g.logo}
+                      alt={g.name}
+                      className="group-icon"
+                      group={true}
+                    />
+                  </a>
+                </Link>
+                <h2 className="group-name">
+                  <Link href={`/${g.group_seo}`}>
+                    <a>{g.name}</a>
                   </Link>
-                  <h2 className="group-name">
-                    <Link href={`/${g.group_seo}`}>
-                      <a>{g.name}</a>
-                    </Link>
-                  </h2>
-                </div>
-                <div className="right-container">
-                  <div>
-                    <h5>Hakkında</h5>
-                    <p className="group-summary">{g.summary}</p>
-                  </div>
-                  <div>
-                    <h5>Kurallar</h5>
-                    <p className="group-rules">{g.rules}</p>
-                  </div>
-                </div>
+                </h2>
               </div>
             ))}
       </div>
@@ -72,24 +60,21 @@ const Groups = ({ groups }) => {
             flex-wrap: wrap;
           }
           .group-card {
-            width: 45%;
-            height: 240px;
+            width: 20%;
+            height: 200px;
             margin-bottom: 20px;
+            margin-left:15px;
             background-color: #fff;
             display: flex;
+            flex-direction:column;
+            background:var(--main-red-color);
           }
-          .left-img-container {
-            flex-basis: 20%;
-            padding: 6px;
-            height: inherit;
-            text-align: center;
-            background-color: var(--main-red-color);
-          }
-          .left-img-container a{
-            display:block;
-            position:relative;
-            top:35%;
-            transform:translateY(-50%);
+          .group-card a {
+            display: block;
+            position: relative;
+            top: 35%;
+            transform: translateY(-50%);
+            text-align:center;
           }
           :global(.group-icon) {
             width: 100px;
@@ -100,51 +85,20 @@ const Groups = ({ groups }) => {
             font-size: var(--big-font-size);
             text-align: center;
             font-family: Tekton-pro, sans-serif;
-            margin: 40px 0 10px;
+            margin: 60px 0 10px;
             font-weight: bolder;
           }
           h2.group-name > a {
             color: #fff;
           }
-          .right-container {
-            flex: 1;
-            display: flex;
-            padding: 5px;
-            height: 240px;
-            align-items: center;
-            overflow: hidden;
-          }
-          .right-container > div {
-            padding: 5px;
-            width: 50%;
-            height: inherit;
-          }
-          .right-container > div:first-child {
-            border-right: 1px solid var(--main-gray-color);
-          }
-          .right-container > div:nth-child(2) {
-            margin-left: 5px;
-          }
-          .right-container h5 {
-            font-size: var(--normal-font-size);
-            text-align: center;
-            margin-bottom: 8px;
-            font-family: Tekton-pro, sans-serif;
-          }
-          .right-container p {
-            overflow: hidden;
-            max-height: 200px;
-          }
-          .right-container p:hover {
-            overflow-y: auto;
-          }
           @media screen and (max-width: 850px) {
             .group-container {
               flex-direction: column;
+              margin-top:15px;
             }
             .group-card {
-              flex: 1;
-              width: 100%;
+              width: 90%;
+              margin-left:0;
             }
           }
         `}

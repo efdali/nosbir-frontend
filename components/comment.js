@@ -9,7 +9,7 @@ export default function Comment(props) {
         <button className="default-btn">
           <img src="/vote-up-icon.png" alt="yorum oyla" />
         </button>
-        <span>5</span>
+        <span>&infin;</span>
         <button className="default-btn">
           <img src="/vote-down-icon.png" alt="yorum oyla" />
         </button>

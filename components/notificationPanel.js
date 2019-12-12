@@ -5,7 +5,7 @@ import Loading from "./loading";
 export default function NotificationPanel({ active, nick }) {
   const [notifications, setNotifications] = useState([]);
   const [isLoading, setLoading] = useState(false);
-  const notViewed=notifications.filter(n=>n.is_viewed==0).length;
+  const notViewed=notifications.length>0 ? notifications.filter(n=>n.is_viewed==0).length : [];
   useEffect(() => {
     if (notifications.length === 0 && active) {
       setLoading(true);

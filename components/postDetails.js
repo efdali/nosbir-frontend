@@ -4,6 +4,8 @@ import Error from "./error";
 import { timeAgo } from "../utils/helper";
 import PostHeader from "./postHeader";
 import PostSocial from "./postSocial";
+import ReactHtmlParser from "react-html-parser";
+
 export default function PostDetails(props) {
   const router = useRouter();
   const { post } = props;
@@ -42,10 +44,7 @@ export default function PostDetails(props) {
       >
         <PostSocial seo={post.seo} />
       </PostHeader>
-      <div
-        className="post-content-body"
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      ></div>
+      <div className="post-content-body">{ReactHtmlParser(post.content)}</div>
     </>
   );
 }

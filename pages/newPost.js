@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Head from "next/head";
-import Link from "next/link";
 import { connect } from "react-redux";
 import { withRouter } from "next/router";
 import { withAuth } from "../utils/auth";
@@ -11,7 +10,7 @@ import http from "../utils/http";
 import { shareTextPost,shareImagePost } from "../store/actions/shareActions";
 import { toast } from "react-toastify";
 class NewPost extends Component {
-  static async getInitialProps({ store }) {
+  static async getInitialProps() {
     const asyncGroups = await http
       .get("gruplar.php")
       .then(res => res.data)

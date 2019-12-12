@@ -34,7 +34,9 @@ class PostList extends React.Component {
     } else window.removeEventListener("scroll", this.onScrollHandle);
   };
   componentDidMount() {
-    this.props.fetchPosts(this.props.group, this.state.page);
+    if (this.props.posts.length <= 0)
+      this.props.fetchPosts(this.props.group, this.state.page);
+
     window.addEventListener("scroll", this.onScrollHandle);
   }
   componentWillUnmount() {

@@ -11,19 +11,18 @@ export const postsSuccess = (posts, total) => ({
   total
 });
 
-export const fetchPosts = (group = "", page = 0) => (
+export const fetchPosts = (group = "", page = 0) => async (
   dispatch,
   getState,
   http
 ) => {
   dispatch(fetchingPosts());
-
   const params = {
     s: page,
     topluluk: group ? group : null
   };
 
-  http
+  await http
     .get("postlar.php", { params })
     .then(res => res.data)
     .then(res => {
