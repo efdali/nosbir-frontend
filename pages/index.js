@@ -37,16 +37,14 @@ class Home extends React.Component {
         </Head>
         <GroupSidebar />
         <div className="content">
-          <div className="home-new-post">
+          <div className="home-new-post" onClick={this.sharePostHandler}>
             <input
               type="text"
               placeholder="ne düşünüyorsun"
-              onFocus={this.sharePostHandler}
             />
             <button
               href="#"
               className="default-btn"
-              onClick={this.sharePostHandler}
             >
               Paylaş
             </button>

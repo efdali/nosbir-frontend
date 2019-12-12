@@ -2644,15 +2644,14 @@ class Home extends react__WEBPACK_IMPORTED_MODULE_1___default.a.Component {
     return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_2___default.a, null, __jsx("title", null, "Nosbir | Sosyal Payla\u015F\u0131m Diyar\u0131")), __jsx(_components_groupSidebar__WEBPACK_IMPORTED_MODULE_4__["default"], null), __jsx("div", {
       className: "content"
     }, __jsx("div", {
-      className: "home-new-post"
+      className: "home-new-post",
+      onClick: this.sharePostHandler
     }, __jsx("input", {
       type: "text",
-      placeholder: "ne d\xFC\u015F\xFCn\xFCyorsun",
-      onFocus: this.sharePostHandler
+      placeholder: "ne d\xFC\u015F\xFCn\xFCyorsun"
     }), __jsx("button", {
       href: "#",
-      className: "default-btn",
-      onClick: this.sharePostHandler
+      className: "default-btn"
     }, "Payla\u015F")), __jsx(_components_postList__WEBPACK_IMPORTED_MODULE_5__["default"], {
       group: group
     })), __jsx(_components_popularSidebar__WEBPACK_IMPORTED_MODULE_6__["default"], null));
