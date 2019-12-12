@@ -739,6 +739,8 @@ div.post-footer {
 .post-content-body pre {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-size: var(--normal-font-size);
+  word-break: break-word;
+  white-space: pre-wrap;
 }
 /* Comment */
 .comment {
