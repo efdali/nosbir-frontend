@@ -1,12 +1,27 @@
 import Head from "next/head";
 import Header from "./header";
-import LoginModal from './loginModal';
-import RegisterModal from './registerModal';
-import {ToastContainer,toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import LoginModal from "./loginModal";
+import RegisterModal from "./registerModal";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 const Layout = props => (
   <>
     <Head>
+      {/* Google Tag Manager */}
+      <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=UA-154490978-1"
+      ></script>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-154490978-1');`
+        }}
+      ></script>
+
       <meta charSet="utf-8" />
       <link rel="icon" href="/footer.png" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -68,9 +83,9 @@ const Layout = props => (
     </Head>
     <Header />
     <div className="page-content">{props.children}</div>
-    <LoginModal/>
-    <RegisterModal/>
-    <ToastContainer autoClose={5000} position={toast.POSITION.TOP_CENTER}/>
+    <LoginModal />
+    <RegisterModal />
+    <ToastContainer autoClose={5000} position={toast.POSITION.TOP_CENTER} />
   </>
 );
 export default Layout;

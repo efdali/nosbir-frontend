@@ -249,7 +249,14 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 var Layout = function Layout(props) {
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, null, __jsx("meta", {
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, null, __jsx("script", {
+    async: true,
+    src: "https://www.googletagmanager.com/gtag/js?id=UA-154490978-1"
+  }), __jsx("script", {
+    dangerouslySetInnerHTML: {
+      __html: "window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'UA-154490978-1');"
+    }
+  }), __jsx("meta", {
     charSet: "utf-8"
   }), __jsx("link", {
     rel: "icon",
