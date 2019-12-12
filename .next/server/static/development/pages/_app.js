@@ -248,15 +248,17 @@ const Header = () => {
     href: "/"
   }, __jsx("a", null, __jsx("img", {
     src: "/fire-nos-icon.png",
-    alt: "nosbir.com"
+    alt: "pop\xFClerler"
   }))), __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/gundem"
   }, __jsx("a", null, __jsx("img", {
-    src: "/trends-icon.png"
+    src: "/trends-icon.png",
+    alt: "gundem"
   }))), __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/gruplar"
   }, __jsx("a", null, __jsx("img", {
-    src: "/flash-icon.png"
+    src: "/flash-icon.png",
+    alt: "gruplar"
   }))), __jsx("a", {
     href: "#",
     onClick: e => {

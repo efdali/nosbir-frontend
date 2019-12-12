@@ -166,17 +166,17 @@ const Header = () => {
         </form>
         <Link href="/">
           <a>
-            <img src="/fire-nos-icon.png" alt="nosbir.com" />
+            <img src="/fire-nos-icon.png" alt="popülerler" />
           </a>
         </Link>
         <Link href="/gundem">
           <a>
-            <img src="/trends-icon.png"></img>
+            <img src="/trends-icon.png" alt="gundem"></img>
           </a>
         </Link>
         <Link href="/gruplar">
           <a>
-            <img src="/flash-icon.png"></img>
+            <img src="/flash-icon.png" alt="gruplar"></img>
           </a>
         </Link>
         <a
