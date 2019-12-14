@@ -229,6 +229,7 @@ ul li.profile-item {
   justify-content: center;
   align-items: center;
   position: relative;
+  min-width: 120px;
 }
 ul li.profile-item:hover {
   cursor: pointer;

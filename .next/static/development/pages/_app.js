@@ -215,6 +215,11 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 function Image(props) {
+  if (props.withoutUrl) return __jsx("img", {
+    src: props.src,
+    className: props.className,
+    alt: props.alt
+  });
   return __jsx("img", {
     src: !props.group ? "".concat(_utils_constants__WEBPACK_IMPORTED_MODULE_1__["IMAGE_URL"]).concat(props.src) : "".concat(_utils_constants__WEBPACK_IMPORTED_MODULE_1__["GROUP_IMAGE_URL"]).concat(props.src),
     className: props.className,
@@ -23543,7 +23548,7 @@ function (_App) {
 /*!**************************************!*\
   !*** ./store/actions/authActions.js ***!
   \**************************************/
-/*! exports provided: AUTHENTICATE, authenticate, DEAUTHENTICATE, deauthenticate, login, register, LOGOUT, logout */
+/*! exports provided: AUTHENTICATE, authenticate, DEAUTHENTICATE, deauthenticate, login, register, LOGOUT, logout, changeImage */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23556,6 +23561,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "register", function() { return register; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGOUT", function() { return LOGOUT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeImage", function() { return changeImage; });
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/esm/react-toastify.js");
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_1__);
@@ -23588,6 +23594,8 @@ var login = function login(nick, passwd) {
     }).then(function (res) {
       return res.data;
     }).then(function (res) {
+      console.log(res);
+
       if (res.durum) {
         localStorage.setItem("token", res.token);
         js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.set("token", res.token, {
@@ -23629,6 +23637,28 @@ var logout = function logout() {
     localStorage.removeItem("token");
     js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.remove("token");
     dispatch(deauthenticate());
+  };
+};
+var changeImage = function changeImage(image) {
+  return function (dispatch, getState, http) {
+    if (!image) return false;
+    var formData = new FormData();
+    formData.append("resim", image);
+    return http.post("profil_duzenle.php", formData).then(function (res) {
+      console.log(res);
+      return res.data;
+    }).then(function (res) {
+      if (res.durum) {
+        localStorage.setItem("token", res.token);
+        js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.set("token", res.token, {
+          expires: 1
+        });
+        var data = jwt_decode__WEBPACK_IMPORTED_MODULE_2___default()(res.token);
+        dispatch(authenticate(data.data));
+      }
+
+      return res.durum;
+    });
   };
 };
 

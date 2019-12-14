@@ -56,6 +56,12 @@ class NewPost extends Component {
     else {
       return (
         <ul>
+          <li>
+            <a className={this.state.groupValue == 9 ? "active" : ""}
+            onClick={e=>this.changeGroup(e,9)}>
+              neverfab
+            </a>
+          </li>
           {groups.map((g, i) => (
             <li key={i}>
               <a

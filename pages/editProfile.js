@@ -1,11 +1,86 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { withAuth } from "../utils/auth";
+import http from "../utils/http";
 import UserContainer from "../components/userContainer";
 import Image from "../components/image";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { changeImage, logout } from "../store/actions/authActions";
+import { toast } from "react-toastify";
+import Loading from "../components/loading";
+import Router from 'next/Router';
 function EditProfile() {
   const user = useSelector(state => state.auth.user);
+  const dispatch = useDispatch();
+  const [image, setImage] = useState();
+  const [without, setWithout] = useState(false);
+  const [picture, setPicture] = useState(user.resim);
+  const [isLoading, setLoading] = useState(false);
+  const [oldPasswd, setOldPasswd] = useState("");
+  const [newPasswd, setNewPasswd] = useState("");
+  const [newPasswdAgain, setNewPasswdAgain] = useState("");
+  const changeImageHandler = e => {
+    e.preventDefault();
+    setLoading(true);
+    if (!image) return false;
+    const result = dispatch(changeImage(image));
+    result.then(res => {
+      if (res) {
+        toast.success("resim başarıyla değişti");
+      } else {
+        toast.error("Opps bir hata oluştu");
+      }
+      setLoading(false);
+    });
+  };
+  const onImageChange = e => {
+    if (e.target.files && e.target.files[0]) {
+      setImage(e.target.files[0]);
+      let reader = new FileReader();
+      reader.onload = event => {
+        setPicture(event.target.result);
+        setWithout(true);
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
+  const passwdChangeHandler = e => {
+    e.preventDefault();
+
+    if (!oldPasswd || !newPasswd || !newPasswdAgain) {
+      return false;
+    }
+
+    if (newPasswd !== newPasswdAgain) {
+      toast.error("şifreler eşleşmiyor");
+      return false;
+    }
+
+    if(newPasswd.length<=6){
+      toast.warn("şifre 6 karakterden az olamaz");
+      return false;
+    }
+
+    http
+      .post("profil_dsifre.php", {
+        eskiSifre: oldPasswd,
+        yeniSifre: newPasswd
+      })
+      .then(res => res.data)
+      .then(res => {
+        console.log(res);
+        if (res.durum) {
+          toast.success("şifre değiştirme başarılı. tekrar giriş yapın");
+          setInterval(() => {
+            dispatch(logout());
+            Router.replace("/");
+          }, 1000);
+        } else {
+          toast.error(res.mesaj);
+        }
+      });
+  };
   return (
     <>
       <Head>
@@ -17,15 +92,33 @@ function EditProfile() {
         </div>
         <div className="form-wrapper">
           <div className="picture-form form-box">
-            <form>
-              <Image src={user.resim} alt={user.kadi} />
+            <form onSubmit={changeImageHandler}>
+              <Image
+                src={picture}
+                alt={user.kadi}
+                withoutUrl={without}
+                className="user-img"
+              />
               <label className="picture-label">
                 yeni resim seç
-                <input type="file" className="picture-btn" />
+                <input
+                  type="file"
+                  className="picture-btn"
+                  onChange={onImageChange}
+                />
               </label>
-              <button type="submit" className="form-save-btn">
-                kaydet
-              </button>
+              {!isLoading ? (
+                <button
+                  type="submit"
+                  className="form-save-btn"
+                  onClick={changeImageHandler}
+                  disabled={isLoading ? true : false}
+                >
+                  kaydet
+                </button>
+              ) : (
+                <Loading />
+              )}
             </form>
           </div>
           <div className="nick-form form-box">
@@ -65,23 +158,39 @@ function EditProfile() {
             </form>
           </div>
           <div className="passwd-form form-box">
-            <form>
+            <form onSubmit={passwdChangeHandler}>
               <input
                 type="password"
                 className="default-input"
                 placeholder="yeni şifre"
+                value={newPasswd}
+                onChange={e => setNewPasswd(e.target.value)}
               />
               <input
                 type="password"
                 className="default-input"
                 placeholder="yeni şifre tekrar"
+                value={newPasswdAgain}
+                onChange={e => setNewPasswdAgain(e.target.value)}
               />
               <input
                 type="password"
                 className="default-input old-passwd"
                 placeholder="mevcut şifre"
+                value={oldPasswd}
+                onChange={e => setOldPasswd(e.target.value)}
               />
-              <button className="form-save-btn">kaydet</button>
+              {isLoading ? (
+                <Loading />
+              ) : (
+                <button
+                  className="form-save-btn"
+                  onClick={passwdChangeHandler}
+                  disabled={isLoading ? true : false}
+                >
+                  kaydet
+                </button>
+              )}
             </form>
           </div>
         </div>
@@ -112,6 +221,7 @@ function EditProfile() {
           }
           .form-wrapper {
             margin-top: 50px;
+            padding-bottom: 50px;
           }
           .form-box {
             width: 80%;
@@ -127,7 +237,7 @@ function EditProfile() {
             display: flex;
             align-items: center;
           }
-          :global(.form-box img) {
+          :global(.form-box .user-img) {
             width: 90px;
             height: 90px;
             border-radius: 50%;
@@ -165,6 +275,28 @@ function EditProfile() {
           button.form-save-btn.disabled {
             cursor: no-drop;
             background-color: #000;
+          }
+          :global(.loading-container) {
+            margin-left: auto;
+            margin-right: 25px;
+          }
+          :global(.loading-container img) {
+            margin-top: 0 !important;
+          }
+          @media (max-width: 1320px) {
+            .passwd-form {
+              height: 120px;
+            }
+            .passwd-form form {
+              flex-wrap: wrap;
+              height: 120px;
+            }
+            .passwd-form button {
+              margin: 0;
+            }
+            .picture-label {
+              margin-left: -15px;
+            }
           }
         `}
       </style>

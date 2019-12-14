@@ -272,6 +272,11 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 function Image(props) {
+  if (props.withoutUrl) return __jsx("img", {
+    src: props.src,
+    className: props.className,
+    alt: props.alt
+  });
   return __jsx("img", {
     src: !props.group ? `${_utils_constants__WEBPACK_IMPORTED_MODULE_1__["IMAGE_URL"]}${props.src}` : `${_utils_constants__WEBPACK_IMPORTED_MODULE_1__["GROUP_IMAGE_URL"]}${props.src}`,
     className: props.className,
@@ -486,7 +491,11 @@ function PostHeader(props) {
   }, __jsx("a", null, "@", props.nick))), __jsx("span", null, Object(_utils_helper__WEBPACK_IMPORTED_MODULE_3__["timeAgo"])(props.createdAt)))), __jsx("li", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: `/n/${props.seo}`
   }, __jsx("a", {
-    className: "default-btn group-btn"
+    className: "default-btn group-btn",
+    style: props.name === "neverfab" ? {
+      color: "var(--main-green-color)",
+      background: "var(--main-bg-color)"
+    } : {}
   }, props.name))), props.children);
 }
 
@@ -2680,7 +2689,7 @@ const mapStateToProps = state => ({
 /*!**************************************!*\
   !*** ./store/actions/authActions.js ***!
   \**************************************/
-/*! exports provided: AUTHENTICATE, authenticate, DEAUTHENTICATE, deauthenticate, login, register, LOGOUT, logout */
+/*! exports provided: AUTHENTICATE, authenticate, DEAUTHENTICATE, deauthenticate, login, register, LOGOUT, logout, changeImage */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2693,6 +2702,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "register", function() { return register; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGOUT", function() { return LOGOUT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeImage", function() { return changeImage; });
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-toastify */ "react-toastify");
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_toastify__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! js-cookie */ "js-cookie");
@@ -2720,6 +2730,8 @@ const login = (nick, passwd) => {
       kadi: nick,
       sifre: passwd
     }).then(res => res.data).then(res => {
+      console.log(res);
+
       if (res.durum) {
         localStorage.setItem("token", res.token);
         js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.set("token", res.token, {
@@ -2754,6 +2766,26 @@ const logout = () => dispatch => {
   localStorage.removeItem("token");
   js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.remove("token");
   dispatch(deauthenticate());
+};
+const changeImage = image => (dispatch, getState, http) => {
+  if (!image) return false;
+  var formData = new FormData();
+  formData.append("resim", image);
+  return http.post("profil_duzenle.php", formData).then(res => {
+    console.log(res);
+    return res.data;
+  }).then(res => {
+    if (res.durum) {
+      localStorage.setItem("token", res.token);
+      js_cookie__WEBPACK_IMPORTED_MODULE_1___default.a.set("token", res.token, {
+        expires: 1
+      });
+      const data = jwt_decode__WEBPACK_IMPORTED_MODULE_2___default()(res.token);
+      dispatch(authenticate(data.data));
+    }
+
+    return res.durum;
+  });
 };
 
 /***/ }),

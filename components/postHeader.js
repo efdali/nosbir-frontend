@@ -1,7 +1,7 @@
 import React from "react";
-import Link from 'next/link';
-import Image from './image';
-import {timeAgo} from '../utils/helper';
+import Link from "next/link";
+import Image from "./image";
+import { timeAgo } from "../utils/helper";
 export default function PostHeader(props) {
   return (
     <ul className={`post-header ${props.class}`}>
@@ -18,7 +18,19 @@ export default function PostHeader(props) {
       </li>
       <li>
         <Link href={`/n/${props.seo}`}>
-          <a className="default-btn group-btn">{props.name}</a>
+          <a
+            className="default-btn group-btn"
+            style={
+              props.name === "neverfab"
+                ? {
+                    color: "var(--main-green-color)",
+                    background: "var(--main-bg-color)"
+                  }
+                : {}
+            }
+          >
+            {props.name}
+          </a>
         </Link>
       </li>
       {props.children}

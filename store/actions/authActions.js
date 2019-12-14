@@ -18,6 +18,7 @@ export const login = (nick, passwd) => {
       })
       .then(res => res.data)
       .then(res => {
+        console.log(res);
         if (res.durum) {
           localStorage.setItem("token", res.token);
           cookie.set("token", res.token, { expires: 1 });
@@ -57,4 +58,22 @@ export const logout = () => dispatch => {
   localStorage.removeItem("token");
   cookie.remove("token");
   dispatch(deauthenticate());
+};
+
+export const changeImage = image => (dispatch, getState, http) => {
+  if (!image) return false;
+  var formData = new FormData();
+  formData.append("resim", image);
+  return http
+    .post("profil_duzenle.php", formData)
+    .then(res => {console.log(res); return res.data;})
+    .then(res => {
+      if (res.durum) {
+        localStorage.setItem("token", res.token);
+        cookie.set("token", res.token, { expires: 1 });
+        const data = jwt_decode(res.token);
+        dispatch(authenticate(data.data));
+      }
+      return res.durum;
+    });
 };
