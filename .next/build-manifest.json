@@ -18,19 +18,7 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/editProfile": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/groups": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
     "/index": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/newPost": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]
