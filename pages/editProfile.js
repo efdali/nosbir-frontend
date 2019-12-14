@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeImage, logout } from "../store/actions/authActions";
 import { toast } from "react-toastify";
 import Loading from "../components/loading";
-import Router from 'next/Router';
+import Router from 'next/router';
 function EditProfile() {
   const user = useSelector(state => state.auth.user);
   const dispatch = useDispatch();
