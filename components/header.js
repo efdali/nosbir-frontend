@@ -119,6 +119,18 @@ const Header = () => {
                     </Link>
                   </li>
                   <li>
+                    <Link href={`/u/@${user.kadi}/yorumlar`}>
+                      <a>
+                        Cevaplarım
+                      </a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/profil-duzenle">
+                      <a>Profil Düzenle</a>
+                    </Link>
+                  </li>
+                  <li>
                     <a
                       href="#"
                       onClick={e => {

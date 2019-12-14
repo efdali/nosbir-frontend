@@ -9,17 +9,19 @@ class GroupSidebar extends React.Component {
   componentDidMount() {
     if (document.documentElement.offsetWidth >= 490) {
       this.props.fetchGroups();
-    }else{
-      window.addEventListener("resize",this.resizeHandler);
+    } else {
+      window.addEventListener("resize", this.resizeHandler);
     }
   }
   componentWillUnmount() {
-    window.removeEventListener("resize",this.resizeHandler);
+    window.removeEventListener("resize", this.resizeHandler);
   }
-  
-  
+
   resizeHandler = () => {
-    if (document.documentElement.offsetWidth >= 490 && this.props.groups.length <=0) {
+    if (
+      document.documentElement.offsetWidth >= 490 &&
+      this.props.groups.length <= 0
+    ) {
       window.removeEventListener("resize", this.resizeHandler);
       this.props.fetchGroups();
     }
@@ -59,6 +61,16 @@ class GroupSidebar extends React.Component {
                 style={{ color: "var(--second-red-color)" }}
               >
                 gündem
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/n/neverfab">
+              <a
+                className={slug === "neverfab" ? "active " : ""}
+                style={{ color: "var(--main-green-color" }}
+              >
+                neverfab
               </a>
             </Link>
           </li>

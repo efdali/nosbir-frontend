@@ -201,7 +201,14 @@ class GroupSidebar extends react__WEBPACK_IMPORTED_MODULE_1___default.a.Componen
           style: {
             color: "var(--second-red-color)"
           }
-        }, "g\xFCndem"))), groups.map(g => __jsx("li", {
+        }, "g\xFCndem"))), __jsx("li", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+          href: "/n/neverfab"
+        }, __jsx("a", {
+          className: slug === "neverfab" ? "active " : "",
+          style: {
+            color: "var(--main-green-color"
+          }
+        }, "neverfab"))), groups.map(g => __jsx("li", {
           key: g.group_id
         }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
           href: `/n/${g.group_seo}`

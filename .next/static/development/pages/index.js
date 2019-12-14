@@ -133,7 +133,14 @@ function (_React$Component) {
           style: {
             color: "var(--second-red-color)"
           }
-        }, "g\xFCndem"))), groups.map(function (g) {
+        }, "g\xFCndem"))), __jsx("li", null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
+          href: "/n/neverfab"
+        }, __jsx("a", {
+          className: slug === "neverfab" ? "active " : "",
+          style: {
+            color: "var(--main-green-color"
+          }
+        }, "neverfab"))), groups.map(function (g) {
           return __jsx("li", {
             key: g.group_id
           }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {

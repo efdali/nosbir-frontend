@@ -40,7 +40,7 @@ export default function NotificationPanel({ active, nick }) {
           ))}
         {notifications.length === 0 && !isLoading && <li>Bildiriminiz yok.</li>}
       </ul>
-      <Link href={`/u/@${nick}/bildirimler`}>
+      <Link href={`/bildirimler`}>
         <a>Bütün bildirimleri gör</a>
       </Link>
       <style jsx>{`
